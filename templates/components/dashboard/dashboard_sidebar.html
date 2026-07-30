@@ -1,0 +1,109 @@
+{% load static %}
+
+<section class="dashboard-sidebar dashboard-card">
+
+    <!--=================================
+            PERFIL
+    ==================================-->
+
+    <div class="sidebar-profile">
+
+        <img src="{% static 'assets/images/profile-header.jpg' %}" alt="Perfil">
+
+        <h4>Iván Emmanuel</h4>
+
+        <span>@ivan_dev</span>
+
+    </div>
+
+    <!--=================================
+            MENÚ PERSONAL
+    ==================================-->
+
+    <nav class="sidebar-menu">
+
+        <!-- Dashboard -->
+
+        <a href="{% url 'dashboard' %}"
+           class="dashboard-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+
+            <i class="fa-solid fa-house"></i>
+
+            <span>Dashboard</span>
+
+        </a>
+
+        <!-- Biblioteca -->
+
+        <a href="#"
+           class="dashboard-link {% if request.resolver_match.url_name == 'dashboard_library' %}active{% endif %}">
+
+            <i class="fa-solid fa-book-bookmark"></i>
+
+            <span>Mi Biblioteca</span>
+
+        </a>
+
+        <!-- Lista de deseos -->
+
+        <a href="#"
+           class="dashboard-link {% if request.resolver_match.url_name == 'dashboard_wishlist' %}active{% endif %}">
+
+            <i class="fa-solid fa-heart"></i>
+
+            <span>Lista de deseos</span>
+
+        </a>
+
+        <!-- Logros -->
+
+        <a href="#"
+           class="dashboard-link {% if request.resolver_match.url_name == 'dashboard_achievements' %}active{% endif %}">
+
+            <i class="fa-solid fa-trophy"></i>
+
+            <span>Mis Logros</span>
+
+        </a>
+
+        <!-- Estadísticas -->
+
+        <a href="#"
+           class="dashboard-link {% if request.resolver_match.url_name == 'dashboard_statistics' %}active{% endif %}">
+
+            <i class="fa-solid fa-chart-line"></i>
+
+            <span>Estadísticas</span>
+
+        </a>
+
+        <!-- Perfil -->
+
+        <a href="{% url 'dashboard_profile' %}"
+           class="dashboard-link {% if request.resolver_match.url_name == 'dashboard_profile' %}active{% endif %}">
+
+            <i class="fa-solid fa-user"></i>
+
+            <span>Mi Perfil</span>
+
+        </a>
+
+    </nav>
+
+    <!--=================================
+            FRASE
+    ==================================-->
+
+    <div class="sidebar-footer">
+
+        <i class="fa-solid fa-gamepad"></i>
+
+        <p>
+
+            Sigue explorando nuevos mundos y completa tu colección.
+
+        </p>
+
+    </div>
+
+</section>

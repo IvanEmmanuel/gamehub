@@ -1,0 +1,144 @@
+{% load static %}
+
+<section id="achievements" class="content-achievements content-card-rigth">
+
+    <!--=================================
+                HEADER
+    =================================-->
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-trophy"></i>
+
+            Logros
+
+        </h2>
+
+        <a href="#">
+
+            Ver todos
+
+        </a>
+
+    </div>
+
+    <!--=================================
+            PROGRESO GENERAL
+    =================================-->
+
+    <div class="achievement-progress">
+
+        <div class="progress-circle">
+
+            <span class="number">
+
+                {{ content.achievements.completed }}
+
+            </span>
+
+            <span class="total">
+
+                /{{ content.achievements.total }}
+
+            </span>
+
+        </div>
+
+        <div class="progress-info">
+
+            <h4>
+
+                Has desbloqueado todos los logros
+
+            </h4>
+
+            <div class="progress">
+
+                <div class="progress-bar" style="width:100%"></div>
+
+            </div>
+
+        </div>
+
+        <span class="progress-percent">
+
+            100%
+
+        </span>
+
+    </div>
+
+    <!--=================================
+            LISTA
+    =================================-->
+
+    <div class="achievement-list">
+
+        
+        {% for list in content.achievements.list %}
+
+            <!-- Logro -->
+
+            <div class="achievement-item">
+
+                <div class="achievement-icon">
+
+                    <img src="{% static list.image %}" alt="">
+
+                </div>
+
+                <div class="achievement-content">
+
+                    <h5>
+
+                        {{ list.title }}
+
+                    </h5>
+
+                    <span>
+
+                        {{  list.description }}
+
+                    </span>
+
+                </div>
+
+                <div class="achievement-status">
+
+                    <strong>
+
+                        
+                        {% if list.unlocked %}
+                        
+                            Desbloqueado
+
+                        {% else %}
+
+                            Bloqueado
+                            
+                        {% endif %}
+                            
+
+                    </strong>
+
+                    <span>
+
+                        {{ list.percentage }}
+
+                    </span>
+
+                </div>
+
+            </div>
+            
+        {% endfor %}
+            
+
+        
+
+
+    </div>
+
+</section>

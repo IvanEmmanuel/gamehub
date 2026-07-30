@@ -1,0 +1,104 @@
+{% load static %}
+
+<section id="dlc" class="content-dlc content-card">
+
+    <!--=================================
+                HEADER
+    =================================-->
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-cubes"></i>
+
+            DLCs / Expansiones
+
+        </h2>
+
+        <a href="#">
+
+            Ver todas
+
+        </a>
+
+    </div>
+
+    <div class="dlc-list">
+    
+        <!--=================================
+                DLC
+        =================================-->
+
+        
+        {% for dlc in content.dlcs %}
+
+            <div class="dlc-item">
+
+                <!-- Imagen -->
+
+                <div class="dlc-image">
+
+                    <img src="{% static dlc.cover %}" alt="">
+
+                </div>
+
+                <!-- Información -->
+
+                <div class="dlc-content">
+
+                    <div class="dlc-title">
+
+                        <h3>
+
+                            {{ dlc.name }}
+
+                        </h3>
+
+                        <span class="dlc-type">
+
+                            {{ dlc.type }}
+
+                        </span>
+
+                    </div>
+
+                    <span class="release-date">
+
+                        {{ dlc.release_date }}
+
+                    </span>
+
+                    <p>
+
+                        {{ dlc.description }}
+
+                    </p>
+
+                </div>
+
+                <!-- Precio -->
+
+                <div class="dlc-action">
+
+                    <span class="dlc-price">
+
+                        ${{ dlc.price }} USD
+
+                    </span>
+
+                    <a href="{{ dlc.url }}" class="dlc-btn" target="_blank">
+
+                        Ver DLC
+
+                    </a>
+
+                </div>
+
+            </div>
+            
+        {% endfor %}
+
+    </div>
+
+</section>

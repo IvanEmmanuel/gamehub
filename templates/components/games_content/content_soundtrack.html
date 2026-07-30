@@ -1,0 +1,74 @@
+{% load static %}
+
+<section id="soundtrack" class="content-soundtrack content-card-left">
+
+    <!--=================================
+                HEADER
+    =================================-->
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-music"></i>
+
+            Banda sonora
+
+        </h2>
+
+        <a href="#">
+
+            Ver todas
+
+        </a>
+
+    </div>
+
+    <!--=================================
+                LISTA
+    =================================-->
+
+    <div class="soundtrack-list">
+
+        
+        {% for song in content.soundtrack %}
+
+            <!-- Canción -->
+
+            <div class="track-item">
+
+                <button class="track-play">
+
+                    <i class="fa-solid fa-play"></i>
+
+                </button>
+
+                <div class="track-info">
+
+                    <h5>
+
+                        {{ song.title }}
+
+                    </h5>
+
+                    <span>
+
+                        {{ song.artist }}
+
+                    </span>
+
+                </div>
+
+                <span class="track-duration">
+
+                    {{ song.duration }}
+
+                </span>
+
+            </div>
+            
+        {% endfor %}
+        
+    </div>
+
+</section>

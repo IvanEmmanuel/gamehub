@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ games.title }}{% endblock title %}
+
+{% block custom_styles %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_games_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+{% endblock custom_styles %}
+
+
+{% block content %}
+
+    <!-- HERO -->
+    {% include "components/games_detail/detail_hero.html" %}
+
+    <div class="container-fluid px-5">
+
+        <!--=================================
+                FILA 1
+        =================================-->
+
+        <div class="row">
+
+            <!-- CONTENIDO PRINCIPAL -->
+
+            <div class="col-lg-8">
+
+                {% include "components/games_detail/detail_main_content.html" %}
+
+                <div class="mt-4">
+                    {% include "components/games_detail/detail_similar_games.html" %}
+                </div>
+
+                <div class="mt-4">
+                    {% include "components/games_detail/detail_system_requirements.html" %}
+                </div>
+
+            </div>
+
+            <!-- SIDEBAR -->
+
+            <div class="col-lg-4">
+
+                {% include "components/games_detail/detail_sidebar.html" %}
+
+                <div class="mt-4">
+                    {% include "components/games_detail/detail_profile_game.html" %}
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--=================================
+                FILA 2
+        =================================-->
+
+        <div class="row mt-4">
+
+            <div class="col-12">
+
+                {% include "components/games_detail/detail_reviews.html" %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock content %}
+  
+  
+{% block scripts %}
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+
+  <script src="{% static 'assets/js/isotope.min.js'%}"></script>
+  <script src="{% static 'assets/js/owl-carousel.js'%}"></script>
+  <script src="{% static 'assets/js/tabs.js'%}"></script>
+  <script src="{% static 'assets/js/popup.js'%}"></script>
+  <script src="{% static 'assets/js/custom.js'%}"></script>
+  
+{% endblock scripts %}
+  

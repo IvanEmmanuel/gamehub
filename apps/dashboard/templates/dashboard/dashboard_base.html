@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}NexusPlay | Dashboard{% endblock title %}
+
+{% block custom_styles %}
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_profile.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+{% endblock custom_styles %}
+
+
+{% block content %}
+
+<div class="container-fluid dashboard-container">
+
+    <div class="row">
+
+        <!--=================================
+                    SIDEBAR
+        =================================-->
+
+        <div class="col-lg-3">
+
+            {% include "components/dashboard/dashboard_sidebar.html" %}
+
+        </div>
+
+        <!--=================================
+                CONTENIDO VARIABLE
+        =================================-->
+
+        <div class="col-lg-6">
+
+            {% block dashboard_content %}
+            {% endblock dashboard_content %}
+
+        </div>
+
+        <!--=================================
+                PANEL DERECHO
+        =================================-->
+
+        <div class="col-lg-3">
+
+            {% include "components/dashboard/dashboard_recent_activity.html" %}
+
+            <div class="mt-4">
+
+                {% include "components/dashboard/dashboard_activity_summary.html" %}
+
+            </div>
+
+            <div class="mt-4">
+
+                {% include "components/dashboard/dashboard_upcoming_releases.html" %}
+
+            </div>
+
+            <div class="mt-4">
+
+                {% include "components/dashboard/dashboard_featured_news.html" %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}
+
+
+{% block scripts %}
+
+    <!-- Scripts -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'assets/js/isotope.min.js' %}"></script>
+    <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'assets/js/tabs.js' %}"></script>
+    <script src="{% static 'assets/js/popup.js' %}"></script>
+    <script src="{% static 'assets/js/custom.js' %}"></script>
+
+{% endblock scripts %}

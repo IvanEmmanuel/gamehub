@@ -1,0 +1,326 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>{% block title %}  {% endblock title %}</title>
+    {% block custom_styles %}  {% endblock custom_styles %}
+
+  </head>
+
+<body>
+
+<!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="{% static 'assets/images/NexusPlayLogo.png'%}" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Search End ***** -->
+                    <div class="search-input">
+                      <form id="search" action="#">
+                        <input type="text" placeholder="Buscar Juegos" id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div>
+                    <!-- ***** Search End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                        <li><a href="{% url 'dashboard' %}">Inicio</a></li>
+                        <li><a href="{% url 'games_list' %}" class="active">Juegos</a></li>
+                        <li><a href="details.html">Biblioteca</a></li>
+                        <li><a href="streams.html">Comunidad</a></li>
+                        <li><a href="streams.html">Noticias</a></li>
+                        <!-- Notificaciones -->
+                        <li>
+                            <a href="#" title="Notificaciones">
+                                <i class="fa fa-bell"></i>
+                            </a>
+                        </li>
+
+                        <!-- Mensajes -->
+                        <li>
+                            <a href="#" title="Mensajes">
+                                <i class="fa fa-envelope"></i>
+                            </a>
+                        </li>
+                        <li><a href="{% url 'profile' %}">Perfil <img src="{% static 'assets/images/profile-header.jpg'%}" alt=""></a></li>
+                    </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+{% block content %}  {% endblock content %}
+
+<!-- ==========================================
+        TRUST BAR
+========================================== -->
+
+<section class="trust-section">
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="trust-card">
+
+                    <i class="fa-solid fa-user-shield"></i>
+
+                    <div>
+
+                        <h5>Información confiable</h5>
+
+                        <span>Datos actualizados diariamente</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="trust-card">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <div>
+
+                        <h5>Comunidad activa</h5>
+
+                        <span>Comparte reseñas y descubre juegos</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="trust-card">
+
+                    <i class="fa-solid fa-chart-line"></i>
+
+                    <div>
+
+                        <h5>Tu progreso</h5>
+
+                        <span>Sincroniza tus partidas</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="trust-card">
+
+                    <i class="fa-solid fa-gamepad"></i>
+
+                    <div>
+
+                        <h5>Multi-plataforma</h5>
+
+                        <span>PC, Xbox, PlayStation y Switch</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer-area">
+
+    <div class="container">
+
+        <div class="row">
+
+            <!-- Logo -->
+
+            <div class="col-lg-4">
+
+                <img src="{% static 'assets/images/NexusPlayLogo.png' %}" class="footer-logo">
+
+                <p class="footer-description">
+
+                    NexusPlay reúne videojuegos, noticias, reseñas,
+                    biblioteca personal y comunidad en una sola plataforma.
+
+                </p>
+
+                <div class="footer-social">
+
+                    <a href="#"><i class="fab fa-discord"></i></a>
+
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+
+                    <a href="#"><i class="fab fa-github"></i></a>
+
+                </div>
+
+            </div>
+
+            <!-- Explorar -->
+
+            <div class="col-lg-2">
+
+                <h5>Explorar</h5>
+
+                <ul>
+
+                    <li><a href="#">Inicio</a></li>
+
+                    <li><a href="#">Juegos</a></li>
+
+                    <li><a href="#">Biblioteca</a></li>
+
+                    <li><a href="#">Noticias</a></li>
+
+                    <li><a href="#">Comunidad</a></li>
+
+                </ul>
+
+            </div>
+
+            <!-- Cuenta -->
+
+            <div class="col-lg-2">
+
+                <h5>Cuenta</h5>
+
+                <ul>
+
+                    <li><a href="#">Perfil</a></li>
+
+                    <li><a href="#">Favoritos</a></li>
+
+                    <li><a href="#">Historial</a></li>
+
+                    <li><a href="#">Configuración</a></li>
+
+                </ul>
+
+            </div>
+
+            <!-- Soporte -->
+
+            <div class="col-lg-2">
+
+                <h5>Soporte</h5>
+
+                <ul>
+
+                    <li><a href="#">Centro de ayuda</a></li>
+
+                    <li><a href="#">Reportar error</a></li>
+
+                    <li><a href="#">Sugerencias</a></li>
+
+                    <li><a href="#">Estado del servicio</a></li>
+
+                </ul>
+
+            </div>
+
+            <!-- Estadísticas -->
+
+            <div class="col-lg-2">
+
+                <h5>NexusPlay</h5>
+
+                <ul class="footer-stats">
+
+                    <li>🎮 14,256 Juegos</li>
+
+                    <li>👥 58,000 Usuarios</li>
+
+                    <li>📰 4,300 Noticias</li>
+
+                    <li>🏆 210 Desarrolladores</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <hr>
+
+        <div class="footer-bottom">
+
+            <div>
+
+                © 2026 <strong>NexusPlay</strong> · Todos los derechos reservados.
+
+            </div>
+
+            <div>
+
+                <a href="#">Privacidad</a>
+
+                <a href="#">Cookies</a>
+
+                <a href="#">Términos</a>
+
+                <a href="#">API</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+{% block scripts %}  {% endblock scripts %}
+
+  </body>
+
+</html>

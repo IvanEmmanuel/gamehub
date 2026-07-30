@@ -1,0 +1,97 @@
+{% load static %}
+
+<section id="trailers" class="content-trailers content-card">
+
+    <!--=================================
+                HEADER
+    ==================================-->
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-photo-film"></i>
+
+            Trailers y videos
+
+        </h2>
+
+        <a href="#" class="see-all">
+
+            Ver todos
+
+        </a>
+
+    </div>
+
+    <!--=================================
+                GRID
+    ==================================-->
+
+    <div class="row g-4">
+
+        
+        {% for trailer in content.trailers %}
+            
+        <!--=========================
+                Trailer
+        =========================-->
+
+        <div class="col-lg-3 col-md-6">
+
+            <div class="trailer-card">
+
+                <div class="trailer-image">
+
+                    <img src="{% static trailer.thumbnail %}" alt="">
+
+                    <div class="play-button">
+
+                        <i class="fa-solid fa-play"></i>
+
+                    </div>
+
+                    <span class="duration">
+
+                        {{ trailer.duration }}
+
+                    </span>
+
+                </div>
+
+                <div class="trailer-body">
+
+                    <h5>
+
+                        {{ trailer.title }}
+
+                    </h5>
+
+                    <div class="trailer-meta">
+
+                        <span>
+
+                            {{ trailer.author }}
+
+                        </span>
+
+                        <span>
+
+                            {{ trailer.date }}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        
+        {% endfor %}
+        
+
+    </div>
+
+</section>

@@ -1,0 +1,564 @@
+{% load static %}
+
+<section class="detail-main">
+
+    <div class="detail-card">
+
+        <!--=========================
+                TABS
+        ==========================-->
+
+        <div class="detail-tabs">
+
+            <button class="tab-btn active" data-tab="description">
+
+                Descripción
+
+            </button>
+
+            <button class="tab-btn" data-tab="features">
+
+                Características
+
+            </button>
+
+            <button class="tab-btn" data-tab="reviews">
+
+                Reseñas
+
+                <span class="badge">
+
+                    {{ games.reviews }}
+
+                </span>
+
+            </button>
+
+            <button class="tab-btn" data-tab="news">
+
+                Noticias
+
+            </button>
+
+        </div>
+
+        <!--====================================================
+                    DESCRIPCIÓN
+        =====================================================-->
+
+        <div id="description" class="tab-content active">
+
+            <div class="detail-description">
+
+                <p>
+
+                    {{ games.description }}
+
+                </p>
+
+            </div>
+
+            <!--=========================
+                CAPTURAS
+            ==========================-->
+
+            <div class="screenshots-section">
+
+                <h3>
+
+                    Capturas de pantalla
+
+                </h3>
+
+                <div class="screenshots-wrapper">
+
+                    <button class="screenshot-arrow left">
+
+                        <i class="fa-solid fa-chevron-left"></i>
+
+                    </button>
+
+                    <div class="screenshots">
+
+                        <div class="screenshot">
+
+                            <img src="{% static 'assets/images/details-01.jpg' %}" alt="">
+
+                            <div class="screenshot-overlay">
+
+                                <i class="fa-solid fa-expand"></i>
+
+                            </div>
+
+                        </div>
+
+                        <div class="screenshot">
+
+                            <img src="{% static 'assets/images/details-02.jpg' %}" alt="">
+
+                            <div class="screenshot-overlay">
+
+                                <i class="fa-solid fa-expand"></i>
+
+                            </div>
+
+                        </div>
+
+                        <div class="screenshot">
+
+                            <img src="{% static 'assets/images/details-03.jpg' %}" alt="">
+
+                            <div class="screenshot-overlay">
+
+                                <i class="fa-solid fa-expand"></i>
+
+                            </div>
+
+                        </div>
+
+                        <div class="screenshot">
+
+                            <img src="{% static 'assets/images/banner-1.jpg' %}" alt="">
+
+                            <div class="screenshot-overlay">
+
+                                <i class="fa-solid fa-expand"></i>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <button class="screenshot-arrow right">
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </button>
+
+                </div>
+
+                <div class="screenshots-pagination">
+
+                    <span class="active"></span>
+
+                    <span></span>
+
+                    <span></span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--====================================================
+                CARACTERÍSTICAS
+        =====================================================-->
+
+        <div id="features" class="tab-content">
+
+            <h3 class="section-title">
+
+                Características principales
+
+            </h3>
+
+            <div class="feature-grid">
+
+                <div class="feature-item">
+
+                    <i class="fa-solid fa-earth-americas"></i>
+
+                    <div>
+
+                        <h5>Mundo Abierto</h5>
+
+                        <p>Explora Night City sin restricciones y descubre cientos de misiones.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="feature-item">
+
+                    <i class="fa-solid fa-code-branch"></i>
+
+                    <div>
+
+                        <h5>Decisiones Importan</h5>
+
+                        <p>Tus elecciones modifican la historia y el destino de los personajes.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="feature-item">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                    <div>
+
+                        <h5>Más de 100 horas</h5>
+
+                        <p>Historia principal, secundarias y actividades para decenas de horas.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="feature-item">
+
+                    <i class="fa-solid fa-car-side"></i>
+
+                    <div>
+
+                        <h5>Vehículos</h5>
+
+                        <p>Conduce motocicletas y automóviles por toda la ciudad.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="feature-item">
+
+                    <i class="fa-solid fa-microchip"></i>
+
+                    <div>
+
+                        <h5>Implantes</h5>
+
+                        <p>Personaliza a V con mejoras cibernéticas únicas.</p>
+
+                    </div>
+
+                </div>
+
+                <div class="feature-item">
+
+                    <i class="fa-solid fa-camera"></i>
+
+                    <div>
+
+                        <h5>Modo Fotografía</h5>
+
+                        <p>Captura tus mejores momentos con herramientas avanzadas.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--====================================================
+                    RESEÑAS
+        =====================================================-->
+
+        <div id="reviews" class="tab-content">
+
+            <h3 class="section-title">
+
+                Opiniones de la comunidad
+
+            </h3>
+
+            <!-- Resumen -->
+
+            <div class="review-summary">
+
+                <div class="review-score">
+
+                    <h2>{{ games.rating }}</h2>
+
+                    <div class="stars">
+
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+
+                    </div>
+
+                    <span>12,432 reseñas</span>
+
+                </div>
+
+                <div class="review-bars">
+
+                    <div class="bar">
+
+                        <span> 5 <i class="fa-solid fa-star"></i></span>
+
+                        <div class="progress">
+
+                            <div class="fill" style="width:82%;"></div>
+
+                        </div>
+
+                        <small>82%</small>
+
+                    </div>
+
+                    <div class="bar">
+
+                        <span> 4 <i class="fa-solid fa-star"></i></span>
+
+                        <div class="progress">
+
+                            <div class="fill" style="width:12%;"></div>
+
+                        </div>
+
+                        <small>12%</small>
+
+                    </div>
+
+                    <div class="bar">
+
+                        <span> 3 <i class="fa-solid fa-star"></i></span>
+
+                        <div class="progress">
+
+                            <div class="fill" style="width:4%;"></div>
+
+                        </div>
+
+                        <small>4%</small>
+
+                    </div>
+
+                    <div class="bar">
+
+                        <span> 2 <i class="fa-solid fa-star"></i></span>
+
+                        <div class="progress">
+
+                            <div class="fill" style="width:1%;"></div>
+
+                        </div>
+
+                        <small>1%</small>
+
+                    </div>
+
+                    <div class="bar">
+
+                        <span> 1 <i class="fa-solid fa-star"></i></span>
+
+                        <div class="progress">
+
+                            <div class="fill" style="width:1%;"></div>
+
+                        </div>
+
+                        <small>1%</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Comentarios -->
+
+            <div class="review-list">
+
+                <div class="review-card">
+
+                    <div class="review-user">
+
+                        <img src="{% static 'assets/images/profile-header.jpg' %}" alt="">
+
+                        <div>
+
+                            <h5>Alex Hunter</h5>
+
+                            <span>145 horas jugadas</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="review-rating">
+
+                        ★★★★★
+
+                    </div>
+
+                    <p>
+
+                        Una de las mejores experiencias RPG de los últimos años.
+                        Night City está llena de vida y las misiones secundarias
+                        son increíbles.
+
+                    </p>
+
+                </div>
+
+                <div class="review-card">
+
+                    <div class="review-user">
+
+                        <img src="{% static 'assets/images/profile-header.jpg' %}" alt="">
+
+                        <div>
+
+                            <h5>Sarah Mills</h5>
+
+                            <span>96 horas jugadas</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="review-rating">
+
+                        ★★★★☆
+
+                    </div>
+
+                    <p>
+
+                        Excelente historia y personajes memorables.
+                        Algunas misiones podrían ser más variadas,
+                        pero sigue siendo altamente recomendable.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--====================================================
+                    NOTICIAS
+        =====================================================-->
+
+        <div id="news" class="tab-content">
+
+            <h3 class="section-title">
+
+                Últimas noticias
+
+            </h3>
+
+            <div class="news-list">
+
+                <!--=========================
+                        Noticia 1
+                =========================-->
+
+                <article class="news-item">
+
+                    <img src="{% static 'assets/images/details-01.jpg' %}" alt="">
+
+                    <div class="news-content">
+
+                        <span class="news-category">
+
+                            Actualización
+
+                        </span>
+
+                        <h4>
+
+                            Cyberpunk 2077 recibe el parche 2.3 con nuevas mejoras.
+
+                        </h4>
+
+                        <small>
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                            18 Julio 2026
+
+                        </small>
+
+                        <p>
+
+                            El nuevo parche incorpora mejoras de rendimiento,
+                            nuevas opciones de personalización y correcciones
+                            para diversas misiones.
+
+                        </p>
+
+                        <a href="#">
+
+                            Leer más
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+                <!--=========================
+                        Noticia 2
+                =========================-->
+
+                <article class="news-item">
+
+                    <img src="{% static 'assets/images/details-02.jpg' %}" alt="">
+
+                    <div class="news-content">
+
+                        <span class="news-category purple">
+
+                            Expansión
+
+                        </span>
+
+                        <h4>
+
+                            Phantom Liberty alcanza un nuevo récord de jugadores.
+
+                        </h4>
+
+                        <small>
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                            12 Julio 2026
+
+                        </small>
+
+                        <p>
+
+                            La expansión continúa creciendo y supera los
+                            cinco millones de jugadores activos.
+
+                        </p>
+
+                        <a href="#">
+
+                            Leer más
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% block scripts %}
+
+<script src="{% static 'assets/js/detail_tabs.js' %}"></script>
+
+{% endblock scripts %}

@@ -1,0 +1,68 @@
+{% load static %}
+
+<section id="guides" class="content-guides content-card-left">
+
+    <!--=================================
+                HEADER
+    =================================-->
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-regular fa-folder-open"></i>
+
+            Guías destacadas
+
+        </h2>
+
+        <a href="#">
+
+            Ver todas
+
+        </a>
+
+    </div>
+
+    <!--=================================
+                LISTA
+    =================================-->
+
+    <div class="guides-list">
+
+        <!-- Guía -->
+
+        
+        {% for guide in content.guides %}
+
+            <a href="{{ guide.pdf }}" class="guide-item">
+
+                <div class="guide-icon">
+
+                    <i class="fa-regular fa-file-lines"></i>
+
+                </div>
+
+                <div class="guide-content">
+
+                    <h5>
+
+                        {{ guide.title }}
+
+                    </h5>
+
+                    <span>
+
+                        por {{ guide.author }}
+
+                    </span>
+
+                </div>
+
+            </a>
+            
+        {% endfor %}
+
+    </div>
+
+</section>

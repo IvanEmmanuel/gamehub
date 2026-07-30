@@ -1,0 +1,200 @@
+{% load static %}
+
+<div class="filter-sidebar">
+
+    <h4>
+        <i class="fa-solid fa-filter"></i>
+        Filtrar Juegos
+    </h4>
+
+    <hr>
+
+    <!-- ==========================================
+                    PLATAFORMAS
+    ========================================== -->
+
+    <div class="filter-section">
+
+        <h5>Plataforma</h5>
+
+        <label>
+
+            <input type="checkbox">
+
+            <i class="fa-brands fa-windows platform-icon windows"></i>
+
+            PC
+
+        </label>
+
+        <label>
+
+            <input type="checkbox">
+
+            <i class="fa-brands fa-playstation platform-icon playstation"></i>
+
+            PlayStation 5
+
+        </label>
+
+        <label>
+
+            <input type="checkbox">
+
+            <i class="fa-brands fa-xbox platform-icon xbox"></i>
+
+            Xbox Series X|S
+
+        </label>
+
+        <label>
+
+            <input type="checkbox">
+
+            <i class="fa-solid fa-gamepad platform-icon switch"></i>
+
+            Nintendo Switch
+
+        </label>
+
+        <label>
+
+            <input type="checkbox">
+
+            <i class="fa-brands fa-steam platform-icon steam"></i>
+
+            Steam Deck
+
+        </label>
+
+    </div>
+
+    <!-- ==========================================
+                    GÉNEROS
+    ========================================== -->
+
+    <div class="filter-section">
+
+        <h5>Género</h5>
+
+        <label>
+
+            <input type="checkbox">
+
+            <i class="fa-solid fa-hand-fist genre-icon action"></i>
+
+            Acción
+
+        </label>
+
+        <label>
+
+            <input type="checkbox">
+
+            <i class="fa-solid fa-hat-wizard genre-icon rpg"></i>
+
+            RPG
+
+        </label>
+
+        <label>
+
+            <input type="checkbox">
+
+            <i class="fa-solid fa-compass genre-icon adventure"></i>
+
+            Aventura
+
+        </label>
+
+        <label>
+
+            <input type="checkbox">
+
+            <i class="fa-solid fa-crosshairs genre-icon shooter"></i>
+
+            Shooter
+
+        </label>
+
+        <label>
+
+            <input type="checkbox">
+
+            <i class="fa-solid fa-chess-knight genre-icon strategy"></i>
+
+            Estrategia
+
+        </label>
+
+    </div>
+
+    <hr>
+
+    <!-- Estado -->
+
+    <div class="filter-section">
+
+        <h5>Estado</h5>
+
+        <label><input type="checkbox"> Lanzados</label>
+
+        <label><input type="checkbox"> Próximamente</label>
+
+        <label><input type="checkbox"> Early Access</label>
+
+    </div>
+
+    <hr>
+
+    <!-- Valoración -->
+
+    <div class="filter-section">
+
+        <h5>Valoración</h5>
+
+        <label><input type="radio" name="rating"> ⭐⭐⭐⭐⭐</label>
+
+        <label><input type="radio" name="rating"> ⭐⭐⭐⭐</label>
+
+        <label><input type="radio" name="rating"> ⭐⭐⭐</label>
+
+        <label><input type="radio" name="rating"> ⭐⭐</label>
+
+        <label><input type="radio" name="rating"> ⭐</label>
+
+    </div>
+
+    <hr>
+
+    <!-- Orden -->
+
+    <div class="filter-section">
+
+        <h5>Ordenar por</h5>
+
+        <select>
+
+            <option>Más populares</option>
+
+            <option>Mejor valorados</option>
+
+            <option>Más recientes</option>
+
+        </select>
+
+    </div>
+
+    <button class="apply-filter">
+
+        Aplicar filtros
+
+    </button>
+
+    <button class="clear-filter">
+
+        Limpiar filtros
+
+    </button>
+
+</div>

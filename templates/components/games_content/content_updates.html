@@ -1,0 +1,89 @@
+{% load static %}
+
+<section id="updates" class="content-updates content-card-rigth">
+
+    <!--=================================
+                HEADER
+    =================================-->
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-file-pen"></i>
+
+            Historial de actualizaciones
+
+        </h2>
+
+        <a href="#">
+
+            Ver todas
+
+        </a>
+
+    </div>
+
+    <!--=================================
+                LISTA
+    =================================-->
+
+    <div class="updates-list">
+
+        
+        {% for update in content.updates %}
+
+            <!-- Patch -->
+
+            <article class="update-item">
+
+                <div class="update-content">
+
+                    <div class="update-top">
+
+                        <h4>
+
+                            {{ update.version }}
+
+                        </h4>
+
+                        <span class="update-badge">
+
+                            Última actualización
+
+                        </span>
+
+                        <span class="update-date">
+
+                            {{ update.date }}
+
+                        </span>
+
+                    </div>
+
+                    <p>
+
+                        {{ update.description }}
+
+                    </p>
+
+                    <a href="{{ update.url }}" target="_blank">
+
+                        Ver detalles
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </article>
+            
+        {% endfor %}
+            
+
+        
+
+    </div>
+
+</section>

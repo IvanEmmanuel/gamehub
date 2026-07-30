@@ -1,0 +1,127 @@
+{% load static %}
+<!-- ==============================
+                    HERO CAROUSEL
+          ================================ -->
+
+          <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
+
+              <!-- Indicadores -->
+              <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                  <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                  <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+              </div>
+
+              <div class="carousel-inner">
+
+                  <!-- ================= Slide 1 ================= -->
+
+                  <div class="carousel-item active">
+
+                      <img src="{% static 'assets/images/banner-1.jpg' %}" class="d-block w-100 hero-image" alt="">
+
+                      <div class="carousel-caption">
+
+                          <span class="badge bg-primary mb-3">
+                              Acción • RPG
+                          </span>
+
+                          <h1>Cyberpunk 2077</h1>
+
+                          <p>
+                              Explora Night City y conviértete en una leyenda.
+                          </p>
+
+                          <div class="hero-buttons">
+
+                              <a href="#" class="hero-btn-primary">
+                                  <i class="fa fa-gamepad"></i> Ver detalles
+                              </a>
+
+                          </div>
+
+                      </div>
+
+                  </div>
+
+                  <!-- ================= Slide 2 ================= -->
+
+                  <div class="carousel-item">
+
+                      <img src="{% static 'assets/images/banner-2.jpg' %}" class="d-block w-100 hero-image" alt="">
+
+                      <div class="carousel-caption">
+
+                          <span class="badge bg-success mb-3">
+                              Shooter
+                          </span>
+
+                          <h1>Halo Infinite</h1>
+
+                          <p>
+                              Enfréntate a los Desterrados como el Jefe Maestro.
+                          </p>
+
+                          <div class="hero-buttons">
+
+                              <a href="#" class="hero-btn-primary">
+                                  <i class="fa fa-gamepad"></i> Ver detalles
+                              </a>
+
+                          </div>
+
+                      </div>
+
+                  </div>
+
+                  <!-- ================= Slide 3 ================= -->
+
+                  <div class="carousel-item">
+
+                      <img src="{% static 'assets/images/banner-3.jpg' %}" class="d-block w-100 hero-image" alt="">
+
+                      <div class="carousel-caption">
+
+                          <span class="badge bg-warning text-dark mb-3">
+                              Mundo Abierto
+                          </span>
+
+                          <h1>Red Dead Redemption II</h1>
+
+                          <p>
+                              Vive el salvaje oeste como nunca antes.
+                          </p>
+
+                          <div class="hero-buttons">
+
+                              <a href="#" class="hero-btn-primary">
+                                  <i class="fa fa-gamepad"></i> Ver detalles
+                              </a>
+
+                          </div>
+
+                      </div>
+
+                  </div>
+
+              </div>
+
+              <!-- Flechas -->
+
+              <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+
+                  <span class="carousel-control-prev-icon"></span>
+
+              </button>
+
+              <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+
+                  <span class="carousel-control-next-icon"></span>
+
+              </button>
+
+          </div>
+
+          <!-- ==============================
+                    FINAL HERO CAROUSEL
+          ================================ -->

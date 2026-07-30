@@ -1,0 +1,122 @@
+{% load static %}
+
+<section class="game-hero">
+
+    <div class="hero-background">
+
+        <img src="{% static games.banner %}" alt="">
+
+        <div class="hero-overlay"></div>
+
+    </div>
+
+    <div class="container hero-container">
+
+        <a href="{% url 'games_list' %}" class="back-link">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Volver a Juegos
+
+        </a>
+
+        <div class="row align-items-center">
+
+            <!-- ===========================
+                    PORTADA
+            ============================ -->
+
+            <div class="col-lg-3">
+
+                <div class="cover-wrapper">
+
+                    <img src="{% static games.cover %}"
+                         class="game-cover">
+
+                    <button class="favorite-btn">
+
+                        <i class="fa-regular fa-heart"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+            <!-- ===========================
+                    INFORMACIÓN
+            ============================ -->
+
+            <div class="col-lg-9">
+
+                <div class="hero-content">
+
+                    <h1>{{ games.title }}</h1>
+
+                    <div class="hero-meta">
+
+                        <span>
+
+                            <i class="fa-solid fa-star"></i>
+
+                            {{ games.rating }}
+
+                        </span>
+
+                        <span>{{ games.developer }}</span>
+
+                        <span>{{ games.release_date }}</span>
+
+                        <span>{{ games.reviews }} Reviews</span>
+
+                    </div>
+
+                    <div class="hero-genres">
+
+                        {% for gender in games.genres %}
+
+                            <span>{{ gender }}</span>
+                            
+                        {% endfor %}
+
+                    </div>
+
+                    <div class="hero-platforms">
+
+                        {% for platform in games.platforms %}
+
+                            <i class="fa-brands fa-{{ platform }}"></i>
+                            
+                        {% endfor %}
+
+                    </div>
+
+                   <div class="hero-buttons">
+
+                        <button class="library-btn">
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Agregar a mi biblioteca
+
+                        </button>
+
+                        <a href="{% url games.content_link %}" class="content-btn">
+
+                            <i class="fa-solid fa-compass"></i>
+
+                            Explorar contenido
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>

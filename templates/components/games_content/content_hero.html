@@ -1,0 +1,50 @@
+{% load static %}
+
+<section class="content-hero">
+
+    <!--=================================
+            BACKGROUND
+    ==================================-->
+
+    <div class="content-hero-background">
+
+        <img src="{% static content.banner %}" alt="">
+
+        <div class="content-hero-overlay"></div>
+
+    </div>
+
+    <!--=================================
+            CONTENT
+    ==================================-->
+
+    <div class="container-fluid px-5">
+
+        <div class="content-hero-content">
+
+            <h1>
+
+                {{ content.title }}
+
+            </h1>
+
+            <span class="content-subtitle">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                Contenido del juego
+
+            </span>
+
+            <p>
+
+                Explora trailers, capturas de pantalla, expansiones,
+                guías, logros, banda sonora y todas las novedades del juego.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>

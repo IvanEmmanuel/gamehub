@@ -1,0 +1,70 @@
+{% load static %}
+
+<section id="gallery" class="content-gallery content-card">
+
+    <!--=================================
+                HEADER
+    =================================-->
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-regular fa-images"></i>
+
+            Capturas de pantalla
+
+        </h2>
+
+        <a href="#" class="see-all">
+
+            Ver todas
+
+        </a>
+
+    </div>
+
+    <!--=================================
+                GALERÍA
+    =================================-->
+
+    <div class="row g-4">
+
+        
+        {% for image in content.gallery %}
+
+            <div class="col-lg-3 col-md-6">
+
+                <div class="gallery-card">
+
+                    <img src="{% static image %}" alt="">
+
+                    <div class="gallery-overlay">
+
+                        <i class="fa-solid fa-expand"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+        {% endfor %}
+
+    </div>
+
+    <!--=================================
+            PAGINACIÓN
+    =================================-->
+
+    <div class="gallery-pagination">
+
+        <span class="active"></span>
+
+        <span></span>
+
+        <span></span>
+
+    </div>
+
+</section>
