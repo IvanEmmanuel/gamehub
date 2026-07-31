@@ -14,12 +14,13 @@ class Achievement(models.Model):
         null=True
     )
     
-    is_hidden = models.BooleanField(default=True)
+    is_hidden = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-            ordering = ['-created_at']
+        unique_together = ("game", "title")
+        ordering = ["-created_at"]
             
     def __str__(self):
-        return self.title
+        return f"{self.user.username} - {self.achievement.title}"
