@@ -1,0 +1,202 @@
+[
+{
+  "model": "games.genre",
+  "pk": 1,
+  "fields": {
+    "name": "Acción",
+    "slug": "accion",
+    "description": "Juegos centrados en el combate, la velocidad y los reflejos.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 2,
+  "fields": {
+    "name": "Aventura",
+    "slug": "aventura",
+    "description": "Juegos enfocados en la exploración, historia y descubrimiento.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 3,
+  "fields": {
+    "name": "RPG",
+    "slug": "rpg",
+    "description": "Juegos de rol con progresión de personajes, habilidades y narrativa.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 4,
+  "fields": {
+    "name": "Shooter",
+    "slug": "shooter",
+    "description": "Juegos de disparos en primera o tercera persona.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 5,
+  "fields": {
+    "name": "Estrategia",
+    "slug": "estrategia",
+    "description": "Juegos donde la planificación y la toma de decisiones son fundamentales.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 6,
+  "fields": {
+    "name": "Simulación",
+    "slug": "simulacion",
+    "description": "Juegos que buscan representar situaciones o actividades reales.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 7,
+  "fields": {
+    "name": "Deportes",
+    "slug": "deportes",
+    "description": "Juegos inspirados en disciplinas deportivas.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 8,
+  "fields": {
+    "name": "Carreras",
+    "slug": "carreras",
+    "description": "Juegos enfocados en competencias de velocidad con vehículos.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 9,
+  "fields": {
+    "name": "Survival Horror",
+    "slug": "survival-horror",
+    "description": "Juegos de supervivencia con elementos de terror.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 10,
+  "fields": {
+    "name": "Puzzle",
+    "slug": "puzzle",
+    "description": "Juegos basados en acertijos y resolución de problemas.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 11,
+  "fields": {
+    "name": "Plataformas",
+    "slug": "plataformas",
+    "description": "Juegos donde el avance depende del salto y la movilidad.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 12,
+  "fields": {
+    "name": "Sandbox",
+    "slug": "sandbox",
+    "description": "Juegos que ofrecen gran libertad para explorar y crear.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 13,
+  "fields": {
+    "name": "MOBA",
+    "slug": "moba",
+    "description": "Multiplayer Online Battle Arena con equipos enfrentándose estratégicamente.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 14,
+  "fields": {
+    "name": "Battle Royale",
+    "slug": "battle-royale",
+    "description": "Juegos multijugador donde el último jugador o equipo en pie gana.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 15,
+  "fields": {
+    "name": "MMORPG",
+    "slug": "mmorpg",
+    "description": "Juegos de rol multijugador masivos en línea.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 16,
+  "fields": {
+    "name": "Lucha",
+    "slug": "lucha",
+    "description": "Juegos centrados en combates entre personajes.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 17,
+  "fields": {
+    "name": "Hack and Slash",
+    "slug": "hack-and-slash",
+    "description": "Juegos enfocados en combate cuerpo a cuerpo rápido contra numerosos enemigos.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 18,
+  "fields": {
+    "name": "Roguelike",
+    "slug": "roguelike",
+    "description": "Juegos con niveles generados proceduralmente y alta dificultad.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 19,
+  "fields": {
+    "name": "Metroidvania",
+    "slug": "metroidvania",
+    "description": "Juegos de exploración con progresión basada en habilidades.",
+    "is_active": true
+  }
+},
+{
+  "model": "games.genre",
+  "pk": 20,
+  "fields": {
+    "name": "Mundo Abierto",
+    "slug": "mundo-abierto",
+    "description": "Juegos con grandes escenarios explorables y libertad para el jugador.",
+    "is_active": true
+  }
+}
+]
