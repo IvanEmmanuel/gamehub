@@ -8,7 +8,7 @@ class UserGameLibrary(models.Model):
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     status = models.CharField(max_length=50, default="Pendiente")
     is_favorite = models.BooleanField(default=False)
-    added_at = models.DateTimeField(auto_now_add=True)
+    added_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
