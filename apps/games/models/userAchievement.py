@@ -8,7 +8,7 @@ class UserAchievement(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     achievement = models.ForeignKey(Achievement, on_delete=models.CASCADE)
     unlocked = models.BooleanField(default=False)
-    uunlocked_at = models.DateTimeField(
+    unlocked_at = models.DateTimeField(
         blank=True,
         null=True
     )
