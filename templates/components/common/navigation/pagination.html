@@ -1,0 +1,140 @@
+<!-- ==========================================
+                PAGINACIÓN
+========================================== -->
+
+<section class="pagination-section">
+
+    <div class="pagination-info">
+
+        {% if query %}
+
+            {% if games_obj.paginator.count == 1 %}
+
+                Se encontró
+
+                <strong>1</strong>
+
+                juego para
+
+                <strong>"{{ query }}"</strong>
+
+            {% else %}
+
+                Se encontraron
+
+                <strong>{{ games_obj.paginator.count }}</strong>
+
+                juegos para
+
+                <strong>"{{ query }}"</strong>
+
+            {% endif %}
+
+        {% else %}
+
+            Mostrando
+
+            <strong>
+                {{ games_obj.start_index }} - {{ games_obj.end_index }}
+            </strong>
+
+            de
+
+            <strong>{{ games_obj.paginator.count }}</strong>
+
+            juegos disponibles
+
+        {% endif %}
+
+    </div>
+
+    <nav>
+
+        <ul class="pagination custom-pagination">
+
+            <!-- =======================
+                    Anterior
+            ======================== -->
+
+            {% if games_obj.has_previous %}
+
+                <li class="page-item">
+
+                    <a class="page-link"
+                       href="?page={{ games_obj.previous_page_number }}{% if query_string %}&{{ query_string }}{% endif %}">
+
+                        <i class="fa-solid fa-chevron-left"></i>
+
+                    </a>
+
+                </li>
+
+            {% else %}
+
+                <li class="page-item disabled">
+
+                    <span class="page-link">
+
+                        <i class="fa-solid fa-chevron-left"></i>
+
+                    </span>
+
+                </li>
+
+            {% endif %}
+
+            <!-- =======================
+                    Números
+            ======================== -->
+
+            {% for num in games_obj.paginator.page_range %}
+
+                <li class="page-item {% if games_obj.number == num %}active{% endif %}">
+
+                    <a class="page-link"
+                       href="?page={{ num }}{% if query_string %}&{{ query_string }}{% endif %}">
+
+                        {{ num }}
+
+                    </a>
+
+                </li>
+
+            {% endfor %}
+
+            <!-- =======================
+                    Siguiente
+            ======================== -->
+
+            {% if games_obj.has_next %}
+
+                <li class="page-item">
+
+                    <a class="page-link"
+                       href="?page={{ games_obj.next_page_number }}{% if query_string %}&{{ query_string }}{% endif %}">
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </a>
+
+                </li>
+
+            {% else %}
+
+                <li class="page-item disabled">
+
+                    <span class="page-link">
+
+                        <i class="fa-solid fa-chevron-right"></i>
+
+                    </span>
+
+                </li>
+
+            {% endif %}
+
+        </ul>
+
+    </nav>
+
+</section>

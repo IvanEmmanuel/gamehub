@@ -29,7 +29,7 @@
 
               <div class="row">
                 
-                {% for game in games %}
+                {% for game in games_obj %}
                 
                 <!-- Tarjeta de Juego -->
 
@@ -140,114 +140,4 @@
 
           </div>
 
-            <!-- ==========================================
-                    PAGINACIÓN
-            ========================================== -->
-
-            <section class="pagination-section">
-
-                <div class="pagination-info">
-
-                    Mostrando
-                    <strong>1 - 20</strong>
-                    de
-                    <strong>2,458</strong>
-                    juegos
-
-                </div>
-
-                <nav>
-
-                    <ul class="pagination custom-pagination">
-
-                        <!-- Anterior -->
-
-                        <li class="page-item disabled">
-
-                            <a class="page-link" href="#">
-
-                                <i class="fa-solid fa-chevron-left"></i>
-
-                            </a>
-
-                        </li>
-
-                        <!-- Página -->
-
-                        <li class="page-item active">
-
-                            <a class="page-link" href="#">
-
-                                1
-
-                            </a>
-
-                        </li>
-
-                        <li class="page-item">
-
-                            <a class="page-link" href="#">
-
-                                2
-
-                            </a>
-
-                        </li>
-
-                        <li class="page-item">
-
-                            <a class="page-link" href="#">
-
-                                3
-
-                            </a>
-
-                        </li>
-
-                        <li class="page-item">
-
-                            <a class="page-link" href="#">
-
-                                4
-
-                            </a>
-
-                        </li>
-
-                        <li class="page-item">
-
-                            <span class="page-link dots">
-
-                                ...
-
-                            </span>
-
-                        </li>
-
-                        <li class="page-item">
-
-                            <a class="page-link" href="#">
-
-                                123
-
-                            </a>
-
-                        </li>
-
-                        <!-- Siguiente -->
-
-                        <li class="page-item">
-
-                            <a class="page-link" href="#">
-
-                                <i class="fa-solid fa-chevron-right"></i>
-
-                            </a>
-
-                        </li>
-
-                    </ul>
-
-                </nav>
-
-            </section>
+        {% include "components/common/navigation/pagination.html" %}
