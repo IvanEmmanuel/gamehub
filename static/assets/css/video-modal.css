@@ -1,0 +1,27 @@
+.video-modal .modal-content {
+    background: #1f2122;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.video-modal .modal-header {
+    border-bottom: 1px solid #2f3133;
+}
+
+.video-modal .modal-title {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.video-modal .btn-close {
+    filter: invert(1);
+}
+
+.video-modal iframe{
+
+    border:none;
+
+    border-radius:0 0 15px 15px;
+
+}

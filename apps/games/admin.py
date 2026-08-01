@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Game, UserGameLibrary, Genre, Review, Achievement, UserAchievement)
+from .models import (Game, UserGameLibrary, Genre, Review, Achievement, UserAchievement, Trailer)
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
@@ -102,4 +102,28 @@ class UserAchievementAdmin(admin.ModelAdmin):
     list_select_related = (
         "user",
         "achievement",
+    )
+    
+@admin.register(Trailer)
+class TrailerAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "title",
+        "game",
+        "is_official",
+        "display_order",
+    )
+
+    list_filter = (
+        "is_official",
+    )
+
+    search_fields = (
+        "title",
+        "game__name",
+    )
+
+    ordering = (
+        "game",
+        "display_order",
     )

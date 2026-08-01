@@ -31,7 +31,7 @@
     <div class="row g-4">
 
         
-        {% for trailer in content.trailers %}
+        {% for trailer in game.trailers.all %}
             
         <!--=========================
                 Trailer
@@ -39,23 +39,17 @@
 
         <div class="col-lg-3 col-md-6">
 
-            <div class="trailer-card">
+            <div class="trailer-card"  data-video="{{ trailer.embed_url }}" data-title="{{ trailer.title }}" data-bs-toggle="modal" data-bs-target="#videoModal">
 
                 <div class="trailer-image">
 
-                    <img src="{% static trailer.thumbnail %}" alt="">
+                    <img src="{{ trailer.thumbnail_url }}" alt="{{ trailer.title }}">
 
-                    <div class="play-button">
+                    <div class="play-button" data-video="{{ trailer.embed_url }}">
 
                         <i class="fa-solid fa-play"></i>
 
                     </div>
-
-                    <span class="duration">
-
-                        {{ trailer.duration }}
-
-                    </span>
 
                 </div>
 
@@ -66,22 +60,6 @@
                         {{ trailer.title }}
 
                     </h5>
-
-                    <div class="trailer-meta">
-
-                        <span>
-
-                            {{ trailer.author }}
-
-                        </span>
-
-                        <span>
-
-                            {{ trailer.date }}
-
-                        </span>
-
-                    </div>
 
                 </div>
 
