@@ -1,10 +1,16 @@
+{% load game_extras %}
 {% load static %}
 
 <section class="game-hero">
 
     <div class="hero-background">
 
-        <img src="{% static games.banner %}" alt="">
+        {% if game.banner %}
+            <img src="{{ game.banner.url }}" alt="{{ game.name }}">
+        {% else %}
+            <img src="{% static 'assets/images/default-game-cover.png' %}"
+                alt="{{ game.name }}">
+        {% endif %}
 
         <div class="hero-overlay"></div>
 
@@ -30,8 +36,15 @@
 
                 <div class="cover-wrapper">
 
-                    <img src="{% static games.cover %}"
-                         class="game-cover">
+                    {% if game.cover %}
+                        <img src="{{ game.cover.url }}"
+                            alt="{{ game.name }}"
+                            class="game-cover">
+                    {% else %}
+                        <img src="{% static 'assets/images/default-game-cover.png' %}"
+                            alt="{{ game.name }}"
+                            class="game-cover">
+                    {% endif %}
 
                     <button class="favorite-btn">
 
@@ -51,31 +64,33 @@
 
                 <div class="hero-content">
 
-                    <h1>{{ games.title }}</h1>
+                    <h1>{{ game.name }}</h1>
 
                     <div class="hero-meta">
 
                         <span>
 
                             <i class="fa-solid fa-star"></i>
+                            N/A
 
-                            {{ games.rating }}
+                            <!-- {{ games.rating }} -->
 
                         </span>
 
-                        <span>{{ games.developer }}</span>
+                        <span>{{ game.developer }}</span>
 
-                        <span>{{ games.release_date }}</span>
+                        <span>{{ game.release_date }}</span>
+                        N/A
 
-                        <span>{{ games.reviews }} Reviews</span>
+                        <!-- <span>{{ game.reviews }} Reviews</span> -->
 
                     </div>
 
                     <div class="hero-genres">
 
-                        {% for gender in games.genres %}
+                        {% for genre in game.genres.all %}
 
-                            <span>{{ gender }}</span>
+                            <span>{{ genre.name }}</span>
                             
                         {% endfor %}
 
@@ -83,10 +98,14 @@
 
                     <div class="hero-platforms">
 
-                        {% for platform in games.platforms %}
+                        {% for platform in game.platforms|platform_icons %}
 
-                            <i class="fa-brands fa-{{ platform }}"></i>
-                            
+                            {% if platform.icon %}
+                                <i class="fa-brands fa-{{ platform.icon }}"
+                                title="{{ platform.name }}">
+                                </i>
+                            {% endif %}
+
                         {% endfor %}
 
                     </div>
@@ -101,7 +120,7 @@
 
                         </button>
 
-                        <a href="{% url games.content_link %}" class="content-btn">
+                        <a href="#" class="content-btn">
 
                             <i class="fa-solid fa-compass"></i>
 

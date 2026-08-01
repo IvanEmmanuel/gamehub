@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models.game import Game
 from django.db.models import Q
 from django.core.paginator import Paginator
@@ -40,50 +40,12 @@ def games_list(request):
         'query_string': query_string
     })
 
-def games_detail(request):
-    games = {
-
-        "id": 1,
-
-        "title": "Cyberpunk 2077",
-
-        "developer": "CD Projekt RED",
-
-        "publisher": "CD Projekt RED",
-
-        "release_date": "10 Dic 2020",
-
-        "rating": 4.5,
-        
-        "content_link": "games_content",
-
-        "reviews": "12.4K",
-
-        "description": (
-            "Cyberpunk 2077 es un RPG de acción en mundo abierto ambientado "
-            "en Night City, donde tus decisiones afectan la historia."
-        ),
-
-        "cover": "assets/images/popular-01.jpg",
-
-        "banner": "assets/images/banner-1.jpg",
-
-        "genres": [
-            "RPG",
-            "Acción",
-            "Mundo Abierto",
-            "MMO"
-        ],
-
-        "platforms": [
-            "windows",
-            "playstation",
-            "xbox"
-        ]
-
-    }
+def games_detail(request, slug):
+    
+    game = get_object_or_404(Game, slug=slug)
+    
     return render(request, "games/games_detail.html", {
-        'games': games
+        'game': game
     })
 
 def games_content(request):
