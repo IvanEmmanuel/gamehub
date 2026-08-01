@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/video-modal.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/image-modal.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/styles_games_content.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
@@ -99,6 +100,9 @@
     <!-- Modal reutilizable para videos -->
     {% include "components/common/modals/video_modal.html" %}
 
+    <!-- Modal reutilizable para imagenes -->
+    {% include "components/common/modals/image_modal.html" %}
+
 {% endblock %}
 
 
@@ -117,5 +121,6 @@
 
   <script src="{% static 'assets/js/navigation_bar.js'%}"></script>
   <script src="{% static 'assets/js/video-modal.js'%}"></script>
+  <script src="{% static 'assets/js/image-modal.js'%}"></script>
   
 {% endblock scripts %}

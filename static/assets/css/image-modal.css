@@ -1,0 +1,60 @@
+.image-modal .modal-content{
+
+    background:#1f2122;
+
+    border:none;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+.image-modal .modal-body{
+
+    padding:25px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.image-modal img{
+
+    max-height:80vh;
+    width:auto;
+
+    border-radius:10px;
+
+    transition:transform .25s ease;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+
+}
+
+.image-modal .modal-dialog{
+
+    transition: transform .25s ease;
+
+}
+
+.image-modal .btn-close{
+
+    filter: invert(1);
+
+    opacity:.8;
+
+    transition:.2s ease;
+
+}
+
+.image-modal .btn-close:hover{
+
+    opacity:1;
+
+    transform:scale(1.1);
+
+}

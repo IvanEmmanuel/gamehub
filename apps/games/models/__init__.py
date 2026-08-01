@@ -5,3 +5,4 @@ from .userGameLibrary import UserGameLibrary
 from .achievements import Achievement
 from .userAchievement import UserAchievement
 from .trailer import Trailer
+from .screenshot import Screenshot

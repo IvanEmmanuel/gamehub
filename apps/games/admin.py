@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Game, UserGameLibrary, Genre, Review, Achievement, UserAchievement, Trailer)
+from .models import (Game, UserGameLibrary, Genre, Review, Achievement, UserAchievement, Trailer, Screenshot)
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
@@ -116,6 +116,30 @@ class TrailerAdmin(admin.ModelAdmin):
 
     list_filter = (
         "is_official",
+    )
+
+    search_fields = (
+        "title",
+        "game__name",
+    )
+
+    ordering = (
+        "game",
+        "display_order",
+    )
+    
+@admin.register(Screenshot)
+class ScreenshotAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "title",
+        "game",
+        "display_order",
+        "created_at",
+    )
+
+    list_filter = (
+        "game",
     )
 
     search_fields = (
