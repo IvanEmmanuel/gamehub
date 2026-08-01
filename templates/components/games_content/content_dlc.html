@@ -31,7 +31,7 @@
         =================================-->
 
         
-        {% for dlc in content.dlcs %}
+        {% for dlc in game.dlcs.all %}
 
             <div class="dlc-item">
 
@@ -39,7 +39,7 @@
 
                 <div class="dlc-image">
 
-                    <img src="{% static dlc.cover %}" alt="">
+                    <img src="{{ dlc.cover.url }}" alt="{{ dlc.title }}">
 
                 </div>
 
@@ -51,7 +51,7 @@
 
                         <h3>
 
-                            {{ dlc.name }}
+                            {{ dlc.title }}
 
                         </h3>
 
@@ -81,17 +81,17 @@
 
                 <div class="dlc-action">
 
-                    <span class="dlc-price">
+                    {% if dlc.purchase_url %}
 
-                        ${{ dlc.price }} USD
+                        <a href="{{ dlc.purchase_url }}"
+                        target="_blank"
+                        class="dlc-btn">
 
-                    </span>
+                            Ver DLC
 
-                    <a href="{{ dlc.url }}" class="dlc-btn" target="_blank">
+                        </a>
 
-                        Ver DLC
-
-                    </a>
+                    {% endif %}
 
                 </div>
 

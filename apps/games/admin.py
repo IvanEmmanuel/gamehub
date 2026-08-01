@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import (Game, UserGameLibrary, Genre, Review, Achievement, UserAchievement, Trailer, Screenshot)
+from .models import (Game, UserGameLibrary, Genre, Review, Achievement, UserAchievement, Trailer, Screenshot, DLC)
+from django.utils.html import format_html
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
@@ -150,4 +151,75 @@ class ScreenshotAdmin(admin.ModelAdmin):
     ordering = (
         "game",
         "display_order",
+    )
+
+
+@admin.register(DLC)
+class DLCAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "cover_preview",
+        "title",
+        "game",
+        "type",
+        "release_date",
+        "display_order",
+    )
+
+    list_filter = (
+        "type",
+        "game",
+    )
+
+    search_fields = (
+        "title",
+        "game__name",
+    )
+
+    ordering = (
+        "game",
+        "display_order",
+    )
+    
+    @admin.display(description="Cover")
+    def cover_preview(self, obj):
+
+        if obj.cover:
+
+            return format_html(
+                '<img src="{}" width="60" style="border-radius:6px;">',
+                obj.cover.url
+            )
+
+        return "-"
+    
+    fieldsets = (
+
+        ("Información general", {
+            "fields": (
+                "game",
+                "title",
+                "type",
+            )
+        }),
+
+        ("Contenido", {
+            "fields": (
+                "description",
+                "cover",
+            )
+        }),
+
+        ("Enlaces", {
+            "fields": (
+                "purchase_url",
+            )
+        }),
+
+        ("Lanzamiento", {
+            "fields": (
+                "release_date",
+            )
+        }),
+
     )

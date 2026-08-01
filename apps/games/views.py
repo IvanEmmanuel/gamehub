@@ -49,7 +49,20 @@ def games_detail(request, slug):
     })
 
 def games_content(request, slug):
-    game = get_object_or_404(Game, slug=slug)
+
+    game = get_object_or_404(
+
+        Game.objects.prefetch_related(
+
+            "trailers",
+            "screenshots",
+            "dlcs",
+
+        ),
+
+        slug=slug
+
+    )
 
     return render(
         request,
