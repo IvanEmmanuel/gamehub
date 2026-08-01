@@ -1,206 +1,24 @@
 from django.shortcuts import render
+from .models.game import Game
+from django.db.models import Q
 
 
 # Create your views here.
 
 
 def games_list(request):
-    games = [
-
-        {
-            "id": 1,
-            "title": "Cyberpunk 2077",
-            "developer": "CD Projekt RED",
-            "image": "assets/images/popular-01.jpg",
-            "rating": 4.9,
-            "genres": ["RPG", "Acción", "Mundo Abierto"],
-            "platforms": [ 
-                            {
-                                "name": "PC",
-                                "icon": "windows"
-                            },
-                            {
-                                "name": "PlayStation",
-                                "icon": "playstation"
-                            },
-                            {
-                                "name": "Xbox",
-                                "icon": "xbox"
-                            }
-            ],
-            "players": "2.4 M",
-            "release_year": 2020,
-            "favorite": True,
-        },
-        {
-            "id": 2,
-            "title": "Halo Infinite",
-            "developer": "343 Industries",
-            "image": "assets/images/popular-02.jpg",
-            "rating": 4.8,
-            "genres": ["Shooter", "Acción", "Multijugador"],
-            "platforms": [
-                {"name": "PC", "icon": "windows"},
-                {"name": "Xbox", "icon": "xbox"}
-            ],
-            "players": "1.8 M",
-            "release_year": 2021,
-            "favorite": False,
-        },
-
-        {
-            "id": 3,
-            "title": "Red Dead Redemption II",
-            "developer": "Rockstar Games",
-            "image": "assets/images/popular-03.jpg",
-            "rating": 4.9,
-            "genres": ["Aventura", "Acción", "Mundo Abierto"],
-            "platforms": [
-                {"name": "PC", "icon": "windows"},
-                {"name": "PlayStation", "icon": "playstation"},
-                {"name": "Xbox", "icon": "xbox"}
-            ],
-            "players": "5.2 M",
-            "release_year": 2018,
-            "favorite": True,
-        },
-
-        {
-            "id": 4,
-            "title": "Forza Horizon 5",
-            "developer": "Playground Games",
-            "image": "assets/images/popular-04.jpg",
-            "rating": 4.7,
-            "genres": ["Carreras", "Simulación", "Mundo Abierto"],
-            "platforms": [
-                {"name": "PC", "icon": "windows"},
-                {"name": "Xbox", "icon": "xbox"}
-            ],
-            "players": "2.0 M",
-            "release_year": 2021,
-            "favorite": False,
-        },
-
-        {
-            "id": 5,
-            "title": "Elden Ring",
-            "developer": "FromSoftware",
-            "image": "assets/images/popular-05.jpg",
-            "rating": 4.9,
-            "genres": ["RPG", "Acción", "Soulslike"],
-            "platforms": [
-                {"name": "PC", "icon": "windows"},
-                {"name": "PlayStation", "icon": "playstation"},
-                {"name": "Xbox", "icon": "xbox"}
-            ],
-            "players": "3.6 M",
-            "release_year": 2022,
-            "favorite": True,
-        },
-
-        {
-            "id": 6,
-            "title": "God of War Ragnarök",
-            "developer": "Santa Monica Studio",
-            "image": "assets/images/popular-06.jpg",
-            "rating": 4.9,
-            "genres": ["Acción", "Aventura", "Hack & Slash"],
-            "platforms": [
-                {"name": "PlayStation", "icon": "playstation"}
-            ],
-            "players": "2.7 M",
-            "release_year": 2022,
-            "favorite": False,
-        },
-
-        {
-            "id": 7,
-            "title": "The Witcher 3",
-            "developer": "CD Projekt RED",
-            "image": "assets/images/popular-07.jpg",
-            "rating": 4.8,
-            "genres": ["RPG", "Aventura", "Mundo Abierto"],
-            "platforms": [
-                {"name": "PC", "icon": "windows"},
-                {"name": "PlayStation", "icon": "playstation"},
-                {"name": "Xbox", "icon": "xbox"},
-                {"name": "Nintendo Switch", "icon": "nintendo-switch"}
-            ],
-            "players": "4.5 M",
-            "release_year": 2015,
-            "favorite": True,
-        },
-
-        {
-            "id": 8,
-            "title": "Assassin's Creed Shadows",
-            "developer": "Ubisoft",
-            "image": "assets/images/popular-08.jpg",
-            "rating": 4.6,
-            "genres": ["Acción", "RPG", "Sigilo"],
-            "platforms": [
-                {"name": "PC", "icon": "windows"},
-                {"name": "PlayStation", "icon": "playstation"},
-                {"name": "Xbox", "icon": "xbox"}
-            ],
-            "players": "1.5 M",
-            "release_year": 2025,
-            "favorite": False,
-        },
-
-        {
-            "id": 9,
-            "title": "Minecraft",
-            "developer": "Mojang Studios",
-            "image": "assets/images/popular-01.jpg",
-            "rating": 4.8,
-            "genres": ["Sandbox", "Supervivencia", "Aventura"],
-            "platforms": [
-                {"name": "PC", "icon": "windows"},
-                {"name": "PlayStation", "icon": "playstation"},
-                {"name": "Xbox", "icon": "xbox"}
-            ],
-            "players": "9.4 M",
-            "release_year": 2011,
-            "favorite": False,
-        },
-
-        {
-            "id": 10,
-            "title": "Resident Evil 4 Remake",
-            "developer": "Capcom",
-            "image": "assets/images/popular-02.jpg",
-            "rating": 4.8,
-            "genres": ["Terror", "Acción", "Supervivencia"],
-            "platforms": [
-                {"name": "PC", "icon": "windows"},
-                {"name": "PlayStation", "icon": "playstation"},
-                {"name": "Xbox", "icon": "xbox"}
-            ],
-            "players": "1.9 M",
-            "release_year": 2023,
-            "favorite": True,
-        },
-
-        {
-            "id": 11,
-            "title": "Baldur's Gate 3",
-            "developer": "Larian Studios",
-            "image": "assets/images/popular-03.jpg",
-            "rating": 5.0,
-            "genres": ["RPG", "Estrategia", "Fantasía"],
-            "platforms": [
-                {"name": "PC", "icon": "windows"},
-                {"name": "PlayStation", "icon": "playstation"}
-            ],
-            "players": "2.8 M",
-            "release_year": 2023,
-            "favorite": True,
-        },
-    ]
+    
+    games = Game.objects.all()
+    query = request.GET.get("q")
+    
+    if query:
+        games = games.filter(
+            Q(name__icontains= query) | Q(developer__icontains= query)
+        )
     
     return render(request, "games/games.html", {
-        'games': games
+        'games': games,
+        'query': query
     })
 
 

@@ -1,0 +1,1032 @@
+[
+    {
+        "model": "games.game",
+        "pk": 1,
+        "fields": {
+            "name": "Cyberpunk 2077",
+            "slug": "cyberpunk-2077",
+            "overview": "Cyberpunk 2077 es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                1,
+                3,
+                20
+            ],
+            "release_date": "2020-12-10",
+            "pegi": "18",
+            "developer": "CD Projekt Red",
+            "platforms": "PC, PlayStation 5, Xbox Series X|S",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "CD Projekt",
+            "trailer_url": "https://youtu.be/qIcTM8WXFjk",
+            "official_website": "https://www.cyberpunk.net",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 2,
+        "fields": {
+            "name": "Elden Ring",
+            "slug": "elden-ring",
+            "overview": "Elden Ring es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                1,
+                3,
+                20
+            ],
+            "release_date": "2022-02-25",
+            "pegi": "16",
+            "developer": "FromSoftware",
+            "platforms": "PC, PlayStation 5, Xbox Series X|S",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Bandai Namco",
+            "trailer_url": "https://youtu.be/E3Huy2cdih0",
+            "official_website": "https://en.bandainamcoent.eu/elden-ring",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 3,
+        "fields": {
+            "name": "Red Dead Redemption 2",
+            "slug": "red-dead-redemption-2",
+            "overview": "Red Dead Redemption 2 es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                1,
+                2,
+                20
+            ],
+            "release_date": "2018-10-26",
+            "pegi": "18",
+            "developer": "Rockstar Games",
+            "platforms": "PC, PlayStation 4, Xbox One",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Rockstar Games",
+            "trailer_url": "",
+            "official_website": "https://www.rockstargames.com",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 4,
+        "fields": {
+            "name": "The Witcher 3: Wild Hunt",
+            "slug": "the-witcher-3-wild-hunt",
+            "overview": "The Witcher 3: Wild Hunt es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                3
+            ],
+            "release_date": "2015-05-19",
+            "pegi": "18",
+            "developer": "CD Projekt Red",
+            "platforms": "PC, PlayStation 5, Xbox Series X|S, Nintendo Switch",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "CD Projekt",
+            "trailer_url": "",
+            "official_website": "https://www.thewitcher.com",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 5,
+        "fields": {
+            "name": "Baldur's Gate 3",
+            "slug": "baldurs-gate-3",
+            "overview": "Baldur's Gate 3 es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                3
+            ],
+            "release_date": "2023-08-03",
+            "pegi": "18",
+            "developer": "Larian Studios",
+            "platforms": "PC, PlayStation 5, Xbox Series X|S",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Larian Studios",
+            "trailer_url": "",
+            "official_website": "https://baldursgate3.game",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 6,
+        "fields": {
+            "name": "Hollow Knight",
+            "slug": "hollow-knight",
+            "overview": "Hollow Knight es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                19,
+                11,
+                1
+            ],
+            "release_date": "2017-02-24",
+            "pegi": "10",
+            "developer": "Team Cherry",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "Team Cherry",
+            "trailer_url": "",
+            "official_website": "https://www.hollowknight.com",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 7,
+        "fields": {
+            "name": "Hades",
+            "slug": "hades",
+            "overview": "Hades es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                18,
+                17,
+                1
+            ],
+            "release_date": "2020-09-17",
+            "pegi": "12",
+            "developer": "Supergiant Games",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "Supergiant Games",
+            "trailer_url": "",
+            "official_website": "https://www.supergiantgames.com",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 8,
+        "fields": {
+            "name": "Minecraft",
+            "slug": "minecraft",
+            "overview": "Minecraft es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                12,
+                2
+            ],
+            "release_date": "2011-11-18",
+            "pegi": "7",
+            "developer": "Mojang Studios",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Xbox Game Studios",
+            "trailer_url": "",
+            "official_website": "https://www.minecraft.net",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 9,
+        "fields": {
+            "name": "Terraria",
+            "slug": "terraria",
+            "overview": "Terraria es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                12,
+                2
+            ],
+            "release_date": "2011-05-16",
+            "pegi": "12",
+            "developer": "Re-Logic",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "505 Games",
+            "trailer_url": "",
+            "official_website": "https://terraria.org",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 10,
+        "fields": {
+            "name": "Stardew Valley",
+            "slug": "stardew-valley",
+            "overview": "Stardew Valley es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                6,
+                3
+            ],
+            "release_date": "2016-02-26",
+            "pegi": "7",
+            "developer": "ConcernedApe",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "ConcernedApe",
+            "trailer_url": "",
+            "official_website": "https://www.stardewvalley.net",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 11,
+        "fields": {
+            "name": "Grand Theft Auto V",
+            "slug": "grand-theft-auto-v",
+            "overview": "Grand Theft Auto V es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                1,
+                20
+            ],
+            "release_date": "2013-09-17",
+            "pegi": "18",
+            "developer": "Rockstar North",
+            "platforms": "PC, PlayStation, Xbox",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Rockstar Games",
+            "trailer_url": "",
+            "official_website": "https://www.rockstargames.com",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 12,
+        "fields": {
+            "name": "God of War Ragnarök",
+            "slug": "god-of-war-ragnarök",
+            "overview": "God of War Ragnarök es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                1,
+                2
+            ],
+            "release_date": "2022-11-09",
+            "pegi": "18",
+            "developer": "Santa Monica Studio",
+            "platforms": "PlayStation 4, PlayStation 5, PC",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "Sony Interactive Entertainment",
+            "trailer_url": "",
+            "official_website": "https://www.playstation.com",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 13,
+        "fields": {
+            "name": "Ghost of Tsushima",
+            "slug": "ghost-of-tsushima",
+            "overview": "Ghost of Tsushima es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                1,
+                2
+            ],
+            "release_date": "2020-07-17",
+            "pegi": "18",
+            "developer": "Sucker Punch Productions",
+            "platforms": "PlayStation, PC",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "Sony Interactive Entertainment",
+            "trailer_url": "",
+            "official_website": "https://www.playstation.com",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 14,
+        "fields": {
+            "name": "Resident Evil 4 Remake",
+            "slug": "resident-evil-4-remake",
+            "overview": "Resident Evil 4 Remake es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                9,
+                1
+            ],
+            "release_date": "2023-03-24",
+            "pegi": "18",
+            "developer": "Capcom",
+            "platforms": "PC, PlayStation, Xbox",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "Capcom",
+            "trailer_url": "",
+            "official_website": "https://www.residentevil.com",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 15,
+        "fields": {
+            "name": "DOOM Eternal",
+            "slug": "doom-eternal",
+            "overview": "DOOM Eternal es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                4,
+                1
+            ],
+            "release_date": "2020-03-20",
+            "pegi": "18",
+            "developer": "id Software",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Bethesda Softworks",
+            "trailer_url": "",
+            "official_website": "https://slayersclub.bethesda.net",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 16,
+        "fields": {
+            "name": "Forza Horizon 5",
+            "slug": "forza-horizon-5",
+            "overview": "Forza Horizon 5 es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                8
+            ],
+            "release_date": "2021-11-09",
+            "pegi": "3",
+            "developer": "Playground Games",
+            "platforms": "PC, Xbox Series X|S",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Xbox Game Studios",
+            "trailer_url": "",
+            "official_website": "https://forza.net",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 17,
+        "fields": {
+            "name": "EA Sports FC 26",
+            "slug": "ea-sports-fc-26",
+            "overview": "EA Sports FC 26 es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                7
+            ],
+            "release_date": "2025-09-26",
+            "pegi": "3",
+            "developer": "EA Canada",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Electronic Arts",
+            "trailer_url": "",
+            "official_website": "https://www.ea.com",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 18,
+        "fields": {
+            "name": "Sid Meier's Civilization VI",
+            "slug": "sid-meiers-civilization-vi",
+            "overview": "Sid Meier's Civilization VI es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                5
+            ],
+            "release_date": "2016-10-21",
+            "pegi": "12",
+            "developer": "Firaxis Games",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "2K",
+            "trailer_url": "",
+            "official_website": "https://civilization.2k.com",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 19,
+        "fields": {
+            "name": "League of Legends",
+            "slug": "league-of-legends",
+            "overview": "League of Legends es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                13
+            ],
+            "release_date": "2009-10-27",
+            "pegi": "12",
+            "developer": "Riot Games",
+            "platforms": "PC",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Riot Games",
+            "trailer_url": "",
+            "official_website": "https://www.leagueoflegends.com",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 20,
+        "fields": {
+            "name": "Counter-Strike 2",
+            "slug": "counter-strike-2",
+            "overview": "Counter-Strike 2 es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                4
+            ],
+            "release_date": "2023-09-27",
+            "pegi": "18",
+            "developer": "Valve",
+            "platforms": "PC",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Valve",
+            "trailer_url": "",
+            "official_website": "https://www.counter-strike.net",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 21,
+        "fields": {
+            "name": "Sekiro: Shadows Die Twice",
+            "slug": "sekiro-shadows-die-twice",
+            "overview": "Sekiro: Shadows Die Twice es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                1,
+                2
+            ],
+            "release_date": "2019-03-22",
+            "pegi": "18",
+            "developer": "FromSoftware",
+            "platforms": "PC, PlayStation, Xbox",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "Activision",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 22,
+        "fields": {
+            "name": "Dark Souls III",
+            "slug": "dark-souls-iii",
+            "overview": "Dark Souls III es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                1,
+                3
+            ],
+            "release_date": "2016-04-12",
+            "pegi": "16",
+            "developer": "FromSoftware",
+            "platforms": "PC, PlayStation, Xbox",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Bandai Namco",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 23,
+        "fields": {
+            "name": "Persona 5 Royal",
+            "slug": "persona-5-royal",
+            "overview": "Persona 5 Royal es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                3
+            ],
+            "release_date": "2019-10-31",
+            "pegi": "16",
+            "developer": "P-Studio",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "Atlus",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 24,
+        "fields": {
+            "name": "Monster Hunter Wilds",
+            "slug": "monster-hunter-wilds",
+            "overview": "Monster Hunter Wilds es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                1,
+                3
+            ],
+            "release_date": "2025-02-28",
+            "pegi": "16",
+            "developer": "Capcom",
+            "platforms": "PC, PlayStation 5, Xbox Series X|S",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Capcom",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 25,
+        "fields": {
+            "name": "Death Stranding",
+            "slug": "death-stranding",
+            "overview": "Death Stranding es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                2,
+                20
+            ],
+            "release_date": "2019-11-08",
+            "pegi": "18",
+            "developer": "Kojima Productions",
+            "platforms": "PC, PlayStation",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "505 Games",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 26,
+        "fields": {
+            "name": "No Man's Sky",
+            "slug": "no-mans-sky",
+            "overview": "No Man's Sky es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                12,
+                20
+            ],
+            "release_date": "2016-08-09",
+            "pegi": "12",
+            "developer": "Hello Games",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Hello Games",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 27,
+        "fields": {
+            "name": "Diablo IV",
+            "slug": "diablo-iv",
+            "overview": "Diablo IV es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                3,
+                17
+            ],
+            "release_date": "2023-06-06",
+            "pegi": "18",
+            "developer": "Blizzard Entertainment",
+            "platforms": "PC, PlayStation, Xbox",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Blizzard Entertainment",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 28,
+        "fields": {
+            "name": "Path of Exile",
+            "slug": "path-of-exile",
+            "overview": "Path of Exile es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                3
+            ],
+            "release_date": "2013-10-23",
+            "pegi": "16",
+            "developer": "Grinding Gear Games",
+            "platforms": "PC, PlayStation, Xbox",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Grinding Gear Games",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 29,
+        "fields": {
+            "name": "Valorant",
+            "slug": "valorant",
+            "overview": "Valorant es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                4
+            ],
+            "release_date": "2020-06-02",
+            "pegi": "16",
+            "developer": "Riot Games",
+            "platforms": "PC",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Riot Games",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 30,
+        "fields": {
+            "name": "Overwatch 2",
+            "slug": "overwatch-2",
+            "overview": "Overwatch 2 es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                4
+            ],
+            "release_date": "2022-10-04",
+            "pegi": "12",
+            "developer": "Blizzard Entertainment",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Blizzard Entertainment",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 31,
+        "fields": {
+            "name": "Apex Legends",
+            "slug": "apex-legends",
+            "overview": "Apex Legends es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                14,
+                4
+            ],
+            "release_date": "2019-02-04",
+            "pegi": "16",
+            "developer": "Respawn Entertainment",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Electronic Arts",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 32,
+        "fields": {
+            "name": "Fortnite",
+            "slug": "fortnite",
+            "overview": "Fortnite es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                14
+            ],
+            "release_date": "2017-07-21",
+            "pegi": "12",
+            "developer": "Epic Games",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Epic Games",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 33,
+        "fields": {
+            "name": "Rocket League",
+            "slug": "rocket-league",
+            "overview": "Rocket League es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                7
+            ],
+            "release_date": "2015-07-07",
+            "pegi": "3",
+            "developer": "Psyonix",
+            "platforms": "PC, PlayStation, Xbox, Switch",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Epic Games",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 34,
+        "fields": {
+            "name": "Sea of Thieves",
+            "slug": "sea-of-thieves",
+            "overview": "Sea of Thieves es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                2
+            ],
+            "release_date": "2018-03-20",
+            "pegi": "12",
+            "developer": "Rare",
+            "platforms": "PC, Xbox",
+            "status": "Released",
+            "has_multiplayer": true,
+            "publisher": "Xbox Game Studios",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 35,
+        "fields": {
+            "name": "The Legend of Zelda: Tears of the Kingdom",
+            "slug": "the-legend-of-zelda-tears-of-the-kingdom",
+            "overview": "The Legend of Zelda: Tears of the Kingdom es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                2,
+                20
+            ],
+            "release_date": "2023-05-12",
+            "pegi": "12",
+            "developer": "Nintendo EPD",
+            "platforms": "Nintendo Switch",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "Nintendo",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 36,
+        "fields": {
+            "name": "Super Mario Odyssey",
+            "slug": "super-mario-odyssey",
+            "overview": "Super Mario Odyssey es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                11,
+                2
+            ],
+            "release_date": "2017-10-27",
+            "pegi": "7",
+            "developer": "Nintendo EPD",
+            "platforms": "Nintendo Switch",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "Nintendo",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 37,
+        "fields": {
+            "name": "Metroid Dread",
+            "slug": "metroid-dread",
+            "overview": "Metroid Dread es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                19,
+                1
+            ],
+            "release_date": "2021-10-08",
+            "pegi": "12",
+            "developer": "MercurySteam",
+            "platforms": "Nintendo Switch",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "Nintendo",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 38,
+        "fields": {
+            "name": "Assassin's Creed Shadows",
+            "slug": "assassins-creed-shadows",
+            "overview": "Assassin's Creed Shadows es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                1,
+                20
+            ],
+            "release_date": "2025-03-20",
+            "pegi": "18",
+            "developer": "Ubisoft Quebec",
+            "platforms": "PC, PlayStation 5, Xbox Series X|S",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "Ubisoft",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 39,
+        "fields": {
+            "name": "Black Myth: Wukong",
+            "slug": "black-myth-wukong",
+            "overview": "Black Myth: Wukong es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                1,
+                3
+            ],
+            "release_date": "2024-08-20",
+            "pegi": "16",
+            "developer": "Game Science",
+            "platforms": "PC, PlayStation 5",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "Game Science",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    },
+    {
+        "model": "games.game",
+        "pk": 40,
+        "fields": {
+            "name": "Clair Obscur: Expedition 33",
+            "slug": "clair-obscur-expedition-33",
+            "overview": "Clair Obscur: Expedition 33 es un videojuego destacado incluido como dato de prueba para GameHub.",
+            "created_at": "2026-07-31T00:00:00Z",
+            "genres": [
+                3
+            ],
+            "release_date": "2025-04-24",
+            "pegi": "16",
+            "developer": "Sandfall Interactive",
+            "platforms": "PC, PlayStation 5, Xbox Series X|S",
+            "status": "Released",
+            "has_multiplayer": false,
+            "publisher": "Kepler Interactive",
+            "trailer_url": "",
+            "official_website": "",
+            "cover": "",
+            "banner": "",
+            "is_active": true
+        }
+    }
+]

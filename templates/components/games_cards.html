@@ -1,3 +1,4 @@
+{% load game_extras %}
 {% load static %}
         <!-- ==========================================
                           JUEGOS POPULARES
@@ -36,43 +37,36 @@
 
                   <a href="{% url 'games_detail' %}" class="game-card">
 
-                    
+                        <div class="game-image">
 
-                      <!-- Imagen -->
-                      <div class="game-image">
+                            {% if game.cover %}
+                                <img src="{{ game.cover.url }}" alt="{{ game.name }}">
+                            {% else %}
+                                <img src="{% static 'assets/images/default-game-cover.png' %}"
+                                    alt="Sin portada">
+                            {% endif %}
 
-                          <img src="{% static game.image %}" alt="{{ game.title }}">
-
-                          <!-- Favoritos -->
-                          <div class="favorite-btn">
-
-                            {% if game.favorite %}
+                            <div class="favorite-btn">
 
                                 <i class="fa-solid fa-heart favorite-active"></i>
 
-                            {% else %}
+                            </div>
 
-                                <i class="fa-regular fa-heart"></i>
-
-                            {% endif %}
-
-                          </div>
+                        </div>
 
                           <!-- Valoración -->
                           <div class="rating-badge">
 
                               <i class="fa-solid fa-star"></i>
 
-                              {{ game.rating }}
+                              <!-- {{ game.rating }} -->
 
                           </div>
-
-                      </div>
 
                       <!-- Información -->
                       <div class="game-info">
 
-                          <h4>{{ game.title }}</h4>
+                          <h4>{{ game.name }}</h4>
 
                           <p class="developer">
 
@@ -83,8 +77,8 @@
                           <!-- Géneros -->
                           <div class="genres">
                             
-                            {% for genre in game.genres %}
-                                <span>{{ genre }}</span>
+                            {% for genre in game.genres.all %}
+                                <span>{{ genre.name }}</span>
                             {% endfor %}
                                 
 
@@ -93,11 +87,15 @@
                           <!-- Plataformas -->
                         <div class="platforms">
 
-                            {% for platform in game.platforms %}
+                            {% for platform in game.platforms|platform_icons %}
 
-                                <i class="fa-brands fa-{{ platform.icon }}"
-                                title="{{ platform.name }}">
-                                </i>
+                                {% if platform.icon %}
+                                    <i class="fa-brands fa-{{ platform.icon }}"
+                                    title="{{ platform.name }}">
+                                    </i>
+                                {% else %}
+                                    <span>{{ platform.name }}</span>
+                                {% endif %}
 
                             {% endfor %}
 
@@ -106,19 +104,23 @@
                           <!-- Estadísticas -->
                           <div class="game-footer">
 
-                              <span>
+                                <span>
 
-                                  <i class="fa-solid fa-users"></i>
+                                    {% if game.has_multiplayer %}
+                                        <i class="fa-solid fa-users"></i>
+                                        Multiplayer
+                                    {% else %}
+                                        <i class="fa-solid fa-user"></i>
+                                        Single Player
+                                    {% endif %}
 
-                                  {{ game.players }}
-
-                              </span>
+                                </span>
 
                               <span>
 
                                   <i class="fa-solid fa-calendar"></i>
 
-                                  {{ game.release_year }}
+                                  {{ game.release_date }}
 
                               </span>
 

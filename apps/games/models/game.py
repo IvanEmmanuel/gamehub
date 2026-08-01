@@ -11,11 +11,11 @@ class Game(models.Model):
     genres = models.ManyToManyField(Genre, related_name="games")
     release_date = models.DateField(null = True,  blank=True)
     pegi = models.CharField(max_length=15, blank=True, null=True) # Cambiar este campo a choices cuando veamos esa característica en Django.
-    developer = models.CharField(max_length=50, blank=True) # TODO: Convertir a ManyToManyField cuando exista el modelo Developer.
-    platforms = models.CharField(max_length=50, blank=True) # TODO: Convertir a ManyToManyField cuando exista el modelo Platform.
+    developer = models.CharField(max_length=100, blank=True) # TODO: Convertir a ManyToManyField cuando exista el modelo Developer.
+    platforms = models.TextField(blank=True, null= True) # TODO: Convertir a ManyToManyField cuando exista el modelo Platform.
     status = models.CharField(max_length=50, blank=True, null=True)  # Cambiar este campo a choices cuando veamos esa característica en Django.
     has_multiplayer = models.BooleanField(default=False)
-    publisher = models.CharField(max_length=100, blank=True) # TODO: Convertir a ManyToManyField cuando exista el modelo publisher.
+    publisher = models.CharField(max_length=100, null= True) # TODO: Convertir a ManyToManyField cuando exista el modelo publisher.
     trailer_url = models.URLField(blank=True, null= True)
     official_website = models.URLField(blank=True, null= True)
     is_active = models.BooleanField(default=True)
