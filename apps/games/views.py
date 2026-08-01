@@ -48,7 +48,7 @@ def games_detail(request, slug):
         'game': game
     })
 
-def games_content(request):
+def games_content(request, slug):
     
     content = {
 
