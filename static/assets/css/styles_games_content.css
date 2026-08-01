@@ -1688,3 +1688,106 @@ html{
     border-radius:18px;
 
 }
+
+/*=========================================
+            GUIDE SOURCE
+=========================================*/
+
+.guide-item{
+
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    padding:18px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+    color:inherit;
+
+    transition:.3s ease;
+
+}
+
+.guide-item:hover{
+
+    background:#2a2d4a;
+
+}
+
+.guide-content{
+
+    flex:1;
+
+}
+
+.guide-content h5{
+
+    margin-bottom:6px;
+
+}
+
+.guide-source{
+
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+
+    font-size:.85rem;
+    font-weight:600;
+
+}
+
+/* YouTube */
+
+.guide-source.youtube{
+
+    color:#ff3b30;
+
+}
+
+/* Steam */
+
+.guide-source.steam{
+
+    color:#66c0f4;
+
+}
+
+/* IGN */
+
+.guide-source.ign{
+
+    color:#ff7a00;
+
+}
+
+/* Fextralife */
+
+.guide-source.fextralife{
+
+    color:#9b59b6;
+
+}
+
+/* Other */
+
+.guide-source.other{
+
+    color:#9ca3af;
+
+}
+
+.guide-source i{
+
+    transition:.25s ease;
+
+}
+
+.guide-item:hover .guide-source i{
+
+    transform:scale(1.15);
+
+}

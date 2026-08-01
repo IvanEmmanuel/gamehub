@@ -7,3 +7,4 @@ from .userAchievement import UserAchievement
 from .trailer import Trailer
 from .screenshot import Screenshot
 from .dlc import DLC
+from .guide import Guide

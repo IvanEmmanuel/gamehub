@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Game, UserGameLibrary, Genre, Review, Achievement, UserAchievement, Trailer, Screenshot, DLC)
+from .models import (Game, UserGameLibrary, Genre, Review, Achievement, UserAchievement, Trailer, Screenshot, DLC, Guide)
 from django.utils.html import format_html
 
 @admin.register(Genre)
@@ -219,6 +219,73 @@ class DLCAdmin(admin.ModelAdmin):
         ("Lanzamiento", {
             "fields": (
                 "release_date",
+            )
+        }),
+
+    )
+    
+@admin.register(Guide)
+class GuideAdmin(admin.ModelAdmin):
+
+    list_display = (
+
+        "title",
+        "game",
+        "source",
+        "open_guide",
+        "display_order",
+
+    )
+
+    list_filter = (
+        "source",
+        "game",
+    )
+
+    search_fields = (
+        "title",
+        "description",
+        "game__name",
+    )
+
+    ordering = (
+        "game",
+        "display_order",
+    )
+    
+    @admin.display(description="URL")
+    def open_guide(self, obj):
+
+        return format_html(
+            '<a href="{}" target="_blank">🔗 Abrir</a>',
+            obj.url
+        )
+
+    fieldsets = (
+
+        ("Información general", {
+            "fields": (
+                "game",
+                "title",
+                "source",
+            )
+        }),
+
+        ("Contenido", {
+            "fields": (
+                "description",
+            )
+        }),
+
+        ("Enlace", {
+            "fields": (
+                "url",
+            )
+        }),
+
+        ("Organización", {
+            "fields": (
+                "display_order",
             )
         }),
 

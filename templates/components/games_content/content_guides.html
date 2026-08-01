@@ -33,9 +33,9 @@
         <!-- Guía -->
 
         
-        {% for guide in content.guides %}
+        {% for guide in game.guides.all %}
 
-            <a href="{{ guide.pdf }}" class="guide-item">
+            <a href="{{ guide.url }}" target="_blank" class="guide-item">
 
                 <div class="guide-icon">
 
@@ -51,9 +51,26 @@
 
                     </h5>
 
-                    <span>
+                    <span class="guide-source {{ guide.source|lower }}">
 
-                        por {{ guide.author }}
+                        {% if guide.source == "YOUTUBE" %}
+                            <i class="fa-brands fa-youtube"></i>
+
+                        {% elif guide.source == "STEAM" %}
+                            <i class="fa-brands fa-steam"></i>
+
+                        {% elif guide.source == "IGN" %}
+                            <i class="fa-solid fa-globe"></i>
+
+                        {% elif guide.source == "FEXTRALIFE" %}
+                            <i class="fa-solid fa-book-open"></i>
+
+                        {% else %}
+                            <i class="fa-solid fa-link"></i>
+
+                        {% endif %}
+
+                        {{ guide.get_source_display }}
 
                     </span>
 
