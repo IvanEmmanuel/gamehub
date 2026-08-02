@@ -30,59 +30,76 @@
 
     <div class="updates-list">
 
-        
-        {% for update in content.updates %}
+        {% for patch in game.patch_notes.all %}
 
-            <!-- Patch -->
+            <article class="update-item {% if forloop.first %}latest-update{% endif %}">
 
-            <article class="update-item">
+                <div class="update-top">
 
-                <div class="update-content">
+                    <span class="update-version">
 
-                    <div class="update-top">
+                        v{{ patch.version }}
 
-                        <h4>
+                    </span>
 
-                            {{ update.version }}
-
-                        </h4>
+                    {% if forloop.first %}
 
                         <span class="update-badge">
 
-                            Última actualización
+                            Más reciente
 
                         </span>
 
-                        <span class="update-date">
+                    {% endif %}
 
-                            {{ update.date }}
+                    <span class="update-date">
 
-                        </span>
+                        {{ patch.release_date|date:"d M Y" }}
 
-                    </div>
-
-                    <p>
-
-                        {{ update.description }}
-
-                    </p>
-
-                    <a href="{{ update.url }}" target="_blank">
-
-                        Ver detalles
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                    </a>
+                    </span>
 
                 </div>
 
-            </article>
-            
-        {% endfor %}
-            
+                <h4>
 
-        
+                    {{ patch.title }}
+
+                </h4>
+
+                <p>
+
+                    {{ patch.description }}
+
+                </p>
+
+                {% if patch.official_url %}
+
+                    <a
+                        href="{{ patch.official_url }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="update-link"
+                    >
+
+                        Ver notas oficiales
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                    </a>
+
+                {% endif %}
+
+            </article>
+
+        {% empty %}
+
+            <p class="empty-content">
+
+                No hay actualizaciones registradas.
+
+            </p>
+
+        {% endfor %}
 
     </div>
 

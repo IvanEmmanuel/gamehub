@@ -1978,3 +1978,55 @@ html{
     color: #FF0000;
 
 }
+
+.update-version{
+
+    background: var(--primary-color);
+
+    color: #fff;
+
+    padding: 6px 14px;
+
+    border-radius: 20px;
+
+    font-weight: 600;
+
+}
+
+.update-date{
+
+    color: var(--text-secondary);
+
+    font-size: .85rem;
+
+}
+
+.update-link{
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 15px;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: .25s;
+
+}
+
+.update-link:hover{
+
+    transform: translateX(5px);
+
+}
+
+.latest-update{
+
+    border-left: 4px solid var(--primary-color);
+
+}
