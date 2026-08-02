@@ -3,7 +3,7 @@
   "model": "games.genre",
   "pk": 1,
   "fields": {
-    "name": "Acción",
+    "name": "Acciï¿½n",
     "slug": "accion",
     "description": "Juegos centrados en el combate, la velocidad y los reflejos.",
     "is_active": true
@@ -15,7 +15,7 @@
   "fields": {
     "name": "Aventura",
     "slug": "aventura",
-    "description": "Juegos enfocados en la exploración, historia y descubrimiento.",
+    "description": "Juegos enfocados en la exploraciï¿½n, historia y descubrimiento.",
     "is_active": true
   }
 },
@@ -25,7 +25,7 @@
   "fields": {
     "name": "RPG",
     "slug": "rpg",
-    "description": "Juegos de rol con progresión de personajes, habilidades y narrativa.",
+    "description": "Juegos de rol con progresiï¿½n de personajes, habilidades y narrativa.",
     "is_active": true
   }
 },
@@ -45,7 +45,7 @@
   "fields": {
     "name": "Estrategia",
     "slug": "estrategia",
-    "description": "Juegos donde la planificación y la toma de decisiones son fundamentales.",
+    "description": "Juegos donde la planificaciï¿½n y la toma de decisiones son fundamentales.",
     "is_active": true
   }
 },
@@ -53,7 +53,7 @@
   "model": "games.genre",
   "pk": 6,
   "fields": {
-    "name": "Simulación",
+    "name": "Simulaciï¿½n",
     "slug": "simulacion",
     "description": "Juegos que buscan representar situaciones o actividades reales.",
     "is_active": true
@@ -75,7 +75,7 @@
   "fields": {
     "name": "Carreras",
     "slug": "carreras",
-    "description": "Juegos enfocados en competencias de velocidad con vehículos.",
+    "description": "Juegos enfocados en competencias de velocidad con vehï¿½culos.",
     "is_active": true
   }
 },
@@ -95,7 +95,7 @@
   "fields": {
     "name": "Puzzle",
     "slug": "puzzle",
-    "description": "Juegos basados en acertijos y resolución de problemas.",
+    "description": "Juegos basados en acertijos y resoluciï¿½n de problemas.",
     "is_active": true
   }
 },
@@ -125,7 +125,7 @@
   "fields": {
     "name": "MOBA",
     "slug": "moba",
-    "description": "Multiplayer Online Battle Arena con equipos enfrentándose estratégicamente.",
+    "description": "Multiplayer Online Battle Arena con equipos enfrentï¿½ndose estratï¿½gicamente.",
     "is_active": true
   }
 },
@@ -135,7 +135,7 @@
   "fields": {
     "name": "Battle Royale",
     "slug": "battle-royale",
-    "description": "Juegos multijugador donde el último jugador o equipo en pie gana.",
+    "description": "Juegos multijugador donde el ï¿½ltimo jugador o equipo en pie gana.",
     "is_active": true
   }
 },
@@ -145,7 +145,7 @@
   "fields": {
     "name": "MMORPG",
     "slug": "mmorpg",
-    "description": "Juegos de rol multijugador masivos en línea.",
+    "description": "Juegos de rol multijugador masivos en lï¿½nea.",
     "is_active": true
   }
 },
@@ -165,7 +165,7 @@
   "fields": {
     "name": "Hack and Slash",
     "slug": "hack-and-slash",
-    "description": "Juegos enfocados en combate cuerpo a cuerpo rápido contra numerosos enemigos.",
+    "description": "Juegos enfocados en combate cuerpo a cuerpo rï¿½pido contra numerosos enemigos.",
     "is_active": true
   }
 },
@@ -185,7 +185,7 @@
   "fields": {
     "name": "Metroidvania",
     "slug": "metroidvania",
-    "description": "Juegos de exploración con progresión basada en habilidades.",
+    "description": "Juegos de exploraciï¿½n con progresiï¿½n basada en habilidades.",
     "is_active": true
   }
 },

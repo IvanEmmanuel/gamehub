@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Game, UserGameLibrary, Genre, Review, Achievement, UserAchievement, Trailer, Screenshot, DLC, Guide)
+from .models import (Game, Genre, Achievement, Trailer, Screenshot, DLC, Guide, Soundtrack, PatchNote)
 from django.utils.html import format_html
 
 @admin.register(Genre)
@@ -27,45 +27,18 @@ class GameAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     list_per_page = 20
 
-@admin.register(Review)
-class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('user', 'game', 'rating', 'created_at')
-    list_filter = ('rating', 'created_at')
-    search_fields = ('user__username', 'game__name', 'comment')
-    list_select_related = ("user", "game")
 
-@admin.register(UserGameLibrary)
-class UserGameLibraryAdmin(admin.ModelAdmin):
-    list_display = (
-        "user",
-        "game",
-        "status",
-        "is_favorite",
-        "added_at",
-    )
-
-    list_filter = (
-        "status",
-        "is_favorite",
-    )
-
-    search_fields = (
-        "user__username",
-        "game__name",
-    )
-
-    list_select_related = (
-        "user",
-        "game",
-    )
 
 @admin.register(Achievement)
 class AchievementAdmin(admin.ModelAdmin):
+
     list_display = (
+        "icon_preview",
         "title",
         "game",
         "is_hidden",
-        "created_at",
+        "display_order",
+        "hidden",
     )
 
     list_filter = (
@@ -75,36 +48,60 @@ class AchievementAdmin(admin.ModelAdmin):
 
     search_fields = (
         "title",
+        "description",
         "game__name",
     )
 
+    ordering = (
+        "game",
+        "display_order",
+    )
+
     list_select_related = (
         "game",
     )
 
-@admin.register(UserAchievement)
-class UserAchievementAdmin(admin.ModelAdmin):
-    list_display = (
-        "user",
-        "achievement",
-        "unlocked",
-        "unlocked_at",
-    )
+    fieldsets = (
 
-    list_filter = (
-        "unlocked",
-    )
+        ("Información general", {
+            "fields": (
+                "game",
+                "title",
+            )
+        }),
 
-    search_fields = (
-        "user__username",
-        "achievement__title",
-    )
+        ("Contenido", {
+            "fields": (
+                "description",
+                "icon",
+            )
+        }),
 
-    list_select_related = (
-        "user",
-        "achievement",
+        ("Configuración", {
+            "fields": (
+                "is_hidden",
+                "display_order",
+            )
+        }),
+
     )
     
+    @admin.display(description="Hidden", boolean=True)
+    def hidden(self, obj):
+        return obj.is_hidden
+
+    @admin.display(description="Icon")
+    def icon_preview(self, obj):
+
+        if obj.icon:
+            return format_html(
+                '<img src="{}" width="50" height="50" style="border-radius:8px; object-fit:cover;">',
+                obj.icon.url
+            )
+
+        return "-"
+
+
 @admin.register(Trailer)
 class TrailerAdmin(admin.ModelAdmin):
 
@@ -290,3 +287,146 @@ class GuideAdmin(admin.ModelAdmin):
         }),
 
     )
+    
+
+@admin.register(Soundtrack)
+class SoundtrackAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "title",
+        "artist",
+        "game",
+        "spotify_link",
+        "display_order",
+    )
+
+    list_filter = (
+        "game",
+    )
+
+    search_fields = (
+        "title",
+        "artist",
+        "game__name",
+    )
+
+    ordering = (
+        "game",
+        "display_order",
+    )
+
+    list_select_related = (
+        "game",
+    )
+
+    fieldsets = (
+
+        ("Información general", {
+            "fields": (
+                "game",
+                "title",
+                "artist",
+            )
+        }),
+
+        ("Enlaces", {
+            "fields": (
+                "spotify_url",
+                "youtube_url",
+            )
+        }),
+
+        ("Configuración", {
+            "fields": (
+                "display_order",
+            )
+        }),
+
+    )
+
+    @admin.display(description="Spotify")
+    def spotify_link(self, obj):
+
+        if obj.spotify_url:
+
+            icon = {
+                "track": "🎵",
+                "album": "💿",
+                "playlist": "📀",
+            }.get(obj.spotify_type, "🔗")
+
+            return format_html(
+                '<a href="{}" target="_blank">{} Abrir</a>',
+                obj.spotify_url,
+                icon,
+            )
+
+        return "-"
+
+
+@admin.register(PatchNote)
+class PatchNoteAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "version_display",
+        "title",
+        "game",
+        "release_date",
+        "display_order",
+    )
+
+    list_filter = (
+        "game",
+        "release_date",
+    )
+
+    search_fields = (
+        "version",
+        "title",
+        "description",
+        "game__name",
+    )
+
+    ordering = (
+        "game",
+        "display_order",
+    )
+
+    list_select_related = (
+        "game",
+    )
+
+    fieldsets = (
+
+        ("Información general", {
+            "fields": (
+                "game",
+                "version",
+                "title",
+            )
+        }),
+
+        ("Contenido", {
+            "fields": (
+                "description",
+            )
+        }),
+
+        ("Publicación", {
+            "fields": (
+                "release_date",
+                "official_url",
+            )
+        }),
+
+        ("Configuración", {
+            "fields": (
+                "display_order",
+            )
+        }),
+
+    )
+    
+    @admin.display(description="Version")
+    def version_display(self, obj):
+        return f"v{obj.version}"
