@@ -58,6 +58,7 @@ def games_content(request, slug):
             "screenshots",
             "dlcs",
             "achievements",
+            "soundtracks",
 
         ),
 

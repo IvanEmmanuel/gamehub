@@ -16,11 +16,13 @@
 
         </h2>
 
-        <a href="#">
+        {% if game.soundtrack.all|length > 5 %}
 
-            Ver todas
+            <a href="#">
+                Ver todos
+            </a>
 
-        </a>
+        {% endif %}
 
     </div>
 
@@ -30,45 +32,82 @@
 
     <div class="soundtrack-list">
 
-        
-        {% for song in content.soundtrack %}
-
-            <!-- Canción -->
+        {% for soundtrack in game.soundtracks.all %}
 
             <div class="track-item">
 
-                <button class="track-play">
+                <div class="track-icon">
 
-                    <i class="fa-solid fa-play"></i>
+                    <i class="fa-solid fa-music"></i>
 
-                </button>
+                </div>
 
                 <div class="track-info">
 
                     <h5>
 
-                        {{ song.title }}
+                        {{ soundtrack.title }}
 
                     </h5>
 
                     <span>
 
-                        {{ song.artist }}
+                        {{ soundtrack.artist }}
 
                     </span>
 
                 </div>
 
-                <span class="track-duration">
+                <div class="track-actions">
 
-                    {{ song.duration }}
+                    {% if soundtrack.spotify_url %}
 
-                </span>
+                        <a
+                            href="{{ soundtrack.spotify_url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="spotify-btn"
+                            title="Escuchar en Spotify"
+                            aria-label="Escuchar {{ soundtrack.title }} en Spotify"
+                        >
+
+                            <i class="fa-brands fa-spotify"></i>
+
+                        </a>
+
+                    {% endif %}
+
+                    {% if soundtrack.youtube_url %}
+
+                        <a
+                            href="{{ soundtrack.youtube_url }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="youtube-btn"
+                            title="Ver en YouTube"
+                            aria-label="Ver {{ soundtrack.title }} en YouTube"
+                        >
+
+                            <i class="fa-brands fa-youtube"></i>
+
+                        </a>
+
+                    {% endif %}
+
+                </div>
 
             </div>
-            
+
+        {% empty %}
+
+            <p class="empty-content">
+
+                No hay canciones registradas.
+
+            </p>
+
         {% endfor %}
-        
+
     </div>
 
 </section>

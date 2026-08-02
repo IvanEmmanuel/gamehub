@@ -1888,3 +1888,93 @@ html{
 
 }
 
+
+.spotify-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    color:var(--text-secondary);
+
+    font-size:1.7rem;
+
+    transition:.25s ease;
+
+}
+
+.spotify-btn:hover{
+
+    color:#1DB954;
+
+    transform:scale(1.18);
+
+    text-shadow:0 0 15px rgba(29,185,84,.55);
+
+}
+
+.youtube-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    color:var(--text-secondary);
+
+    font-size:1.7rem;
+
+    transition:.25s ease;
+
+}
+
+.youtube-btn:hover{
+
+    color:#FF0000;
+
+    transform:scale(1.18);
+
+    text-shadow:0 0 15px rgba(255,0,0,.55);
+
+}
+
+.track-icon{
+
+    transition:.3s;
+
+}
+
+.track-item:hover .track-icon{
+
+    color:var(--primary-color);
+
+    transform:rotate(-8deg);
+
+}
+
+.track-item:hover .spotify-btn{
+
+    color: #1DB954;
+
+}
+
+.track-item:hover .youtube-btn{
+
+    color: #FF0000;
+
+}
