@@ -16,57 +16,13 @@
 
         </h2>
 
-        <a href="#">
+        {% if game.achievements.all|length > 5 %}
 
-            Ver todos
+            <a href="#">
+                Ver todos
+            </a>
 
-        </a>
-
-    </div>
-
-    <!--=================================
-            PROGRESO GENERAL
-    =================================-->
-
-    <div class="achievement-progress">
-
-        <div class="progress-circle">
-
-            <span class="number">
-
-                {{ content.achievements.completed }}
-
-            </span>
-
-            <span class="total">
-
-                /{{ content.achievements.total }}
-
-            </span>
-
-        </div>
-
-        <div class="progress-info">
-
-            <h4>
-
-                Has desbloqueado todos los logros
-
-            </h4>
-
-            <div class="progress">
-
-                <div class="progress-bar" style="width:100%"></div>
-
-            </div>
-
-        </div>
-
-        <span class="progress-percent">
-
-            100%
-
-        </span>
+        {% endif %}
 
     </div>
 
@@ -76,69 +32,71 @@
 
     <div class="achievement-list">
 
-        
-        {% for list in content.achievements.list %}
+    {% for achievement in game.achievements.all %}
 
-            <!-- Logro -->
+        <div class="achievement-item">
 
-            <div class="achievement-item">
+            <div class="achievement-icon">
 
-                <div class="achievement-icon">
+                {% if achievement.icon %}
 
-                    <img src="{% static list.image %}" alt="">
+                    <img
+                        src="{{ achievement.icon.url }}"
+                        alt="{{ achievement.title }}"
+                    >
 
-                </div>
+                {% else %}
 
-                <div class="achievement-content">
+                    <i class="fa-solid fa-trophy"></i>
+
+                {% endif %}
+
+            </div>
+
+            <div class="achievement-content">
+
+                <div class="achievement-header">
 
                     <h5>
 
-                        {{ list.title }}
+                        {{ achievement.title }}
 
                     </h5>
 
-                    <span>
+                    {% if achievement.is_hidden %}
 
-                        {{  list.description }}
+                        <span class="achievement-badge">
 
-                    </span>
+                            <i class="fa-solid fa-lock"></i>
 
-                </div>
+                            Logro secreto
 
-                <div class="achievement-status">
+                        </span>
 
-                    <strong>
-
-                        
-                        {% if list.unlocked %}
-                        
-                            Desbloqueado
-
-                        {% else %}
-
-                            Bloqueado
-                            
-                        {% endif %}
-                            
-
-                    </strong>
-
-                    <span>
-
-                        {{ list.percentage }}
-
-                    </span>
+                    {% endif %}
 
                 </div>
+
+                <span>
+
+                    {{ achievement.description }}
+
+                </span>
 
             </div>
-            
-        {% endfor %}
-            
 
-        
+        </div>
 
+    {% empty %}
 
-    </div>
+        <p class="empty-content">
+
+            No hay logros registrados.
+
+        </p>
+
+    {% endfor %}
+
+</div>
 
 </section>

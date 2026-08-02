@@ -57,6 +57,7 @@ def games_content(request, slug):
             "trailers",
             "screenshots",
             "dlcs",
+            "achievements",
 
         ),
 
