@@ -1,0 +1,150 @@
+
+{% extends 'auth_base.html' %}
+{% load static %}
+
+{% block title %}NexusPlay | Login{% endblock title %}
+
+{% block body_class %}
+    login-page
+{% endblock %}
+
+{% block content %}  
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <div class="auth-logo">
+
+            <img
+                src="{% static 'assets/images/NexusPlayLogo.png' %}"
+                alt="GameHub Logo">
+
+        </div>
+
+        <div class="auth-header">
+
+            <h1>
+
+                Bienvenido de nuevo
+
+            </h1>
+
+            <p>
+
+                Inicia sesión para acceder a tu biblioteca,
+                logros, reseñas y juegos favoritos.
+
+            </p>
+
+        </div>
+
+        <div class="auth-form">
+
+            <form method="post" class="login-form">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+
+                    <label for="{{ form.username.id_for_label }}">
+
+                        {{ form.username.label }}
+
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-user input-icon"></i>
+
+                        {{ form.username }}
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="{{ form.password.id_for_label }}">
+
+                        {{ form.password.label }}
+
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock input-icon"></i>
+
+                        {{ form.password }}
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            aria-label="Mostrar contraseña"
+                        >
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="login-options">
+
+                    <label class="remember-me">
+
+                        <input type="checkbox" name="remember_me">
+
+                        <span>Recordarme</span>
+
+                    </label>
+
+                    <a href="#">
+
+                        ¿Olvidaste tu contraseña?
+
+                    </a>
+
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+
+                    Iniciar sesión
+                </button>
+
+                <div class="register-link">
+
+                    <span>
+
+                        ¿No tienes una cuenta?
+
+                    </span>
+
+                    <a href="#">
+
+                        Crear una cuenta
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}
+
+
+
+
+
+{% block scripts %}
+  
+{% endblock scripts %}

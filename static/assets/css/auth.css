@@ -1,0 +1,511 @@
+/* ==========================================
+   LOGIN PAGE
+========================================== */
+
+body.login-page {
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    background-image: url("../images/login-background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    font-family: "Poppins", sans-serif;
+
+    position: relative;
+
+}
+
+
+/* ==========================================
+   DARK OVERLAY
+========================================== */
+
+body.login-page::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgb(8 10 20 / 50%),
+            rgb(20 22 40 / 50%)
+        );
+
+    backdrop-filter: blur(1.5px);
+
+    z-index: 1;
+
+}
+
+
+/* ==========================================
+   WRAPPER
+========================================== */
+
+.auth-wrapper {
+
+    position: relative;
+
+    z-index: 2;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding:60px 40px;
+
+}
+
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.auth-container {
+
+    width: 100%;
+
+    max-width: 1200px;
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
+
+/* ==========================================
+   LOGIN CARD
+========================================== */
+
+.auth-card {
+
+    width: 100%;
+
+    height:auto;
+
+    max-width: 470px;
+
+    padding: 50px;
+
+    border-radius: 24px;
+
+    background: rgba(18, 20, 32, .82);
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.45);
+
+}
+
+.auth-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:24px;
+    border:1px solid rgba(255,255,255,.05);
+    pointer-events:none;
+}
+
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.auth-logo {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+
+}
+
+
+.auth-logo img {
+
+    width: 200px;
+
+    height: auto;
+
+    transition:.3s;
+
+}
+
+.auth-logo img:hover{
+
+    transform:scale(1.04);
+
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.auth-header {
+
+    text-align: center;
+
+    margin-bottom: 40px;
+
+}
+
+
+.auth-header h1 {
+
+    color: #ffffff;
+
+    font-size: 2rem;
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+
+}
+
+
+.auth-header p {
+
+    color: rgba(255,255,255,.70);
+
+    font-size: .95rem;
+
+    line-height: 1.7;
+
+    margin: 0;
+
+}
+
+
+/* ==========================================
+   FORM
+========================================== */
+
+.auth-form {
+
+    margin-top: 20px;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 992px) {
+
+    .auth-container{
+
+        justify-content: center;
+
+    }
+
+}
+
+
+@media (max-width: 576px){
+
+    .auth-wrapper{
+
+        padding:20px;
+
+    }
+
+    .auth-card{
+
+        padding:35px 28px;
+
+    }
+
+    .auth-header h1{
+
+        font-size:1.7rem;
+
+    }
+
+}
+
+@media (max-height: 800px){
+
+    .auth-wrapper{
+
+        align-items:flex-start;
+
+        padding-top:40px;
+
+        padding-bottom:40px;
+
+    }
+
+}
+
+
+
+.login-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"]{
+
+    width:100%;
+
+    height:55px;
+
+    background:rgba(255,255,255,.06);
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:0 50px;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    color:#FFF;
+
+    font-size:.95rem;
+
+    transition:all .25s ease;
+
+}
+
+.login-form input::placeholder{
+
+    color:rgba(255,255,255,.45);
+
+}
+
+.login-form input:hover{
+
+    border-color:rgba(255,255,255,.20);
+
+}
+
+
+.login-form input:focus{
+
+    outline:none;
+
+    border-color:var(--primary-color);
+
+    background:rgba(255,255,255,.08);
+
+    box-shadow:0 0 0 4px rgba(99,102,241,.15);
+
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+    margin-bottom:25px;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:10px;
+
+    color:#FFFFFF;
+
+    font-size:.90rem;
+
+    font-weight:600;
+
+}
+
+.btn-submit{
+
+    margin-top:10px;
+
+    width:100%;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary-color),
+        #6f7cff
+    );
+
+    color:#FFFFFF;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:all .25s ease;
+
+}
+
+.btn-submit:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 15px 30px rgba(99,102,241,.30);
+
+}
+
+.btn-submit:active{
+
+    transform:scale(.98);
+
+}
+
+.login-form input:-webkit-autofill,
+.login-form input:-webkit-autofill:hover,
+.login-form input:-webkit-autofill:focus{
+
+    -webkit-text-fill-color:#FFFFFF;
+
+    -webkit-box-shadow:0 0 0px 1000px rgba(30,32,45,1) inset;
+
+    transition:background-color 9999s ease-in-out 0s;
+
+}
+
+.password-wrapper{
+
+    position:relative;
+
+}
+
+.toggle-password{
+
+    position:absolute;
+
+    top:50%;
+
+    right:18px;
+
+    transform:translateY(-50%);
+
+    width:36px;
+
+    height:36px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:none;
+
+    background:none;
+
+    color:rgba(255,255,255,.55);
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.toggle-password:hover{
+
+    color:#FFFFFF;
+
+}
+
+.login-options{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin:25px 0;
+
+}
+
+.remember-me{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:#fff;
+
+    cursor:pointer;
+
+}
+
+.remember-me input{
+
+    width:18px;
+
+    height:18px;
+
+}
+
+.input-icon{
+
+    position:absolute;
+
+    left:18px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:rgba(255,255,255,.45);
+
+    font-size:1rem;
+
+    pointer-events:none;
+
+}
+
+.input-wrapper{
+
+    position:relative;
+
+}
+
+.input-wrapper:focus-within .input-icon{
+
+    color:var(--primary-color);
+
+}
+
+.register-link{
+    color: #FFF;
+}

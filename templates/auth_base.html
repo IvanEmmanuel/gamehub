@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/auth.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+
+    <title>{% block title %}  {% endblock title %}</title>
+    {% block custom_styles %}  {% endblock custom_styles %}
+    {% block meta %}  {% endblock meta %}
+
+  </head>
+<body class="{% block body_class %}{% endblock %}">
+
+    
+    
+    <div class="auth-wrapper">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </div>
+
+     
+  <!-- Bootstrap c -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+  {% block scripts %}  {% endblock scripts %}
+</body>
+</html>
