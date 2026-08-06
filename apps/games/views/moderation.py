@@ -1,7 +1,18 @@
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView
-from ..models import Game
+from ..models import (
+    Game,
+    Trailer,
+    Screenshot,
+    Achievement,
+    Guide,
+    DLC,
+    Soundtrack,
+    PatchNote,
+    Genre,
+)
+
 
 
 class ModerationRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
@@ -22,4 +33,59 @@ class GameListView(ModerationRequiredMixin, ListView):
     ordering = ["name"]
     
     def get_queryset(self):
-        return Game.objects.all()
+
+        queryset = Game.objects.all()
+
+        search = self.request.GET.get("search")
+
+        if search:
+            queryset = queryset.filter(
+                name__icontains=search
+            )
+            
+        genre = self.request.GET.get("genre")
+
+        if genre:
+            queryset = queryset.filter(
+                genres__id=genre
+            )
+            
+        platform = self.request.GET.get("platform")
+
+        if platform:
+            queryset = queryset.filter(
+                platforms__icontains=platform
+            )
+            
+        order = self.request.GET.get("order")
+
+        if order == "name_asc":
+            queryset = queryset.order_by("name")
+
+        elif order == "name_desc":
+            queryset = queryset.order_by("-name")
+
+        elif order == "newest":
+            queryset = queryset.order_by("-release_date")
+
+        elif order == "oldest":
+            queryset = queryset.order_by("release_date")
+
+        return queryset
+    
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+        
+        context["genres"] = Genre.objects.filter(is_active=True).order_by("name")
+
+        context["games_count"] = Game.objects.count()
+        context["trailers_count"] = Trailer.objects.count()
+        context["screenshots_count"] = Screenshot.objects.count()
+        context["achievements_count"] = Achievement.objects.count()
+        context["guides_count"] = Guide.objects.count()
+        context["dlcs_count"] = DLC.objects.count()
+        context["soundtracks_count"] = Soundtrack.objects.count()
+        context["patch_notes_count"] = PatchNote.objects.count()
+
+        return context

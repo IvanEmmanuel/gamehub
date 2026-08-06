@@ -1,0 +1,201 @@
+{% load static %}
+{% load game_extras %}
+
+<div class="games-table-card">
+
+    <table class="games-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Juego</th>
+
+                <th>Plataformas</th>
+
+                <th title="Trailers">
+                    <i class="fa-solid fa-film trailer-icon"></i>
+                </th>
+
+                <th title="Screenshots">
+                    <i class="fa-solid fa-image screenshot-icon"></i>
+                </th>
+
+                <th title="Logros">
+                    <i class="fa-solid fa-trophy trophy-icon"></i>
+                </th>
+
+                <th title="Soundtrack">
+                    <i class="fa-solid fa-music music-icon"></i>
+                </th>
+
+                <th title="Guías">
+                    <i class="fa-solid fa-book-open guide-icon"></i>
+                </th>
+
+                <th title="DLC">
+                    <i class="fa-solid fa-box-open dlc-icon"></i>
+                </th>
+
+                <th title="Patch Notes">
+                    <i class="fa-solid fa-file-lines patch-icon"></i>
+                </th>
+
+                <th>Estado</th>
+
+                <th>Acciones</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            
+            {% for game in games %}
+                
+            <tr>
+
+                <!-- Juego -->
+
+                <td class="game-column">
+
+                    <div class="moderation-game-info">
+
+                        
+                        {% if game.cover %}
+
+                            <img src="{{ game.cover.url }}" alt="{{ game.name }}">
+
+                        {% else %}
+
+                            <img src="{% static 'assets/images/default-game-cover.png' %}" alt="Sin portada">
+                            
+                        {% endif %}
+                            
+                        
+
+                        <div class="moderation-game-details">
+
+                            <h6>{{ game.name }}</h6>
+
+                            <span>{{ game.developer }} </span>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+                <!-- Plataformas -->
+
+                <td>
+
+                    <div class="platforms">
+
+                        {% for platform in game.platforms|platform_icons %}
+
+                            <i
+                                class="fa-brands fa-{{ platform.icon }} {{ platform.class }}"
+                                title="{{ platform.name }}"
+                            ></i>
+
+                        {% endfor %}
+
+                    </div>
+
+                </td>
+
+                <!-- Trailers -->
+
+                <td>{{ game.trailers.count }}</td>
+
+                <!-- Screenshots -->
+
+                <td> {{ game.screenshots.count }} </td>
+
+                <!-- Logros -->
+
+                <td> {{ game.achievements.count }} </td>
+
+                <!-- Soundtrack -->
+
+                <td> {{ game.soundtracks.count }} </td>
+
+                <!-- Guías -->
+
+                <td> {{ game.guides.count }} </td>
+
+                <!-- DLC -->
+
+                <td> {{ game.dlcs.count }} </td>
+
+                <!-- Patch Notes -->
+
+                <td> {{ game.patch_notes.count }} </td>
+
+                <!-- Estado -->
+
+                {% with status=game|game_status %}
+
+                <td>
+
+                    <span class="status-badge {{ game|game_status }}">
+
+                        <i class="fa-solid fa-circle"></i>
+
+                        {% if game|game_status == "completed" %}
+
+                            Completo
+
+                        {% elif game|game_status == "progress" %}
+
+                            En progreso
+
+                        {% else %}
+
+                            Vacío
+
+                        {% endif %}
+
+                    </span>
+
+                </td>
+
+                {% endwith %}
+
+                <!-- Acciones -->
+
+                <td>
+
+                    <div class="table-actions">
+
+                        <a href="#" class="btn-manage">
+
+                            <i class="fa-solid fa-table-cells-large"></i>
+
+                            Administrar
+
+                        </a>
+
+                        <a href="#" class="btn-edit">
+
+                            <i class="fa-solid fa-pen"></i>
+
+                            
+
+                        </a>
+
+                    </div>
+
+                </td>
+
+            </tr>
+            
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>

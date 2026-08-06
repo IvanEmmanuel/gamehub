@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/moderation.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
@@ -19,15 +20,19 @@
 
 {% block content %}
 
-Header
+<div class="container py-5">
 
-Tarjetas
+    {% include "components/moderation/header.html" %}
 
-Buscador
+    {% include "components/moderation/stats.html" %}
 
-Tabla
+    {% include "components/moderation/toolbar.html" %}
 
-Paginación
+    {% include "components/moderation/table_container.html" %}
+
+    {% include "components/moderation/pagination.html" %}
+
+</div>
 
 {% endblock content %}
   

@@ -1,0 +1,148 @@
+<div class="moderation-toolbar">
+
+    <!-- Buscador -->
+
+    <form method="get" class="toolbar-search">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+            type="text"
+            name="search"
+            value="{{ request.GET.search }}"
+            placeholder="Buscar juego..."
+        >
+
+    </form>
+
+
+    <!-- Filtros -->
+
+    <form method="get" class="toolbar-filters">
+
+        <!-- Generos -->
+
+        <select name="genre">
+
+            <option value="">Todos los géneros</option>
+
+            {% for genre in genres %}
+
+                <option
+                    value="{{ genre.id }}"
+                    {% if request.GET.genre == genre.id|stringformat:"s" %}
+                        selected
+                    {% endif %}
+                >
+                    {{ genre.name }}
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <!-- Plataforma -->
+
+        <select name="platform">
+
+            <option value="">Todas las plataformas</option>
+
+            <option value="PC"
+                {% if request.GET.platform == "PC" %}selected{% endif %}>
+                PC
+            </option>
+
+            <option value="PlayStation"
+                {% if request.GET.platform == "PlayStation" %}selected{% endif %}>
+                PlayStation
+            </option>
+
+            <option value="Xbox"
+                {% if request.GET.platform == "Xbox" %}selected{% endif %}>
+                Xbox
+            </option>
+
+            <option value="Nintendo Switch"
+                {% if request.GET.platform == "Nintendo Switch" %}selected{% endif %}>
+                Nintendo
+            </option>
+
+        </select>
+
+        <!-- Estado -->
+<!--
+        <select name="status">
+
+            <option value="">Todo el contenido</option>
+
+            <option
+                value="completed"
+                {% if request.GET.status == "completed" %}selected{% endif %}
+            >
+                Completos
+            </option>
+
+            <option
+                value="progress"
+                {% if request.GET.status == "progress" %}selected{% endif %}
+            >
+                En progreso
+            </option>
+
+            <option
+                value="empty"
+                {% if request.GET.status == "empty" %}selected{% endif %}
+            >
+                Vacíos
+            </option>
+
+        </select>
+-->
+        <!-- Orden -->
+
+        <select name="order">
+
+            <option value="">Ordenar por...</option>
+
+            <option
+                value="name_asc"
+                {% if request.GET.order == "name_asc" %}selected{% endif %}
+            >
+                Nombre (A-Z)
+            </option>
+
+            <option
+                value="name_desc"
+                {% if request.GET.order == "name_desc" %}selected{% endif %}
+            >
+                Nombre (Z-A)
+            </option>
+
+            <option
+                value="newest"
+                {% if request.GET.order == "newest" %}selected{% endif %}
+            >
+                Más reciente
+            </option>
+
+            <option
+                value="oldest"
+                {% if request.GET.order == "oldest" %}selected{% endif %}
+            >
+                Más antiguo
+            </option>
+
+        </select>
+
+
+        <button type="submit" class="btn-apply-filters">
+
+            <i class="fa-solid fa-filter"></i>
+
+            Aplicar Filtros
+
+        </button>
+
+    </form>
+
+</div>
