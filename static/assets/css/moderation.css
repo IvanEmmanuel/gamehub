@@ -825,7 +825,7 @@
 
 }
 
-.btn-edit{
+.btn-edit, .btn-delete{
 
     display:inline-flex;
 
@@ -863,14 +863,25 @@
 
     border-color:#7b5cff;
 
-    color:#ffffff;
+    color:#52baff;
+
+    background:#2d3147;
+
+}
+
+.btn-delete:hover{
+
+    border-color:#7b5cff;
+
+    color:#ff6a6a;
 
     background:#2d3147;
 
 }
 
 .btn-manage i,
-.btn-edit i{
+.btn-edit i,
+.btn-delete i{
 
     font-size:.85rem;
 

@@ -1,6 +1,6 @@
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from ..models import (
     Game,
     Trailer,
@@ -117,4 +117,7 @@ class GameUpdateView(ModerationRequiredMixin, UpdateView):
         self.object.save()
 
         return super().form_valid(form)
-    
+
+class GameDeleteView(ModerationRequiredMixin, DeleteView):
+    model = Game
+    success_url = reverse_lazy('moderation:game_list')

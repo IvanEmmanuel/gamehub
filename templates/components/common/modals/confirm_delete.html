@@ -1,0 +1,55 @@
+<div id="deleteModal" class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-icon">
+
+            <i class="fa-solid fa-trash"></i>
+
+        </div>
+
+        <h3 id="deleteModalTitle">
+            Confirmar eliminación
+        </h3>
+
+        <p>
+
+            ¿Estás seguro de eliminar
+            <strong id="deleteGameName"></strong>?
+
+        </p>
+
+        <p class="modal-warning">
+
+            Esta acción no se puede deshacer.
+
+        </p>
+
+        <form
+            method="post"
+            id="deleteForm"
+        >
+
+            {% csrf_token %}
+
+            <button
+                type="button"
+                id="cancelDelete"
+                class="modal-cancel"
+            >
+                Cancelar
+            </button>
+
+            <button
+                type="submit"
+                class="modal-delete"
+            >
+                Eliminar
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>

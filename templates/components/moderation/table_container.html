@@ -181,9 +181,12 @@
                         <a href="{% url 'moderation:game_update' game.id %}" class="btn-edit">
 
                             <i class="fa-solid fa-pen"></i>
-
                             
+                        </a>
 
+
+                        <a href="#" class="btn-delete open-delete-modal" data-game-name="{{ game.name }}" data-delete-url="{% url 'moderation:game_delete' game.id %}">
+                            <i class="fa-solid fa-trash"></i>
                         </a>
 
                     </div>
@@ -199,3 +202,5 @@
     </table>
 
 </div>
+
+{% include "components/common/modals/confirm_delete.html" %}
