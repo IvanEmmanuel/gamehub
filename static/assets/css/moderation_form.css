@@ -18,6 +18,8 @@
 
 .form-header{
 
+    margin-top: 110px;
+
     margin-bottom:35px;
 
 }
@@ -737,3 +739,16 @@
     transform:translateY(0);
 
 }
+
+input[readonly]{
+
+    background:#1d2230;
+
+    color:#9ca3af;
+
+    cursor:not-allowed;
+
+    opacity:.8;
+
+}
+

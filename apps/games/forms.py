@@ -43,7 +43,8 @@ class GameForm(forms.ModelForm):
 
             "slug": forms.TextInput(
                 attrs={
-                    "placeholder": "cyberpunk-2077",
+                    "placeholder": "🔒",
+                    "readonly": True,
                     "class": "form-control",
                 }
             ),
@@ -69,16 +70,14 @@ class GameForm(forms.ModelForm):
                 }
             ),
             
-            "cover": forms.ClearableFileInput(
+            "cover": forms.FileInput(
                 attrs={
-                    "class": "form-control",
                     "accept": "image/*",
                 }
             ),
 
-            "banner": forms.ClearableFileInput(
+            "banner": forms.FileInput(
                 attrs={
-                    "class": "form-control",
                     "accept": "image/*",
                 }
             ),

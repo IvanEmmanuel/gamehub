@@ -1,6 +1,6 @@
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from ..models import (
     Game,
     Trailer,
@@ -97,4 +97,24 @@ class GameCreateView(ModerationRequiredMixin, CreateView):
     form_class = GameForm
     template_name = 'games/moderation/game_form.html'
     success_url = reverse_lazy('moderation:game_list')
+    
+class GameUpdateView(ModerationRequiredMixin, UpdateView):
+    model = Game
+    form_class = GameForm
+    template_name = 'games/moderation/game_form.html'
+    success_url = reverse_lazy('moderation:game_list')
+    
+    def form_valid(self, form):
+
+        if self.request.POST.get("cover_clear") == "1":
+            self.object.cover.delete(save=False)
+            self.object.cover = None
+
+        if self.request.POST.get("banner_clear") == "1":
+            self.object.banner.delete(save=False)
+            self.object.banner = None
+
+        self.object.save()
+
+        return super().form_valid(form)
     

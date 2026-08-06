@@ -1,0 +1,110 @@
+<!-- Imágenes -->
+
+        <div class="form-card">
+
+            <h3>
+
+                Imágenes
+
+            </h3>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+
+                        Portada
+
+                    </label>
+
+                    <div class="upload-area {% if object.cover %}has-image{% endif %}">
+
+                        {{ form.cover }}
+
+                        <img class="image-preview" src="{% if object.cover %}{{ object.cover.url }}{% endif %}" alt="Vista previa">
+
+                        <input type="hidden" name="cover_clear" class="clear-image-input" value="0">
+
+                        <button type="button" class="remove-image" title="Eliminar imagen">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                        <div class="upload-overlay">
+
+                            <i class="fa-solid fa-camera"></i>
+
+                            <span>Cambiar imagen</span>
+
+                        </div>
+
+                        <div class="upload-content">
+
+                            <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+
+                            <h5>Subir portada</h5>
+
+                            <p>Arrastra una imagen o haz clic aquí</p>
+
+                            <small>PNG · JPG · WEBP</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        Banner
+
+                    </label>
+
+                    <div class="upload-area {% if object.banner %}has-image{% endif %}">
+
+                        {{ form.banner }}
+
+                        <img class="image-preview" src="{% if object.banner %}{{ object.banner.url }}{% endif %}" alt="Vista previa">
+
+                        <input type="hidden" name="banner_clear" class="clear-image-input" value="0">
+
+                        <button type="button" class="remove-image" title="Eliminar imagen">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                        <div class="upload-overlay">
+
+                            <i class="fa-solid fa-camera"></i>
+
+                            <span>Cambiar imagen</span>
+
+                        </div>
+
+                        <div class="upload-content">
+
+                            <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+
+                            <h5>Subir banner</h5>
+
+                            <p>Arrastra una imagen o haz clic aquí</p>
+
+                            <small>PNG · JPG · WEBP</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>

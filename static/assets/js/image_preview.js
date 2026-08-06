@@ -3,10 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
     /**
      * Muestra la vista previa de una imagen
      */
-    function showPreview(file, uploadArea, preview){
+    function showPreview(file, uploadArea, preview, clearInput){
 
         if(!file){
             return;
+        }
+
+        if (clearInput) {
+            clearInput.value = "0";
         }
 
         if(!file.type.startsWith("image/")){
@@ -35,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const input = uploadArea.querySelector('input[type="file"]');
         const preview = uploadArea.querySelector(".image-preview");
         const removeButton = uploadArea.querySelector(".remove-image");
+        const clearInput = uploadArea.querySelector(".clear-image-input");
 
         if(!input || !preview){
             return;
@@ -123,6 +128,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 preview.removeAttribute("src");
 
                 uploadArea.classList.remove("has-image");
+
+                if (clearInput) {
+                    clearInput.value = "1";
+                }
 
             });
 

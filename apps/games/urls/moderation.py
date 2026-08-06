@@ -1,16 +1,13 @@
 from django.urls import path
-from ..views.moderation import GameListView, GameCreateView
+from ..views.moderation import GameListView, GameCreateView, GameUpdateView
 
 app_name = 'moderation' #es un tipo de namespace
 
 urlpatterns = [
     path('games/', GameListView.as_view(), name="game_list"),
     path('games/create', GameCreateView.as_view(), name="game_create"),
-    # path(
-    #     "games/<int:pk>/edit/",
-    #     GameUpdateView.as_view(),
-    #     name="game_update",
-    # ),
+    path("games/<int:pk>/edit/", GameUpdateView.as_view(), name="game_update",
+    ),
 
     # path(
     #     "games/<int:pk>/delete/",
