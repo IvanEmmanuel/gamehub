@@ -1,0 +1,463 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Crear/Editar Juego{% endblock title %}
+
+{% block custom_styles %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/moderation.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/moderation_form.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+{% endblock custom_styles %}
+
+
+{% block content %}
+
+<div class="moderation-form-container">
+
+    <!-- Header -->
+
+    <div class="form-header">
+
+        <div class="form-header-info">
+
+            <h2>
+
+                {{ form.instance.pk|yesno:"Editar Juego,Crear Nuevo Juego" }}
+
+            </h2>
+
+            <p>
+
+                Completa la información principal del juego.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <form method="post" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <!-- Información General -->
+
+        <div class="form-card">
+
+            <h3>
+
+                Información General
+
+            </h3>
+
+            <div class="form-grid">
+
+                <!-- Nombre -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.name.id_for_label }}">
+
+                        Nombre del juego
+
+                    </label>
+
+                    {{ form.name }}
+
+                </div>
+
+                <!-- Slug -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.slug.id_for_label }}">
+
+                        Slug
+
+                    </label>
+
+                    {{ form.slug }}
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="{{ form.overview.id_for_label }}">
+
+                    Descripción
+
+                </label>
+
+                {{ form.overview }}
+
+            </div>
+
+        </div>
+
+
+        <!-- Clasificación -->
+
+        <div class="form-card">
+
+            <h3>
+
+                Clasificación
+
+            </h3>
+
+            <div class="form-grid">
+
+                <!-- Géneros -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.genres.id_for_label }}">
+
+                        Géneros
+
+                    </label>
+
+                    <div class="genres-grid">
+
+                        {{ form.genres }}
+
+                    </div>
+
+                </div>
+
+                <!-- PEGI -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.pegi.id_for_label }}">
+
+                        Clasificación PEGI
+
+                    </label>
+
+                    {{ form.pegi }}
+
+                </div>
+
+                <!-- Fecha de lanzamiento -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.release_date.id_for_label }}">
+
+                        Fecha de lanzamiento
+
+                    </label>
+
+                    {{ form.release_date }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Desarrollo -->
+
+        <div class="form-card">
+
+            <h3>
+
+                Desarrollo
+
+            </h3>
+
+            <div class="form-grid">
+
+                <!-- Developer -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.developer.id_for_label }}">
+
+                        Desarrollador
+
+                    </label>
+
+                    {{ form.developer }}
+
+                </div>
+
+                <!-- Publisher -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.publisher.id_for_label }}">
+
+                        Publisher
+
+                    </label>
+
+                    {{ form.publisher }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Plataformas -->
+
+        <div class="form-card">
+
+            <h3>
+
+                Plataformas
+
+            </h3>
+
+            <div class="form-grid">
+
+                <!-- Plataformas -->
+
+                <div class="form-group">
+
+                    <label for="{{ form.platforms.id_for_label }}">
+
+                        Plataformas
+
+                    </label>
+
+                    {{ form.platforms }}
+
+                </div>
+
+                <!-- Multiplayer -->
+
+                <div class="form-group">
+
+                    <label class="switch-label">
+
+                        <span>
+
+                            Multijugador
+
+                        </span>
+
+                        <div class="switch-container">
+
+                            {{ form.has_multiplayer }}
+
+                            <span class="slider"></span>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Enlaces -->
+
+        <div class="form-card">
+
+            <h3>
+
+                Enlaces
+
+            </h3>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label for="{{ form.trailer_url.id_for_label }}">
+
+                        Trailer Oficial
+
+                    </label>
+
+                    {{ form.trailer_url }}
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="{{ form.official_website.id_for_label }}">
+
+                        Sitio Oficial
+
+                    </label>
+
+                    {{ form.official_website }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Imágenes -->
+
+        <div class="form-card">
+
+            <h3>
+
+                Imágenes
+
+            </h3>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+
+                        Portada
+
+                    </label>
+
+                    <div class="upload-area">
+
+                        {{ form.cover }}
+
+                        <img class="image-preview" alt="Vista previa">
+
+                        <button type="button" class="remove-image" title="Eliminar imagen">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                        <div class="upload-overlay">
+
+                            <i class="fa-solid fa-camera"></i>
+
+                            <span>Cambiar imagen</span>
+
+                        </div>
+
+                        <div class="upload-content">
+
+                            <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+
+                            <h5>Subir portada</h5>
+
+                            <p>Arrastra una imagen o haz clic aquí</p>
+
+                            <small>PNG · JPG · WEBP</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="form-group">
+
+                    <label>
+
+                        Banner
+
+                    </label>
+
+                    <div class="upload-area">
+
+                        {{ form.banner }}
+
+                        <img class="image-preview" alt="Vista previa">
+
+                        <button type="button" class="remove-image" title="Eliminar imagen">
+
+                            <i class="fa-solid fa-xmark"></i>
+
+                        </button>
+
+                        <div class="upload-overlay">
+
+                            <i class="fa-solid fa-camera"></i>
+
+                            <span>Cambiar imagen</span>
+
+                        </div>
+
+                        <div class="upload-content">
+
+                            <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+
+                            <h5>Subir banner</h5>
+
+                            <p>Arrastra una imagen o haz clic aquí</p>
+
+                            <small>PNG · JPG · WEBP</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Botones -->
+
+        <div class="form-actions">
+
+            <a href="{% url 'moderation:game_list' %}" class="btn-cancel">
+
+                Cancelar
+
+            </a>
+
+            <button type="submit" class="btn-save">
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Guardar Juego
+
+            </button>
+
+        </div>
+
+
+    
+
+    </form>
+
+</div>
+
+{% endblock content%}
+  
+  
+{% block scripts %}
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+
+  <script src="{% static 'assets/js/isotope.min.js'%}"></script>
+  <script src="{% static 'assets/js/owl-carousel.js'%}"></script>
+  <script src="{% static 'assets/js/tabs.js'%}"></script>
+  <script src="{% static 'assets/js/popup.js'%}"></script>
+  <script src="{% static 'assets/js/custom.js'%}"></script>
+  <script src="{% static 'assets/js/image_preview.js'%}"></script>
+  
+{% endblock scripts %}

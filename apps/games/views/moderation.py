@@ -1,6 +1,6 @@
 
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 from ..models import (
     Game,
     Trailer,
@@ -12,6 +12,8 @@ from ..models import (
     PatchNote,
     Genre,
 )
+from django.urls import reverse, reverse_lazy
+from ..forms import GameForm
 
 
 
@@ -89,3 +91,10 @@ class GameListView(ModerationRequiredMixin, ListView):
         context["patch_notes_count"] = PatchNote.objects.count()
 
         return context
+    
+class GameCreateView(ModerationRequiredMixin, CreateView):
+    model = Game
+    form_class = GameForm
+    template_name = 'games/moderation/game_form.html'
+    success_url = reverse_lazy('moderation:game_list')
+    
