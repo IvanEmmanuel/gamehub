@@ -1,0 +1,37 @@
+<div class="info-item">
+
+    <span class="info-label">
+
+        <i class="{{ icon }}"></i>
+
+        {{ label }}
+
+    </span>
+
+    <div class="info-badges">
+
+        {% if values %}
+
+            {% for value  in values %}
+
+                <span class="info-badge">
+
+                    {{ value.name }}
+
+                </span>
+
+            {% endfor %}
+
+        {% else %}
+
+            <span class="info-empty">
+
+                No disponible
+
+            </span>
+
+        {% endif %}
+
+    </div>
+
+</div>

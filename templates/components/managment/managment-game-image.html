@@ -1,0 +1,47 @@
+<div class="game-images">
+
+        <div class="image-card">
+
+            <h3>Portada</h3>
+
+            {% if game.cover %}
+
+                <img src="{{ game.cover.url }}" alt="{{ game.name }}">
+
+            {% else %}
+
+                <div class="image-placeholder">
+
+                    <i class="fa-solid fa-image"></i>
+
+                    <span>Sin portada</span>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        <div class="image-card">
+
+            <h3>Banner</h3>
+
+            {% if game.banner %}
+
+                <img src="{{ game.banner.url }}" alt="{{ game.name }}">
+
+            {% else %}
+
+                <div class="image-placeholder">
+
+                    <i class="fa-solid fa-image"></i>
+
+                    <span>Sin banner</span>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>

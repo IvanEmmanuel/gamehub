@@ -30,6 +30,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name="logout"),
     path('moderator/', include("apps.games.urls.moderation")),
+    path("moderator/", include("apps.games.urls.management")),
     path("games/",include("apps.games.urls.public"),),
     
 ]

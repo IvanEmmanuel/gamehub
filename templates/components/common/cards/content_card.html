@@ -1,0 +1,35 @@
+<div class="content-card">
+
+    <div class="content-icon {{ icon_class }}">
+
+        <i class="{{ icon }}"></i>
+
+    </div>
+
+    <h3>
+
+        {{ title }}
+
+    </h3>
+
+    <p>
+
+        {{ description }}
+
+    </p>
+
+    <span class="content-count">
+
+        {{ count|default:"0" }}
+
+    </span>
+
+    <a href="{{ url }}" class="btn-content">
+
+        Gestionar
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+    </a>
+
+</div>

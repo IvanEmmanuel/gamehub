@@ -1,0 +1,56 @@
+<div class="game-info-card">
+
+        <div class="card-header">
+
+            <h2>
+
+                Información del juego
+
+            </h2>
+
+        </div>
+
+        <div class="game-info-grid">
+
+                <!-- Columna 1 -->
+                <div class="info-column">
+
+                    {% include "components/common/cards/info_item.html" with icon="fa-solid fa-code" label="Desarrollador" value=game.developer %}
+
+                    {% include "components/common/cards/info_item.html" with icon="fa-solid fa-calendar-days" label="Fecha de lanzamiento" value=game.release_date|date:"d/m/Y" %}
+
+                    {% include "components/common/cards/info_item.html" with icon="fa-solid fa-gamepad" label="Plataformas" value=game.platforms %}
+
+                    {% include "components/common/cards/info_item.html" with icon="fa-solid fa-globe" label="Sitio oficial" value=game.official_website %}
+
+                </div>
+
+                <!-- Columna 2 -->
+                <div class="info-column">
+
+                    {% include "components/common/cards/info_item.html" with icon="fa-solid fa-building" label="Publisher" value=game.publisher %}
+
+                    {% include "components/common/cards/info_badges.html" with icon="fa-solid fa-tags" label="Géneros" values=game.genres.all badge_class="purple"%}
+
+                    {% include "components/common/cards/info_item.html" with icon="fa-solid fa-shield-halved" label="PEGI" value=game.pegi %}
+
+                    {% include "components/common/cards/info_item.html" with icon="fa-brands fa-youtube" label="Tráiler principal" value=game.trailer_url %}
+
+                </div>
+
+                <!-- Columna 3 -->
+                <div class="info-column">
+
+                    {% include "components/common/cards/info_item.html" with icon="fa-solid fa-circle-check" label="Estado" value=game.status %}
+
+                    {% include "components/common/cards/info_item.html" with icon="fa-solid fa-users" label="Multijugador" value=game.has_multiplayer %}
+
+                    {% include "components/common/cards/info_item.html" with icon="fa-solid fa-calendar-plus" label="Creado" value=game.created_at|date:"d/m/Y H:i" %}
+
+                    {% include "components/common/cards/info_item.html" with icon="fa-solid fa-rotate" label="Actualizado" value=game.updated_at|date:"d/m/Y H:i" %}
+
+                </div>
+
+        </div>
+
+</div>

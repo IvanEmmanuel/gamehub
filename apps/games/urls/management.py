@@ -1,11 +1,8 @@
 from django.urls import path
-from apps.games.views.management import (
-    GameListView,
-    GameManagementView,
-)
+from ..views.management import GameManageView
 
-app_name = 'gestion' #es un tipo de namespace
+app_name = "management"
 
 urlpatterns = [
-    path('games', name='games')
+    path("games/<int:pk>/manage/", GameManageView.as_view(), name="game_manage",),
 ]

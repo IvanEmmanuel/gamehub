@@ -1,0 +1,36 @@
+<div class="game-content-card">
+
+    <div class="section-header">
+
+        <h2>
+
+            Contenido del juego
+
+        </h2>
+
+        <p>
+
+            Administra todos los elementos relacionados con este juego.
+
+        </p>
+
+    </div>
+
+    <div class="content-grid">
+
+        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-film" icon_class="red" title="Trailers" description="Administra los videos oficiales del juego." count=game.trailers.count url="#" %}
+
+        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-image" icon_class="green" title="Screenshots" description="Administra las capturas del juego." count=game.screenshots.count url="#" %}
+
+        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-trophy" icon_class="yellow" title="Logros" description="Administra los logros." count=game.achievements.count url="#" %}
+
+        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-music" icon_class="purple" title="Soundtrack" description="Administra el soundtrack del juego." count=game.soundtracks.count url="#" %}
+
+        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-book-open" icon_class="blue" title="Guias" description="Administra las guias." count=game.guides.count url="#" %}
+
+        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-box-open" icon_class="orange" title="DLCs" description="Administra los DLCs." count=game.dlcs.count url="#" %}
+
+        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-file-lines" icon_class="cyan" title="Actualizaciones" description="Administra las actualizaciones." count=game.patch_notes.count url="#" %}
+    </div>
+
+</div>

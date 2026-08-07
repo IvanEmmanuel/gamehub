@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}NexusPlay | Todos los Juegos{% endblock title %}
+
+{% block custom_styles %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/managment.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+{% endblock custom_styles %}
+
+
+{% block content %}
+
+    <div class="manage-container">
+
+        <div class="manage-main">
+
+            <div class="manage-header">
+
+                <div class="manage-title">
+
+                    <a href="{% url 'moderation:game_list' %}" class="back-link">
+
+                        <i class="fa-solid fa-arrow-left"></i>
+
+                        Volver al listado
+
+                    </a>
+
+                    <h1>
+
+                        {{ game.name }}
+
+                    </h1>
+
+                    <span class="status-badge">
+
+                        {{ game.status|default:"Sin estado" }}
+
+                    </span>
+
+                </div>
+
+            </div>
+    
+    
+            {% include "components/managment/managment-game-image.html" %}
+        
+            {% include "components/managment/game-info-card.html" %}
+        
+            {% include "components/managment/game-content-section.html" %}
+
+        </div>
+
+        <aside class="manage-sidebar">
+
+            <div class="actions-card">
+
+                <h5>
+
+                    Acciones rápidas
+
+                </h5>
+
+                <a href="{% url 'moderation:game_update' game.pk %}" class="action-btn">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                    Editar información
+
+                </a>
+
+                <a href="{% url 'games_detail' game.slug %}" class="action-btn" target="_blank">
+
+                    <i class="fa-solid fa-globe"></i>
+
+                    Ver sitio público
+
+                </a>
+
+                <a href="#" class="action-btn danger open-delete-modal" data-game-name="{{ game.name }}" data-delete-url="{% url 'moderation:game_delete' game.pk %}">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                    Eliminar juego
+
+                </a>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+    {% include "components/common/modals/confirm_delete.html" %}
+
+
+
+{% endblock content %}
+  
+
+{% block scripts %}
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+
+  <script src="{% static 'assets/js/isotope.min.js'%}"></script>
+  <script src="{% static 'assets/js/owl-carousel.js'%}"></script>
+  <script src="{% static 'assets/js/tabs.js'%}"></script>
+  <script src="{% static 'assets/js/popup.js'%}"></script>
+  <script src="{% static 'assets/js/custom.js'%}"></script>
+
+  <script src="{% static 'assets/js/delete-modal.js'%}"></script>
+  
+{% endblock scripts %}
