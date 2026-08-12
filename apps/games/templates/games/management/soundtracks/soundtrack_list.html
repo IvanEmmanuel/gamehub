@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Soundtrack | {{ game.name }}{% endblock title %}
+
+{% block custom_styles %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/soundtrack.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/soundtrack-modal.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/trailer.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+{% endblock custom_styles %}
+
+
+{% block content %}
+
+<div class="management-page soundtrack-page">
+
+
+    <!-- =====================================================
+         ENCABEZADO
+    ====================================================== -->
+
+    <div class="soundtrack-header">
+
+        <div class="soundtrack-title">
+
+            <a href="{% url 'management:game_manage' game.pk %}" class="back-link">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Volver a administrar {{ game.name }}
+
+            </a>
+
+
+            <div class="soundtrack-heading">
+
+                <div class="game-mini-cover">
+
+                    {% if game.cover %}
+
+                        <img src="{{ game.cover.url }}" alt="{{ game.name }}">
+
+                    {% endif %}
+
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        Soundtrack
+                    </h1>
+
+                    <p>
+                        {{ game.name }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <p class="soundtrack-description">
+
+                Gestiona las canciones y contenido musical de este juego.
+
+            </p>
+
+        </div>
+
+
+        <button type="button" class="btn-add-soundtrack" id="open-soundtrack-modal">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Agregar canción
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         LISTA DE SOUNDTRACK
+    ====================================================== -->
+
+    <div class="soundtracks-list" data-drag-drop data-game-id="{{ game.pk }}" data-drag-url="{% url 'management:game_soundtrack_reorder' game.pk %}" data-drag-parameter="soundtrack_ids[]">
+
+
+        {% for soundtrack in soundtracks %}
+
+
+            <div class="soundtrack-item" data-drag-item data-drag-id="{{ soundtrack.id }}" draggable="true">
+
+
+                <!-- DRAG HANDLE -->
+
+                <div class="soundtrack-drag-handle">
+
+                    <i class="fa-solid fa-grip-vertical"></i>
+
+                </div>
+
+
+                <!-- ICONO -->
+
+                <div class="soundtrack-icon">
+
+                    <i class="fa-solid fa-music"></i>
+
+                </div>
+
+
+                <!-- INFORMACIÓN -->
+
+                <div class="soundtrack-info">
+
+                    <h3>
+
+                        {{ soundtrack.title }}
+
+                    </h3>
+
+
+                    {% if soundtrack.artist %}
+
+                        <p>
+
+                            {{ soundtrack.artist }}
+
+                        </p>
+
+                    {% else %}
+
+                        <p class="no-artist">
+
+                            Artista no especificado
+
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- PLATAFORMAS -->
+
+                <div class="soundtrack-platforms">
+
+
+                    {% if soundtrack.spotify_url %}
+
+                        <a href="{{ soundtrack.spotify_url }}" target="_blank" rel="noopener noreferrer" class="platform-link spotify" title="Abrir en Spotify">
+
+                            <i class="fa-brands fa-spotify"></i>
+
+                            Spotify
+
+                        </a>
+
+                    {% endif %}
+
+
+                    {% if soundtrack.youtube_url %}
+
+                        <a href="{{ soundtrack.youtube_url }}" target="_blank" rel="noopener noreferrer" class="platform-link youtube" title="Abrir en YouTube">
+
+                            <i class="fa-brands fa-youtube"></i>
+
+                            YouTube
+
+                        </a>
+
+                    {% endif %}
+
+
+                    {% if not soundtrack.spotify_url and not soundtrack.youtube_url %}
+
+                        <span class="no-platform">
+
+                            Sin enlaces
+
+                        </span>
+
+                    {% endif %}
+
+
+                </div>
+
+
+                <!-- ACCIONES -->
+
+                <div class="soundtrack-actions">
+
+
+                    <button type="button" class="btn-edit-soundtrack" data-soundtrack-id="{{ soundtrack.id }}">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        Editar
+
+                    </button>
+
+
+                    <button type="button" class="btn-delete-soundtrack open-delete-modal" data-game-name="{{ soundtrack.title }}" data-delete-url="{% url 'management:game_soundtrack_delete' game.pk soundtrack.id %}">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Eliminar
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        {% empty %}
+
+
+            <!-- =================================================
+                 ESTADO VACÍO
+            ================================================== -->
+
+            <div class="empty-soundtracks">
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-music"></i>
+
+                </div>
+
+
+                <h3>
+
+                    No hay canciones todavía
+
+                </h3>
+
+
+                <p>
+
+                    Agrega la primera canción del soundtrack de
+                    {{ game.name }}.
+
+                </p>
+
+            </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+    <!-- =====================================================
+         MODAL
+    ====================================================== -->
+
+    {% include "components/common/modals/soundtrack_modal.html" %}
+
+
+</div>
+
+
+{% include "components/common/modals/confirm_delete.html" %}
+
+{% endblock content %}
+  
+
+{% block scripts %}
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+
+  <script src="{% static 'assets/js/isotope.min.js'%}"></script>
+  <script src="{% static 'assets/js/owl-carousel.js'%}"></script>
+  <script src="{% static 'assets/js/tabs.js'%}"></script>
+  <script src="{% static 'assets/js/popup.js'%}"></script>
+  <script src="{% static 'assets/js/custom.js'%}"></script>
+
+  <script src="{% static 'assets/js/delete-modal.js'%}"></script>
+  <script src="{% static 'assets/js/drag-and-drop.js'%}"></script>
+  <script src="{% static 'assets/js/soundtrack-modal.js' %}"></script>
+  
+{% endblock scripts %}

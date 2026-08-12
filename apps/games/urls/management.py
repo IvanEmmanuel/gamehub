@@ -2,7 +2,8 @@ from django.urls import path
 from ..views.management import ( GameManageView, GameTrailerListView, GameTrailerCreateView, GameTrailerUpdateView, 
                                 GameTrailerDeleteView, GameTrailerReorderView, GameScreenshotListView, GameScreenshotReorderView,
                                 GameScreenshotCreateView, GameScreenshotUpdateView, GameScreenshotDeleteView, GameAchievementListView,
-                                GameAchievementCreateView, GameAchievementUpdateView, GameAchievementDeleteView, GameAchievementReorderView
+                                GameAchievementCreateView, GameAchievementUpdateView, GameAchievementDeleteView, GameAchievementReorderView,
+                                GameSoundtrackListView,GameSoundtrackCreateView, GameSoundtrackUpdateView,GameSoundtrackDeleteView, GameSoundtrackReorderView
                                 )
 
 
@@ -26,4 +27,9 @@ urlpatterns = [
     path("games/<int:pk>/achievements/<int:achievement_id>/edit/", GameAchievementUpdateView.as_view(), name="game_achievement_update",),
     path("games/<int:pk>/achievements/<int:achievement_id>/delete/", GameAchievementDeleteView.as_view(), name="game_achievement_delete",),
     path("games/<int:pk>/achievements/reorder/", GameAchievementReorderView.as_view(), name="game_achievement_reorder",),
+    path("games/<int:pk>/soundtrack/", GameSoundtrackListView.as_view(), name="game_soundtrack_list",),
+    path("games/<int:pk>/soundtrack/create/", GameSoundtrackCreateView.as_view(), name="game_soundtrack_create",),
+    path("games/<int:pk>/soundtrack/<int:soundtrack_id>/edit/", GameSoundtrackUpdateView.as_view(), name="game_soundtrack_update",),
+    path("games/<int:pk>/soundtrack/<int:soundtrack_id>/delete/", GameSoundtrackDeleteView.as_view(), name="game_soundtrack_delete",),
+    path("games/<int:pk>/soundtrack/reorder/", GameSoundtrackReorderView.as_view(), name="game_soundtrack_reorder",),
 ]

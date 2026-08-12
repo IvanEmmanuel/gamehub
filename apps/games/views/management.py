@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
 
-from ..models import Game, Trailer, Screenshot, Achievement
+from ..models import Game, Trailer, Screenshot, Achievement, Soundtrack
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from ..forms import TrailerForm, ScreenshotForm, AchievementForm
+from ..forms import TrailerForm, ScreenshotForm, AchievementForm, SoundtrackForm
 from django.urls import reverse, reverse_lazy
 from django.http import JsonResponse
 from django.db import transaction
@@ -436,6 +436,142 @@ class GameAchievementReorderView(ModerationRequiredMixin, View):
                 achievement.display_order = index
 
                 achievement.save(
+                    update_fields=["display_order"]
+                )
+
+        return JsonResponse({
+            "success": True
+        })
+        
+class GameSoundtrackListView(ModerationRequiredMixin, ListView):
+
+    model = Soundtrack
+    template_name = "games/management/soundtracks/soundtrack_list.html"
+    context_object_name = "soundtracks"
+
+    def get_queryset(self):
+
+        return Soundtrack.objects.filter(
+            game_id=self.kwargs["pk"]
+        )
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        context["game"] = get_object_or_404(
+            Game,
+            pk=self.kwargs["pk"]
+        )
+
+        return context
+    
+class GameSoundtrackCreateView(ModerationRequiredMixin, CreateView):
+
+    model = Soundtrack
+    form_class = SoundtrackForm
+
+    def form_valid(self, form):
+
+        form.instance.game_id = self.kwargs["pk"]
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_soundtrack_list",
+            kwargs={"pk": self.kwargs["pk"]}
+        )
+        
+class GameSoundtrackUpdateView(ModerationRequiredMixin, UpdateView):
+
+    model = Soundtrack
+    form_class = SoundtrackForm
+
+    def get_object(self, queryset=None):
+
+        return get_object_or_404(
+            Soundtrack,
+            id=self.kwargs["soundtrack_id"],
+            game_id=self.kwargs["pk"]
+        )
+
+    def get(self, request, *args, **kwargs):
+
+        self.object = self.get_object()
+
+        return JsonResponse({
+            "id": self.object.id,
+            "title": self.object.title,
+            "artist": self.object.artist,
+            "spotify_url": self.object.spotify_url,
+            "youtube_url": self.object.youtube_url,
+        })
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_soundtrack_list",
+            kwargs={"pk": self.kwargs["pk"]}
+        )
+        
+class GameSoundtrackDeleteView(ModerationRequiredMixin, DeleteView):
+
+    model = Soundtrack
+
+    def get_object(self, queryset=None):
+
+        return get_object_or_404(
+            Soundtrack,
+            id=self.kwargs["soundtrack_id"],
+            game_id=self.kwargs["pk"]
+        )
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_soundtrack_list",
+            kwargs={"pk": self.kwargs["pk"]}
+        )
+        
+class GameSoundtrackReorderView(
+    ModerationRequiredMixin,
+    View
+):
+
+    def post(self, request, *args, **kwargs):
+
+        game_id = kwargs["pk"]
+
+        soundtrack_ids = request.POST.getlist(
+            "soundtrack_ids[]"
+        )
+
+        soundtracks = Soundtrack.objects.filter(
+            game_id=game_id,
+            id__in=soundtrack_ids
+        )
+
+        soundtracks_by_id = {
+            str(soundtrack.id): soundtrack
+            for soundtrack in soundtracks
+        }
+
+        for index, soundtrack_id in enumerate(
+            soundtrack_ids,
+            start=1
+        ):
+
+            soundtrack = soundtracks_by_id.get(
+                soundtrack_id
+            )
+
+            if soundtrack:
+
+                soundtrack.display_order = index
+
+                soundtrack.save(
                     update_fields=["display_order"]
                 )
 

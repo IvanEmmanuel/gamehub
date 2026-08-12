@@ -1,0 +1,135 @@
+<div class="modal-overlay" id="soundtrack-modal" style="display: none;">
+
+    <div class="modal-card soundtrack-modal-card">
+
+        <!-- =========================================
+             HEADER
+        ========================================== -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3 id="soundtrack-modal-title">
+                    Agregar canción
+                </h3>
+
+                <p>
+                    Agrega una canción al soundtrack del juego.
+                </p>
+
+            </div>
+
+            <button type="button" class="modal-close" id="close-soundtrack-modal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- =========================================
+             FORMULARIO
+        ========================================== -->
+
+        <form  method="POST" action="{% url 'management:game_soundtrack_create' game.pk %}" id="soundtrack-form">
+
+            {% csrf_token %}
+
+
+            <!-- TÍTULO -->
+
+            <div class="form-group">
+
+                <label for="id_title">
+                    Título
+                </label>
+
+                <input type="text" name="title" id="id_title" class="form-control" placeholder="Ej. Halo Infinite Original Soundtrack" required>
+
+            </div>
+
+
+            <!-- ARTISTA -->
+
+            <div class="form-group">
+
+                <label for="id_artist">
+                    Artista
+                </label>
+
+                <input type="text" name="artist" id="id_artist" class="form-control" placeholder="Ej. Gareth Coker">
+
+            </div>
+
+
+            <!-- SPOTIFY -->
+
+            <div class="form-group">
+
+                <label for="id_spotify_url">
+
+                    <i class="fa-brands fa-spotify"></i>
+
+                    Spotify
+
+                </label>
+
+                <input type="url" name="spotify_url" id="id_spotify_url" class="form-control" placeholder="https://open.spotify.com/...">
+
+            </div>
+
+
+            <!-- YOUTUBE -->
+
+            <div class="form-group">
+
+                <label for="id_youtube_url">
+
+                    <i class="fa-brands fa-youtube"></i>
+
+                    YouTube
+
+                </label>
+
+                <input type="url" name="youtube_url" id="id_youtube_url" class="form-control" placeholder="https://www.youtube.com/...">
+
+            </div>
+
+
+            <!-- ERRORES -->
+
+            <div class="form-errors" id="soundtrack-form-errors"></div>
+
+
+            <!-- =========================================
+                 ACCIONES
+            ========================================== -->
+
+            <div class="modal-actions">
+
+                <button type="button" class="btn-modal-cancel" id="cancel-soundtrack-modal">
+
+                    Cancelar
+
+                </button>
+
+
+                <button type="submit" class="btn-modal-submit" id="soundtrack-modal-submit">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    <span>
+                        Guardar canción
+                    </span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

@@ -1,0 +1,385 @@
+/* =========================================================
+   SOUNDTRACK MODAL
+========================================================= */
+
+#soundtrack-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, .70);
+
+    backdrop-filter: blur(4px);
+
+}
+
+
+/* =========================================================
+   MODAL CARD
+========================================================= */
+
+#soundtrack-modal .soundtrack-modal-card {
+
+    width: 100%;
+
+    max-width: 560px;
+
+    padding: 28px;
+
+    background: #1b1d2b;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    border-radius: 16px;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .45);
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+#soundtrack-modal .modal-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+
+}
+
+
+#soundtrack-modal .modal-header h3 {
+
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 1.35rem;
+
+}
+
+
+#soundtrack-modal .modal-header p {
+
+    margin: 6px 0 0;
+
+    color: #8b93a7;
+
+    font-size: .9rem;
+
+    line-height: 1.4;
+
+}
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+#soundtrack-modal .modal-close {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 36px;
+
+    height: 36px;
+
+    flex-shrink: 0;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    border-radius: 8px;
+
+    background: #181b25;
+
+    color: #9ca3af;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+
+#soundtrack-modal .modal-close:hover {
+
+    color: #fff;
+
+    border-color: #7b5cff;
+
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+#soundtrack-modal .form-group {
+
+    margin-bottom: 20px;
+
+}
+
+
+#soundtrack-modal .form-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #fff;
+
+    font-size: .9rem;
+
+    font-weight: 500;
+
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+#soundtrack-modal input[type="text"],
+#soundtrack-modal input[type="url"] {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    border: 1px solid rgba(255, 255, 255, .10);
+
+    border-radius: 9px;
+
+    background: #181b25;
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: .9rem;
+
+}
+
+
+#soundtrack-modal input[type="text"]::placeholder,
+#soundtrack-modal input[type="url"]::placeholder {
+
+    color: #626a7d;
+
+}
+
+
+#soundtrack-modal input[type="text"]:focus,
+#soundtrack-modal input[type="url"]:focus {
+
+    outline: none;
+
+    border-color: #7b5cff;
+
+    box-shadow: 0 0 0 2px rgba(123, 92, 255, .10);
+
+}
+
+
+/* =========================================================
+   PLATFORM ICONS
+========================================================= */
+
+#soundtrack-modal label .fa-spotify {
+
+    margin-right: 5px;
+
+    color: #6ee7a0;
+
+}
+
+
+#soundtrack-modal label .fa-youtube {
+
+    margin-right: 5px;
+
+    color: #ff8585;
+
+}
+
+
+/* =========================================================
+   FORM ERRORS
+========================================================= */
+
+#soundtrack-modal .form-errors {
+
+    margin-top: 10px;
+
+    color: #ff7b7b;
+
+    font-size: .82rem;
+
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+#soundtrack-modal .modal-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    padding-top: 20px;
+
+    margin-top: 5px;
+
+    border-top: 1px solid rgba(255, 255, 255, .06);
+
+}
+
+
+#soundtrack-modal .btn-modal-cancel,
+#soundtrack-modal .btn-modal-submit {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 18px;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: .85rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+
+/* CANCELAR */
+
+#soundtrack-modal .btn-modal-cancel {
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    background: #181b25;
+
+    color: #d1d5db;
+
+}
+
+
+#soundtrack-modal .btn-modal-cancel:hover {
+
+    border-color: rgba(255, 255, 255, .15);
+
+    color: #fff;
+
+}
+
+
+/* GUARDAR */
+
+#soundtrack-modal .btn-modal-submit {
+
+    border: 0;
+
+    background: #7b5cff;
+
+    color: #fff;
+
+}
+
+
+#soundtrack-modal .btn-modal-submit:hover {
+
+    background: #6848e8;
+
+}
+
+
+#soundtrack-modal .btn-modal-submit:disabled {
+
+    opacity: .6;
+
+    cursor: not-allowed;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    #soundtrack-modal {
+
+        padding: 15px;
+
+    }
+
+
+    #soundtrack-modal .soundtrack-modal-card {
+
+        padding: 22px;
+
+    }
+
+
+    #soundtrack-modal .modal-actions {
+
+        flex-direction: column-reverse;
+
+    }
+
+
+    #soundtrack-modal .btn-modal-cancel,
+    #soundtrack-modal .btn-modal-submit {
+
+        width: 100%;
+
+    }
+
+}

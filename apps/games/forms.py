@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import (Game, Genre, Trailer, Screenshot, Achievement)
+from .models import (Game, Genre, Trailer, Screenshot, Achievement, Soundtrack)
 
 
 class GameForm(forms.ModelForm):
@@ -236,5 +236,57 @@ class AchievementForm(forms.ModelForm):
             "description": "Descripción",
             "icon": "Icono",
             "is_hidden": "Logro oculto",
+        }
+        
+class SoundtrackForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Soundtrack
+
+        fields = [
+            "title",
+            "artist",
+            "spotify_url",
+            "youtube_url",
+        ]
+
+        widgets = {
+
+            "title": forms.TextInput(
+                attrs={
+                    "placeholder": "Ej. Halo Infinite Original Soundtrack",
+                    "class": "form-control",
+                }
+            ),
+
+            "artist": forms.TextInput(
+                attrs={
+                    "placeholder": "Ej. Gareth Coker",
+                    "class": "form-control",
+                }
+            ),
+
+            "spotify_url": forms.URLInput(
+                attrs={
+                    "placeholder": "https://open.spotify.com/...",
+                    "class": "form-control",
+                }
+            ),
+
+            "youtube_url": forms.URLInput(
+                attrs={
+                    "placeholder": "https://www.youtube.com/...",
+                    "class": "form-control",
+                }
+            ),
+
+        }
+
+        labels = {
+            "title": "Título",
+            "artist": "Artista",
+            "spotify_url": "Spotify",
+            "youtube_url": "YouTube",
         }
         
