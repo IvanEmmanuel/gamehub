@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import (Game, Genre, Trailer, Screenshot, Achievement, Soundtrack, DLC, Guide)
+from .models import (Game, Genre, Trailer, Screenshot, Achievement, Soundtrack, DLC, Guide, PatchNote)
 
 
 class GameForm(forms.ModelForm):
@@ -410,5 +410,67 @@ class GuideForm(forms.ModelForm):
             "description": "Descripción",
             "url": "Enlace",
             "source": "Fuente",
+        }
+        
+class PatchNoteForm(forms.ModelForm):
+
+    class Meta:
+
+        model = PatchNote
+
+        fields = [
+            "version",
+            "title",
+            "description",
+            "release_date",
+            "official_url",
+        ]
+
+        widgets = {
+
+            "version": forms.TextInput(
+                attrs={
+                    "placeholder": "Ej. 1.0.0",
+                    "class": "form-control",
+                }
+            ),
+
+            "title": forms.TextInput(
+                attrs={
+                    "placeholder": "Ej. Season 2 Update",
+                    "class": "form-control",
+                }
+            ),
+
+            "description": forms.Textarea(
+                attrs={
+                    "rows": 5,
+                    "placeholder": "Describe los cambios incluidos en esta actualización...",
+                    "class": "form-control",
+                }
+            ),
+
+            "release_date": forms.DateInput(
+                attrs={
+                    "type": "date",
+                    "class": "form-control",
+                }
+            ),
+
+            "official_url": forms.URLInput(
+                attrs={
+                    "placeholder": "https://...",
+                    "class": "form-control",
+                }
+            ),
+
+        }
+
+        labels = {
+            "version": "Versión",
+            "title": "Título",
+            "description": "Descripción",
+            "release_date": "Fecha de lanzamiento",
+            "official_url": "Notas oficiales",
         }
         

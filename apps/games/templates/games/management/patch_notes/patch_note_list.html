@@ -1,0 +1,319 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Patch Notes | {{ game.name }} {% endblock title %}
+
+{% block custom_styles %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/patch-note.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/patch-note-modal.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/trailer.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+{% endblock custom_styles %}
+
+
+{% block content %}
+
+<div class="management-page patch-note-page">
+
+
+    <!-- =====================================================
+         ENCABEZADO
+    ====================================================== -->
+
+    <div class="patch-note-header">
+
+        <div class="patch-note-title">
+
+            <a
+                href="{% url 'management:game_manage' game.pk %}"
+                class="back-link"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Volver a administrar {{ game.name }}
+
+            </a>
+
+
+            <div class="patch-note-heading">
+
+                <div class="game-mini-cover">
+
+                    {% if game.cover %}
+
+                        <img
+                            src="{{ game.cover.url }}"
+                            alt="{{ game.name }}"
+                        >
+
+                    {% endif %}
+
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        Patch Notes
+                    </h1>
+
+                    <p>
+                        {{ game.name }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <p class="patch-note-description">
+
+                Gestiona las notas y actualizaciones oficiales de este juego.
+
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn-add-patch-note"
+            id="open-patch-note-modal"
+        >
+
+            <i class="fa-solid fa-plus"></i>
+
+            Agregar Patch Note
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         LISTA
+    ====================================================== -->
+
+    <div
+        class="patch-notes-list"
+        data-drag-drop
+        data-game-id="{{ game.pk }}"
+        data-drag-url="{% url 'management:game_patch_note_reorder' game.pk %}"
+        data-drag-parameter="patch_note_ids[]"
+    >
+
+
+        {% for patch_note in patch_notes %}
+
+
+            <div
+                class="patch-note-item"
+                data-drag-item
+                data-drag-id="{{ patch_note.id }}"
+                draggable="true"
+            >
+
+
+                <!-- DRAG HANDLE -->
+
+                <div class="patch-note-drag-handle">
+
+                    <i class="fa-solid fa-grip-vertical"></i>
+
+                </div>
+
+
+                <!-- VERSIÓN -->
+
+                <div class="patch-note-version">
+
+                    <span>
+                        v{{ patch_note.version }}
+                    </span>
+
+                </div>
+
+
+                <!-- INFORMACIÓN -->
+
+                <div class="patch-note-info">
+
+                    <h3>
+
+                        {{ patch_note.title }}
+
+                    </h3>
+
+
+                    {% if patch_note.description %}
+
+                        <p>
+
+                            {{ patch_note.description }}
+
+                        </p>
+
+                    {% else %}
+
+                        <p class="no-description">
+
+                            Sin descripción
+
+                        </p>
+
+                    {% endif %}
+
+
+                    <div class="patch-note-meta">
+
+                        <span class="patch-note-date">
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                            {{ patch_note.release_date|date:"d/m/Y" }}
+
+                        </span>
+
+
+                        {% if patch_note.official_url %}
+
+                            <a
+                                href="{{ patch_note.official_url }}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="btn-official-notes"
+                            >
+
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                                Notas oficiales
+
+                            </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACCIONES -->
+
+                <div class="patch-note-actions">
+
+
+                    <button
+                        type="button"
+                        class="btn-edit-patch-note"
+                        data-patch-note-id="{{ patch_note.id }}"
+                    >
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        Editar
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn-delete-patch-note open-delete-modal"
+                        data-game-name="v{{ patch_note.version }} - {{ patch_note.title }}"
+                        data-delete-url="{% url 'management:game_patch_note_delete' game.pk patch_note.id %}"
+                    >
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Eliminar
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        {% empty %}
+
+
+            <!-- =================================================
+                 ESTADO VACÍO
+            ================================================== -->
+
+            <div class="empty-patch-notes">
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-file-lines"></i>
+
+                </div>
+
+
+                <h3>
+
+                    No hay Patch Notes todavía
+
+                </h3>
+
+
+                <p>
+
+                    Agrega la primera actualización de
+                    {{ game.name }}.
+
+                </p>
+
+            </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+    <!-- =====================================================
+         MODAL
+    ====================================================== -->
+
+    {% include "components/common/modals/patch_note_modal.html" %}
+
+
+</div>
+
+{% include "components/common/modals/confirm_delete.html" %}
+
+{% endblock content %}
+  
+
+{% block scripts %}
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+
+  <script src="{% static 'assets/js/isotope.min.js'%}"></script>
+  <script src="{% static 'assets/js/owl-carousel.js'%}"></script>
+  <script src="{% static 'assets/js/tabs.js'%}"></script>
+  <script src="{% static 'assets/js/popup.js'%}"></script>
+  <script src="{% static 'assets/js/custom.js'%}"></script>
+
+  <script src="{% static 'assets/js/delete-modal.js'%}"></script>
+  <script src="{% static 'assets/js/drag-and-drop.js'%}"></script>
+  <script src="{% static 'assets/js/patch-note-modal.js' %}"></script>
+  
+{% endblock scripts %}

@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
 
-from ..models import Game, Trailer, Screenshot, Achievement, Soundtrack, DLC, Guide
+from ..models import Game, Trailer, Screenshot, Achievement, Soundtrack, DLC, Guide, PatchNote
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from ..forms import TrailerForm, ScreenshotForm, AchievementForm, SoundtrackForm, DLCForm, GuideForm
+from ..forms import TrailerForm, ScreenshotForm, AchievementForm, SoundtrackForm, DLCForm, GuideForm, PatchNoteForm
 from django.urls import reverse, reverse_lazy
 from django.http import JsonResponse
 from django.db import transaction
@@ -859,6 +859,150 @@ class GameGuideReorderView(ModerationRequiredMixin, View):
                 guide.display_order = index
 
                 guide.save(
+                    update_fields=["display_order"]
+                )
+
+        return JsonResponse({
+            "success": True
+        })
+        
+class GamePatchNoteListView(ModerationRequiredMixin, ListView):
+
+    model = PatchNote
+    template_name = "games/management/patch_notes/patch_note_list.html"
+    context_object_name = "patch_notes"
+
+    def get_queryset(self):
+
+        return PatchNote.objects.filter(
+            game_id=self.kwargs["pk"]
+        )
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        context["game"] = get_object_or_404(
+            Game,
+            pk=self.kwargs["pk"]
+        )
+
+        return context
+    
+class GamePatchNoteCreateView(ModerationRequiredMixin, CreateView):
+
+    model = PatchNote
+    form_class = PatchNoteForm
+
+    def form_valid(self, form):
+
+        form.instance.game_id = self.kwargs["pk"]
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_patch_note_list",
+            kwargs={
+                "pk": self.kwargs["pk"]
+            }
+        )
+        
+class GamePatchNoteUpdateView(ModerationRequiredMixin, UpdateView):
+
+    model = PatchNote
+    form_class = PatchNoteForm
+
+    def get_object(self, queryset=None):
+
+        return get_object_or_404(
+            PatchNote,
+            id=self.kwargs["patch_note_id"],
+            game_id=self.kwargs["pk"]
+        )
+
+    def get(self, request, *args, **kwargs):
+
+        self.object = self.get_object()
+
+        return JsonResponse({
+            "id": self.object.id,
+            "version": self.object.version,
+            "title": self.object.title,
+            "description": self.object.description,
+            "release_date": (
+                self.object.release_date.isoformat()
+                if self.object.release_date
+                else ""
+            ),
+            "official_url": self.object.official_url,
+        })
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_patch_note_list",
+            kwargs={
+                "pk": self.kwargs["pk"]
+            }
+        )
+        
+class GamePatchNoteDeleteView(ModerationRequiredMixin, DeleteView):
+
+    model = PatchNote
+
+    def get_object(self, queryset=None):
+
+        return get_object_or_404(
+            PatchNote,
+            id=self.kwargs["patch_note_id"],
+            game_id=self.kwargs["pk"]
+        )
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_patch_note_list",
+            kwargs={
+                "pk": self.kwargs["pk"]
+            }
+        )
+        
+class GamePatchNoteReorderView(ModerationRequiredMixin, View):
+
+    def post(self, request, *args, **kwargs):
+
+        game_id = kwargs["pk"]
+
+        patch_note_ids = request.POST.getlist(
+            "patch_note_ids[]"
+        )
+
+        patch_notes = PatchNote.objects.filter(
+            game_id=game_id,
+            id__in=patch_note_ids
+        )
+
+        patch_notes_by_id = {
+            str(patch_note.id): patch_note
+            for patch_note in patch_notes
+        }
+
+        for index, patch_note_id in enumerate(
+            patch_note_ids,
+            start=1
+        ):
+
+            patch_note = patch_notes_by_id.get(
+                patch_note_id
+            )
+
+            if patch_note:
+
+                patch_note.display_order = index
+
+                patch_note.save(
                     update_fields=["display_order"]
                 )
 

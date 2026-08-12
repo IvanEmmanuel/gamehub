@@ -1,0 +1,197 @@
+<div
+    class="modal-overlay"
+    id="patch-note-modal"
+    style="display: none;"
+>
+
+    <div class="modal-card patch-note-modal-card">
+
+        <!-- =========================================
+             HEADER
+        ========================================== -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3 id="patch-note-modal-title">
+                    Agregar Patch Note
+                </h3>
+
+                <p>
+                    Registra una actualización del juego.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="close-patch-note-modal"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- =========================================
+             FORMULARIO
+        ========================================== -->
+
+        <form
+            method="POST"
+            action="{% url 'management:game_patch_note_create' game.pk %}"
+            id="patch-note-form"
+        >
+
+            {% csrf_token %}
+
+
+            <!-- VERSIÓN -->
+
+            <div class="form-group">
+
+                <label for="id_version">
+                    Versión
+                </label>
+
+                <input
+                    type="text"
+                    name="version"
+                    id="id_version"
+                    class="form-control"
+                    placeholder="Ej. 1.0.0"
+                    required
+                >
+
+            </div>
+
+
+            <!-- TÍTULO -->
+
+            <div class="form-group">
+
+                <label for="id_title">
+                    Título
+                </label>
+
+                <input
+                    type="text"
+                    name="title"
+                    id="id_title"
+                    class="form-control"
+                    placeholder="Ej. Season 2 Update"
+                    required
+                >
+
+            </div>
+
+
+            <!-- DESCRIPCIÓN -->
+
+            <div class="form-group">
+
+                <label for="id_description">
+                    Descripción
+                </label>
+
+                <textarea
+                    name="description"
+                    id="id_description"
+                    class="form-control"
+                    rows="5"
+                    placeholder="Describe los cambios incluidos en esta actualización..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <!-- FECHA -->
+
+            <div class="form-group">
+
+                <label for="id_release_date">
+                    Fecha de lanzamiento
+                </label>
+
+                <input
+                    type="date"
+                    name="release_date"
+                    id="id_release_date"
+                    class="form-control"
+                    required
+                >
+
+            </div>
+
+
+            <!-- URL OFICIAL -->
+
+            <div class="form-group">
+
+                <label for="id_official_url">
+                    Notas oficiales
+                </label>
+
+                <input
+                    type="url"
+                    name="official_url"
+                    id="id_official_url"
+                    class="form-control"
+                    placeholder="https://..."
+                >
+
+            </div>
+
+
+            <!-- ERRORES -->
+
+            <div
+                class="form-errors"
+                id="patch-note-form-errors"
+            ></div>
+
+
+            <!-- =========================================
+                 ACCIONES
+            ========================================== -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-modal-cancel"
+                    id="cancel-patch-note-modal"
+                >
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-modal-submit"
+                    id="patch-note-modal-submit"
+                >
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    <span>
+                        Guardar Patch Note
+                    </span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
