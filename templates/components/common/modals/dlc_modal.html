@@ -1,0 +1,278 @@
+<div
+    class="modal-overlay"
+    id="dlc-modal"
+    style="display: none;"
+>
+
+    <div class="modal-card dlc-modal-card">
+
+        <!-- =========================================
+             HEADER
+        ========================================== -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3 id="dlc-modal-title">
+                    Agregar DLC
+                </h3>
+
+                <p>
+                    Agrega contenido adicional al juego.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="close-dlc-modal"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- =========================================
+             FORMULARIO
+        ========================================== -->
+
+        <form
+            method="POST"
+            action="{% url 'management:game_dlc_create' game.pk %}"
+            enctype="multipart/form-data"
+            id="dlc-form"
+        >
+
+            {% csrf_token %}
+
+
+            <!-- =====================================
+                 TÍTULO
+            ====================================== -->
+
+            <div class="form-group">
+
+                <label for="id_title">
+                    Título
+                </label>
+
+                <input
+                    type="text"
+                    name="title"
+                    id="id_title"
+                    class="form-control"
+                    placeholder="Ej. Phantom Liberty"
+                    required
+                >
+
+            </div>
+
+
+            <!-- =====================================
+                 DESCRIPCIÓN
+            ====================================== -->
+
+            <div class="form-group">
+
+                <label for="id_description">
+                    Descripción
+                </label>
+
+                <textarea
+                    name="description"
+                    id="id_description"
+                    class="form-control"
+                    rows="4"
+                    placeholder="Describe el contenido de este DLC..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- =====================================
+                 TIPO
+            ====================================== -->
+
+            <div class="form-group">
+
+                <label for="id_type">
+                    Tipo
+                </label>
+
+                <select
+                    name="type"
+                    id="id_type"
+                    class="form-control"
+                    required
+                >
+
+                    <option value="EXPANSION">
+                        Expansion
+                    </option>
+
+                    <option value="SEASON_PASS">
+                        Season Pass
+                    </option>
+
+                    <option value="COSMETIC">
+                        Cosmetic
+                    </option>
+
+                    <option value="CONTENT_PACK">
+                        Content Pack
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- =====================================
+                 PORTADA
+            ====================================== -->
+
+            <div class="form-group">
+
+                <label for="id_cover">
+                    Portada
+                </label>
+
+                <input
+                    type="file"
+                    name="cover"
+                    id="id_cover"
+                    class="form-control"
+                    accept="image/*"
+                    required
+                >
+
+                <small class="form-help">
+
+                    Selecciona una imagen para la portada del DLC.
+
+                </small>
+
+            </div>
+
+
+            <!-- =====================================
+                 PREVIEW
+            ====================================== -->
+
+            <div
+                class="dlc-cover-preview"
+                id="dlc-cover-preview"
+            >
+
+                <img
+                    src=""
+                    alt="Vista previa de portada"
+                    id="dlc-preview-image"
+                >
+
+            </div>
+
+
+            <!-- =====================================
+                 FECHA
+            ====================================== -->
+
+            <div class="form-group">
+
+                <label for="id_release_date">
+                    Fecha de lanzamiento
+                </label>
+
+                <input
+                    type="date"
+                    name="release_date"
+                    id="id_release_date"
+                    class="form-control"
+                    required
+                >
+
+            </div>
+
+
+            <!-- =====================================
+                 ENLACE DE COMPRA
+            ====================================== -->
+
+            <div class="form-group">
+
+                <label for="id_purchase_url">
+                    Enlace de compra
+                </label>
+
+                <input
+                    type="url"
+                    name="purchase_url"
+                    id="id_purchase_url"
+                    class="form-control"
+                    placeholder="https://..."
+                >
+
+                <small class="form-help">
+
+                    Opcional. Puedes agregar el enlace de la tienda
+                    donde se puede adquirir el DLC.
+
+                </small>
+
+            </div>
+
+
+            <!-- =====================================
+                 ERRORES
+            ====================================== -->
+
+            <div
+                class="form-errors"
+                id="dlc-form-errors"
+            ></div>
+
+
+            <!-- =====================================
+                 ACCIONES
+            ====================================== -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-modal-cancel"
+                    id="cancel-dlc-modal"
+                >
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-modal-submit"
+                    id="dlc-modal-submit"
+                >
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    <span>
+                        Guardar DLC
+                    </span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

@@ -20,6 +20,7 @@
     {% url 'management:game_screenshot_list' game.pk as screenshot_url %}
     {% url 'management:game_achievement_list' game.pk as achievement_url %}
     {% url 'management:game_soundtrack_list' game.pk as soundtrack_url %}
+    {% url 'management:game_dlc_list' game.pk as dlc_url %}
 
     <div class="content-grid">
 
@@ -33,7 +34,7 @@
 
         {% include "components/common/cards/content_card.html" with icon="fa-solid fa-book-open" icon_class="blue" title="Guias" description="Administra las guias." count=game.guides.count url="#" %}
 
-        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-box-open" icon_class="orange" title="DLCs" description="Administra los DLCs." count=game.dlcs.count url="#" %}
+        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-box-open" icon_class="orange" title="DLCs" description="Administra los DLCs." count=game.dlcs.count url=dlc_url %}
 
         {% include "components/common/cards/content_card.html" with icon="fa-solid fa-file-lines" icon_class="cyan" title="Actualizaciones" description="Administra las actualizaciones." count=game.patch_notes.count url="#" %}
     </div>

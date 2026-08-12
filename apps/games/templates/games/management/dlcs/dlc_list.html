@@ -1,0 +1,329 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} DLCs | {{ game.name }}{% endblock title %}
+
+{% block custom_styles %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/dlc.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/dlc-modal.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/trailer.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+{% endblock custom_styles %}
+
+
+{% block content %}
+
+<div class="management-page dlc-page">
+
+
+    <!-- =====================================================
+         ENCABEZADO
+    ====================================================== -->
+
+    <div class="dlc-header">
+
+        <div class="dlc-title">
+
+            <a href="{% url 'management:game_manage' game.pk %}" class="back-link">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Volver a administrar {{ game.name }}
+
+            </a>
+
+
+            <div class="dlc-heading">
+
+                <div class="game-mini-cover">
+
+                    {% if game.cover %}
+
+                        <img src="{{ game.cover.url }}" alt="{{ game.name }}">
+
+                    {% endif %}
+
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        DLCs
+                    </h1>
+
+                    <p>
+                        {{ game.name }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <p class="dlc-description">
+
+                Gestiona las expansiones y contenido adicional de este juego.
+
+            </p>
+
+        </div>
+
+
+        <button type="button" class="btn-add-dlc" id="open-dlc-modal">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Agregar DLC
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         LISTA DE DLC
+    ====================================================== -->
+
+    <div class="dlcs-list" data-drag-drop data-game-id="{{ game.pk }}" data-drag-url="{% url 'management:game_dlc_reorder' game.pk %}" data-drag-parameter="dlc_ids[]">
+
+
+        {% for dlc in dlcs %}
+
+
+            <div class="dlc-item" data-drag-item data-drag-id="{{ dlc.id }}" draggable="true">
+
+
+                <!-- DRAG HANDLE -->
+
+                <div class="dlc-drag-handle">
+
+                    <i class="fa-solid fa-grip-vertical"></i>
+
+                </div>
+
+
+                <!-- COVER -->
+
+                <div class="dlc-cover">
+
+                    <img src="{{ dlc.cover.url }}" alt="{{ dlc.title }}">
+
+                </div>
+
+
+                <!-- INFORMACIÓN -->
+
+                <div class="dlc-info">
+
+                    <h3>
+
+                        {{ dlc.title }}
+
+                    </h3>
+
+
+                    {% if dlc.description %}
+
+                        <p>
+
+                            {{ dlc.description }}
+
+                        </p>
+
+                    {% else %}
+
+                        <p class="no-description">
+
+                            Sin descripción
+
+                        </p>
+
+                    {% endif %}
+
+
+                    <div class="dlc-meta">
+
+
+                        <span class="dlc-type">
+
+                            {% if dlc.type == "EXPANSION" %}
+
+                                <i class="fa-solid fa-expand"></i>
+
+                                Expansion
+
+                            {% elif dlc.type == "SEASON_PASS" %}
+
+                                <i class="fa-solid fa-ticket"></i>
+
+                                Season Pass
+
+                            {% elif dlc.type == "COSMETIC" %}
+
+                                <i class="fa-solid fa-shirt"></i>
+
+                                Cosmetic
+
+                            {% elif dlc.type == "CONTENT_PACK" %}
+
+                                <i class="fa-solid fa-box-open"></i>
+
+                                Content Pack
+
+                            {% endif %}
+
+                        </span>
+
+
+                        <span class="dlc-release-date">
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                            {{ dlc.release_date|date:"d/m/Y" }}
+
+                        </span>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- COMPRA -->
+
+                <div class="dlc-purchase">
+
+                    {% if dlc.purchase_url %}
+
+                        <a href="{{ dlc.purchase_url }}" target="_blank" rel="noopener noreferrer" class="btn-dlc-purchase">
+
+                            <i class="fa-solid fa-cart-shopping"></i>
+
+                            Comprar
+
+                        </a>
+
+                    {% else %}
+
+                        <span class="no-purchase">
+
+                            Sin enlace
+
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- ACCIONES -->
+
+                <div class="dlc-actions">
+
+
+                    <button type="button" class="btn-edit-dlc" data-dlc-id="{{ dlc.id }}">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        Editar
+
+                    </button>
+
+
+                    <button type="button" class="btn-delete-dlc open-delete-modal" data-game-name="{{ dlc.title }}" data-delete-url="{% url 'management:game_dlc_delete' game.pk dlc.id %}">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Eliminar
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        {% empty %}
+
+
+            <!-- =================================================
+                 ESTADO VACÍO
+            ================================================== -->
+
+            <div class="empty-dlcs">
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-box-open"></i>
+
+                </div>
+
+
+                <h3>
+
+                    No hay DLCs todavía
+
+                </h3>
+
+
+                <p>
+
+                    Agrega el primer contenido adicional de
+                    {{ game.name }}.
+
+                </p>
+
+            </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+    <!-- =====================================================
+         MODAL
+    ====================================================== -->
+
+    {% include "components/common/modals/dlc_modal.html" %}
+
+
+</div>
+
+{% include "components/common/modals/confirm_delete.html" %}
+
+{% endblock content %}
+  
+
+{% block scripts %}
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+
+  <script src="{% static 'assets/js/isotope.min.js'%}"></script>
+  <script src="{% static 'assets/js/owl-carousel.js'%}"></script>
+  <script src="{% static 'assets/js/tabs.js'%}"></script>
+  <script src="{% static 'assets/js/popup.js'%}"></script>
+  <script src="{% static 'assets/js/custom.js'%}"></script>
+
+  <script src="{% static 'assets/js/delete-modal.js'%}"></script>
+  <script src="{% static 'assets/js/drag-and-drop.js'%}"></script>
+  <script src="{% static 'assets/js/dlc-modal.js' %}"></script>
+  
+{% endblock scripts %}

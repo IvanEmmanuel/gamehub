@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
 
-from ..models import Game, Trailer, Screenshot, Achievement, Soundtrack
+from ..models import Game, Trailer, Screenshot, Achievement, Soundtrack, DLC
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from ..forms import TrailerForm, ScreenshotForm, AchievementForm, SoundtrackForm
+from ..forms import TrailerForm, ScreenshotForm, AchievementForm, SoundtrackForm, DLCForm
 from django.urls import reverse, reverse_lazy
 from django.http import JsonResponse
 from django.db import transaction
@@ -535,10 +535,7 @@ class GameSoundtrackDeleteView(ModerationRequiredMixin, DeleteView):
             kwargs={"pk": self.kwargs["pk"]}
         )
         
-class GameSoundtrackReorderView(
-    ModerationRequiredMixin,
-    View
-):
+class GameSoundtrackReorderView(ModerationRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
 
@@ -579,3 +576,155 @@ class GameSoundtrackReorderView(
             "success": True
         })
         
+class GameDLCListView(ModerationRequiredMixin, ListView):
+
+    model = DLC
+    template_name = "games/management/dlcs/dlc_list.html"
+    context_object_name = "dlcs"
+
+    def get_queryset(self):
+
+        return DLC.objects.filter(
+            game_id=self.kwargs["pk"]
+        )
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        context["game"] = get_object_or_404(
+            Game,
+            pk=self.kwargs["pk"]
+        )
+
+        return context
+    
+class GameDLCCreateView(ModerationRequiredMixin, CreateView):
+
+    model = DLC
+    form_class = DLCForm
+
+    def form_valid(self, form):
+
+        form.instance.game_id = self.kwargs["pk"]
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_dlc_list",
+            kwargs={"pk": self.kwargs["pk"]}
+        )
+        
+class GameDLCUpdateView(ModerationRequiredMixin, UpdateView):
+
+    model = DLC
+    form_class = DLCForm
+
+    def get_object(self, queryset=None):
+
+        return get_object_or_404(
+            DLC,
+            id=self.kwargs["dlc_id"],
+            game_id=self.kwargs["pk"]
+        )
+
+    def get(self, request, *args, **kwargs):
+
+        self.object = self.get_object()
+
+        return JsonResponse({
+            "id": self.object.id,
+            "title": self.object.title,
+            "description": self.object.description,
+            "type": self.object.type,
+            "cover": (
+                self.object.cover.url
+                if self.object.cover
+                else ""
+            ),
+            "release_date": (
+                self.object.release_date.isoformat()
+                if self.object.release_date
+                else ""
+            ),
+            "purchase_url": self.object.purchase_url,
+        })
+
+    def form_valid(self, form):
+
+        if not form.cleaned_data.get("cover"):
+
+            form.instance.cover = self.get_object().cover
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_dlc_list",
+            kwargs={
+                "pk": self.kwargs["pk"]
+            }
+        )
+        
+class GameDLCDeleteView(ModerationRequiredMixin, DeleteView):
+
+    model = DLC
+
+    def get_object(self, queryset=None):
+
+        return get_object_or_404(
+            DLC,
+            id=self.kwargs["dlc_id"],
+            game_id=self.kwargs["pk"]
+        )
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_dlc_list",
+            kwargs={
+                "pk": self.kwargs["pk"]
+            }
+        )
+        
+class GameDLCReorderView(ModerationRequiredMixin, View):
+
+    def post(self, request, *args, **kwargs):
+
+        game_id = kwargs["pk"]
+
+        dlc_ids = request.POST.getlist(
+            "dlc_ids[]"
+        )
+
+        dlcs = DLC.objects.filter(
+            game_id=game_id,
+            id__in=dlc_ids
+        )
+
+        dlcs_by_id = {
+            str(dlc.id): dlc
+            for dlc in dlcs
+        }
+
+        for index, dlc_id in enumerate(
+            dlc_ids,
+            start=1
+        ):
+
+            dlc = dlcs_by_id.get(dlc_id)
+
+            if dlc:
+
+                dlc.display_order = index
+
+                dlc.save(
+                    update_fields=["display_order"]
+                )
+
+        return JsonResponse({
+            "success": True
+        })

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import (Game, Genre, Trailer, Screenshot, Achievement, Soundtrack)
+from .models import (Game, Genre, Trailer, Screenshot, Achievement, Soundtrack, DLC)
 
 
 class GameForm(forms.ModelForm):
@@ -288,5 +288,75 @@ class SoundtrackForm(forms.ModelForm):
             "artist": "Artista",
             "spotify_url": "Spotify",
             "youtube_url": "YouTube",
+        }
+        
+class DLCForm(forms.ModelForm):
+
+    class Meta:
+
+        model = DLC
+
+        fields = [
+            "title",
+            "description",
+            "type",
+            "cover",
+            "release_date",
+            "purchase_url",
+        ]
+
+        widgets = {
+
+            "title": forms.TextInput(
+                attrs={
+                    "placeholder": "Ej. Halo Infinite: Campaign Expansion",
+                    "class": "form-control",
+                }
+            ),
+
+            "description": forms.Textarea(
+                attrs={
+                    "rows": 4,
+                    "placeholder": "Describe el contenido de este DLC...",
+                    "class": "form-control",
+                }
+            ),
+
+            "type": forms.Select(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+
+            "cover": forms.FileInput(
+                attrs={
+                    "accept": "image/*",
+                    "class": "form-control",
+                }
+            ),
+
+            "release_date": forms.DateInput(
+                attrs={
+                    "type": "date",
+                    "class": "form-control",
+                }
+            ),
+
+            "purchase_url": forms.URLInput(
+                attrs={
+                    "placeholder": "https://...",
+                    "class": "form-control",
+                }
+            ),
+
+        }
+
+        labels = {
+            "title": "Título",
+            "description": "Descripción",
+            "type": "Tipo",
+            "cover": "Portada",
+            "release_date": "Fecha de lanzamiento",
+            "purchase_url": "Enlace de compra",
         }
         

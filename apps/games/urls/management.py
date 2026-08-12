@@ -3,7 +3,8 @@ from ..views.management import ( GameManageView, GameTrailerListView, GameTraile
                                 GameTrailerDeleteView, GameTrailerReorderView, GameScreenshotListView, GameScreenshotReorderView,
                                 GameScreenshotCreateView, GameScreenshotUpdateView, GameScreenshotDeleteView, GameAchievementListView,
                                 GameAchievementCreateView, GameAchievementUpdateView, GameAchievementDeleteView, GameAchievementReorderView,
-                                GameSoundtrackListView,GameSoundtrackCreateView, GameSoundtrackUpdateView,GameSoundtrackDeleteView, GameSoundtrackReorderView
+                                GameSoundtrackListView,GameSoundtrackCreateView, GameSoundtrackUpdateView,GameSoundtrackDeleteView, GameSoundtrackReorderView,
+                                GameDLCListView, GameDLCCreateView, GameDLCUpdateView, GameDLCDeleteView,GameDLCReorderView
                                 )
 
 
@@ -32,4 +33,9 @@ urlpatterns = [
     path("games/<int:pk>/soundtrack/<int:soundtrack_id>/edit/", GameSoundtrackUpdateView.as_view(), name="game_soundtrack_update",),
     path("games/<int:pk>/soundtrack/<int:soundtrack_id>/delete/", GameSoundtrackDeleteView.as_view(), name="game_soundtrack_delete",),
     path("games/<int:pk>/soundtrack/reorder/", GameSoundtrackReorderView.as_view(), name="game_soundtrack_reorder",),
+    path("games/<int:pk>/dlcs/", GameDLCListView.as_view(), name="game_dlc_list",),
+    path("games/<int:pk>/dlcs/create/", GameDLCCreateView.as_view(), name="game_dlc_create",),
+    path("games/<int:pk>/dlcs/<int:dlc_id>/edit/", GameDLCUpdateView.as_view(), name="game_dlc_update",),
+    path("games/<int:pk>/dlcs/<int:dlc_id>/delete/", GameDLCDeleteView.as_view(), name="game_dlc_delete",),
+    path("games/<int:pk>/dlcs/reorder/", GameDLCReorderView.as_view(), name="game_dlc_reorder",),
 ]

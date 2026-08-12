@@ -1,0 +1,541 @@
+/* =========================================================
+   DLC
+========================================================= */
+
+.dlc-page {
+    padding:150px 100px 0px 100px;
+
+    width:100%;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.dlc-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.dlc-title {
+    display:flex;
+
+    flex-direction:column;
+}
+
+.dlc-heading {
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    margin-top:20px;
+}
+
+.game-mini-cover {
+    width: 58px;
+    height: 78px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #181b25;
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.game-mini-cover img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.dlc-heading h1 {
+    margin:0;
+
+    font-size:2.4rem;
+
+    color:#ffffff;
+}
+
+.dlc-heading p {
+    margin:6px 0 0;
+
+    color:#9ca3af;
+
+    font-size:2rem;
+}
+
+.dlc-description {
+    margin:18px 0 0;
+
+    color:#9ca3af;
+
+    font-size:1.1rem;
+}
+
+
+/* =========================================================
+   ADD BUTTON
+========================================================= */
+
+.btn-add-dlc {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 11px 18px;
+
+    border: 0;
+    border-radius: 9px;
+
+    background: #7b5cff;
+    color: #fff;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    transition: .2s;
+}
+
+.btn-add-dlc:hover {
+    background: #6848e8;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   LIST
+========================================================= */
+
+.dlcs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+
+/* =========================================================
+   DLC ITEM
+========================================================= */
+
+.dlc-item {
+    display: grid;
+
+    grid-template-columns:
+        30px
+        92px
+        minmax(0, 1fr)
+        auto
+        auto;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 18px 20px;
+
+    background: #1b1d2b;
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    border-radius: 14px;
+
+    transition: .2s;
+}
+
+.dlc-item:hover {
+    border-color: rgba(123,92,255,.35);
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   DRAG HANDLE
+========================================================= */
+
+.dlc-drag-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #626a7d;
+
+    cursor: grab;
+}
+
+.dlc-drag-handle:active {
+    cursor: grabbing;
+}
+
+
+/* =========================================================
+   COVER
+========================================================= */
+
+.dlc-cover {
+    width: 92px;
+    height: 118px;
+
+    overflow: hidden;
+
+    border-radius: 9px;
+
+    background: #181b25;
+
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.dlc-cover img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   INFORMATION
+========================================================= */
+
+.dlc-info {
+    min-width: 0;
+}
+
+.dlc-info h3 {
+    margin: 0 0 7px;
+
+    color: #fff;
+
+    font-size: 1rem;
+
+    font-weight: 600;
+}
+
+.dlc-info > p {
+    max-width: 700px;
+
+    margin: 0 0 12px;
+
+    color: #8b93a7;
+
+    font-size: .85rem;
+
+    line-height: 1.5;
+
+    display: -webkit-box;
+    /* -webkit-line-clamp: 2; */
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+.dlc-info .no-description {
+    color: #626a7d;
+    font-style: italic;
+}
+
+
+/* =========================================================
+   META
+========================================================= */
+
+.dlc-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+/* TYPE */
+
+.dlc-type {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 6px 9px;
+
+    border-radius: 7px;
+
+    background: rgba(123,92,255,.09);
+
+    color: #b7a4ff;
+
+    font-size: .75rem;
+
+    font-weight: 600;
+}
+
+
+/* DATE */
+
+.dlc-release-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    color: #8b93a7;
+
+    font-size: .76rem;
+}
+
+
+/* =========================================================
+   PURCHASE
+========================================================= */
+
+.dlc-purchase {
+    white-space: nowrap;
+}
+
+.btn-dlc-purchase {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 9px 12px;
+
+    border-radius: 8px;
+
+    background: rgba(123,92,255,.08);
+
+    color: #b7a4ff;
+
+    text-decoration: none;
+
+    font-size: .78rem;
+
+    font-weight: 600;
+
+    transition: .2s;
+}
+
+.btn-dlc-purchase:hover {
+    background: rgba(123,92,255,.15);
+    color: #fff;
+}
+
+.no-purchase {
+    color: #626a7d;
+    font-size: .76rem;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.dlc-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-edit-dlc,
+.btn-delete-dlc {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 8px 11px;
+
+    border-radius: 8px;
+
+    font-size: .8rem;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+/* EDIT */
+
+.btn-edit-dlc {
+    border: 1px solid rgba(255,255,255,.08);
+
+    background: #181b25;
+
+    color: #cbd0dc;
+}
+
+.btn-edit-dlc:hover {
+    border-color: rgba(123,92,255,.45);
+    color: #fff;
+}
+
+
+/* DELETE */
+
+.btn-delete-dlc {
+    border: 1px solid rgba(255,80,80,.12);
+
+    background: rgba(255,80,80,.05);
+
+    color: #ff7b7b;
+}
+
+.btn-delete-dlc:hover {
+    background: rgba(255,80,80,.10);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-dlcs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 320px;
+
+    padding: 40px;
+
+    background: #1b1d2b;
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    border-radius: 16px;
+
+    text-align: center;
+}
+
+.empty-dlcs .empty-icon {
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 14px;
+
+    background: rgba(123,92,255,.08);
+
+    color: #b7a4ff;
+
+    font-size: 1.6rem;
+}
+
+.empty-dlcs h3 {
+    margin: 0 0 8px;
+
+    color: #fff;
+}
+
+.empty-dlcs p {
+    margin: 0 0 20px;
+
+    color: #8b93a7;
+}
+
+
+/* =========================================================
+   DRAGGING
+========================================================= */
+
+.dlc-item.dragging {
+    opacity: .45;
+
+    border-color: #7b5cff;
+
+    transform: scale(.99);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1200px) {
+
+    .dlc-item {
+        grid-template-columns:
+            30px
+            92px
+            minmax(0, 1fr)
+            auto;
+    }
+
+    .dlc-purchase {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .dlc-item {
+        grid-template-columns:
+            30px
+            80px
+            minmax(0, 1fr);
+
+        gap: 14px;
+    }
+
+    .dlc-cover {
+        width: 80px;
+        height: 105px;
+    }
+
+    .dlc-actions {
+        grid-column: 2 / -1;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .dlc-page {
+        padding: 20px;
+    }
+
+    .dlc-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-add-dlc {
+        width: 100%;
+    }
+
+    .dlc-item {
+        grid-template-columns:
+            30px
+            70px
+            minmax(0, 1fr);
+
+        padding: 15px;
+    }
+
+    .dlc-cover {
+        width: 70px;
+        height: 92px;
+    }
+
+    .dlc-actions {
+        grid-column: 2 / -1;
+    }
+
+}
