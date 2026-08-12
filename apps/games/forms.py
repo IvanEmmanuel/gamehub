@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Game, Genre, Trailer, Screenshot
+from .models import (Game, Genre, Trailer, Screenshot, Achievement)
 
 
 class GameForm(forms.ModelForm):
@@ -186,4 +186,55 @@ class ScreenshotForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         self.fields["image"].required = False
+        
+class AchievementForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Achievement
+
+        fields = [
+            "title",
+            "description",
+            "icon",
+            "is_hidden",
+        ]
+
+        widgets = {
+
+            "title": forms.TextInput(
+                attrs={
+                    "placeholder": "Ej. Completa la campaña",
+                    "class": "form-control",
+                }
+            ),
+
+            "description": forms.Textarea(
+                attrs={
+                    "rows": 4,
+                    "placeholder": "Describe cómo obtener este logro...",
+                    "class": "form-control",
+                }
+            ),
+
+            "icon": forms.FileInput(
+                attrs={
+                    "accept": "image/*",
+                }
+            ),
+
+            "is_hidden": forms.CheckboxInput(
+                attrs={
+                    "class": "form-check-input",
+                }
+            ),
+
+        }
+
+        labels = {
+            "title": "Título",
+            "description": "Descripción",
+            "icon": "Icono",
+            "is_hidden": "Logro oculto",
+        }
         

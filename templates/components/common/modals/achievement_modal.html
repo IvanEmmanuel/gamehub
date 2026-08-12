@@ -1,0 +1,142 @@
+<div class="modal-overlay" id="achievement-modal" style="display: none;">
+
+    <div class="modal-card achievement-modal-card">
+
+        <!-- =========================================
+             HEADER
+        ========================================== -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3 id="achievement-modal-title">
+                    Agregar logro
+                </h3>
+
+                <p>
+                    Agrega un nuevo logro para este juego.
+                </p>
+
+            </div>
+
+            <button type="button" class="modal-close" id="close-achievement-modal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- =========================================
+             FORMULARIO
+        ========================================== -->
+
+        <form method="POST" action="{% url 'management:game_achievement_create' game.pk %}" enctype="multipart/form-data" id="achievement-form">
+
+            {% csrf_token %}
+
+
+            <!-- TÍTULO -->
+
+            <div class="form-group">
+
+                <label for="id_title">
+                    Título
+                </label>
+
+                <input type="text" name="title" id="id_title" class="form-control" placeholder="Ej. Completa la campaña" required>
+
+            </div>
+
+
+            <!-- DESCRIPCIÓN -->
+
+            <div class="form-group">
+
+                <label for="id_description">
+                    Descripción
+                </label>
+
+                <textarea name="description" id="id_description" class="form-control" rows="4" placeholder="Describe cómo obtener este logro..." required></textarea>
+
+            </div>
+
+
+            <!-- ICONO -->
+
+            <div class="form-group">
+
+                <label for="id_icon">
+                    Icono
+                </label>
+
+                <input type="file" name="icon" id="id_icon" class="form-control" accept="image/*">
+
+                <small class="form-help">
+                    Opcional. Selecciona una imagen para representar el logro.
+                </small>
+
+            </div>
+
+
+            <!-- PREVIEW -->
+
+            <div class="achievement-icon-preview" id="achievement-icon-preview">
+
+                <img id="achievement-preview-image" src="" alt="Vista previa">
+
+            </div>
+
+
+            <!-- LOGRO OCULTO -->
+
+            <div class="form-check achievement-hidden-check">
+
+                <input type="checkbox" name="is_hidden" id="id_is_hidden" class="form-check-input">
+
+                <label for="id_is_hidden" class="form-check-label">
+
+                    Logro oculto
+
+                </label>
+
+            </div>
+
+
+            <!-- ERRORES -->
+
+            <div class="form-errors" id="achievement-form-errors"></div>
+
+
+            <!-- =========================================
+                 ACCIONES
+            ========================================== -->
+
+            <div class="modal-actions">
+
+                <button type="button" class="btn-modal-cancel" id="cancel-achievement-modal">
+
+                    Cancelar
+
+                </button>
+
+
+                <button type="submit" class="btn-modal-submit" id="achievement-modal-submit">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    <span>
+                        Guardar logro
+                    </span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

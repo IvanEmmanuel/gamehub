@@ -18,6 +18,7 @@
 
     {% url 'management:game_trailer_list' game.pk as trailer_url %}
     {% url 'management:game_screenshot_list' game.pk as screenshot_url %}
+    {% url 'management:game_achievement_list' game.pk as achievement_url %}
 
     <div class="content-grid">
 
@@ -25,7 +26,7 @@
 
         {% include "components/common/cards/content_card.html" with icon="fa-solid fa-image" icon_class="green" title="Screenshots" description="Administra las capturas del juego." count=game.screenshots.count url=screenshot_url %}
 
-        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-trophy" icon_class="yellow" title="Logros" description="Administra los logros." count=game.achievements.count url="#" %}
+        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-trophy" icon_class="yellow" title="Logros" description="Administra los logros." count=game.achievements.count url=achievement_url %}
 
         {% include "components/common/cards/content_card.html" with icon="fa-solid fa-music" icon_class="purple" title="Soundtrack" description="Administra el soundtrack del juego." count=game.soundtracks.count url="#" %}
 

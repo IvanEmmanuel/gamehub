@@ -1,7 +1,8 @@
 from django.urls import path
 from ..views.management import ( GameManageView, GameTrailerListView, GameTrailerCreateView, GameTrailerUpdateView, 
                                 GameTrailerDeleteView, GameTrailerReorderView, GameScreenshotListView, GameScreenshotReorderView,
-                                GameScreenshotCreateView, GameScreenshotUpdateView, GameScreenshotDeleteView
+                                GameScreenshotCreateView, GameScreenshotUpdateView, GameScreenshotDeleteView, GameAchievementListView,
+                                GameAchievementCreateView, GameAchievementUpdateView, GameAchievementDeleteView, GameAchievementReorderView
                                 )
 
 
@@ -20,4 +21,9 @@ urlpatterns = [
     path("games/<int:pk>/screenshots/create/", GameScreenshotCreateView.as_view(), name="game_screenshot_create",),
     path("games/<int:pk>/screenshots/<int:screenshot_id>/edit/", GameScreenshotUpdateView.as_view(), name="game_screenshot_update",),
     path("games/<int:pk>/screenshots/<int:screenshot_id>/delete/", GameScreenshotDeleteView.as_view(), name="game_screenshot_delete",),
+    path("games/<int:pk>/achievements/", GameAchievementListView.as_view(), name="game_achievement_list",),
+    path("games/<int:pk>/achievements/create/", GameAchievementCreateView.as_view(), name="game_achievement_create",),
+    path("games/<int:pk>/achievements/<int:achievement_id>/edit/", GameAchievementUpdateView.as_view(), name="game_achievement_update",),
+    path("games/<int:pk>/achievements/<int:achievement_id>/delete/", GameAchievementDeleteView.as_view(), name="game_achievement_delete",),
+    path("games/<int:pk>/achievements/reorder/", GameAchievementReorderView.as_view(), name="game_achievement_reorder",),
 ]

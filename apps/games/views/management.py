@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
 
-from ..models import Game, Trailer, Screenshot
+from ..models import Game, Trailer, Screenshot, Achievement
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from ..forms import TrailerForm, ScreenshotForm
+from ..forms import TrailerForm, ScreenshotForm, AchievementForm
 from django.urls import reverse, reverse_lazy
 from django.http import JsonResponse
 from django.db import transaction
@@ -305,4 +305,141 @@ class GameScreenshotDeleteView(ModerationRequiredMixin, DeleteView):
             "management:game_screenshot_list",
             kwargs={"pk": self.kwargs["pk"]}
         )
+        
+class GameAchievementListView(ModerationRequiredMixin, ListView):
+
+    model = Achievement
+    template_name = "games/management/achievements/achievement_list.html"
+    context_object_name = "achievements"
+
+    def get_queryset(self):
+
+        return Achievement.objects.filter(
+            game_id=self.kwargs["pk"]
+        )
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        context["game"] = get_object_or_404(
+            Game,
+            pk=self.kwargs["pk"]
+        )
+
+        return context
+    
+class GameAchievementCreateView(ModerationRequiredMixin, CreateView):
+
+    model = Achievement
+    form_class = AchievementForm
+
+    def form_valid(self, form):
+
+        form.instance.game_id = self.kwargs["pk"]
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_achievement_list",
+            kwargs={"pk": self.kwargs["pk"]}
+        )
+        
+class GameAchievementUpdateView(ModerationRequiredMixin, UpdateView):
+
+    model = Achievement
+    form_class = AchievementForm
+
+    def get_object(self, queryset=None):
+
+        return get_object_or_404(
+            Achievement,
+            id=self.kwargs["achievement_id"],
+            game_id=self.kwargs["pk"]
+        )
+
+    def get(self, request, *args, **kwargs):
+
+        self.object = self.get_object()
+
+        return JsonResponse({
+            "id": self.object.id,
+            "title": self.object.title,
+            "description": self.object.description,
+            "icon": (
+                self.object.icon.url
+                if self.object.icon
+                else ""
+            ),
+            "is_hidden": self.object.is_hidden,
+        })
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_achievement_list",
+            kwargs={"pk": self.kwargs["pk"]}
+        )
+        
+class GameAchievementDeleteView(ModerationRequiredMixin, DeleteView):
+
+    model = Achievement
+
+    def get_object(self, queryset=None):
+
+        return get_object_or_404(
+            Achievement,
+            id=self.kwargs["achievement_id"],
+            game_id=self.kwargs["pk"]
+        )
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_achievement_list",
+            kwargs={"pk": self.kwargs["pk"]}
+        )
+    
+class GameAchievementReorderView(ModerationRequiredMixin, View):
+
+    def post(self, request, *args, **kwargs):
+
+        game_id = kwargs["pk"]
+
+        achievement_ids = request.POST.getlist(
+            "achievement_ids[]"
+        )
+
+        achievements = Achievement.objects.filter(
+            game_id=game_id,
+            id__in=achievement_ids
+        )
+
+        achievements_by_id = {
+            str(achievement.id): achievement
+            for achievement in achievements
+        }
+
+        for index, achievement_id in enumerate(
+            achievement_ids,
+            start=1
+        ):
+
+            achievement = achievements_by_id.get(
+                achievement_id
+            )
+
+            if achievement:
+
+                achievement.display_order = index
+
+                achievement.save(
+                    update_fields=["display_order"]
+                )
+
+        return JsonResponse({
+            "success": True
+        })
         
