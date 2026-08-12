@@ -1,0 +1,120 @@
+<div class="modal-overlay" id="trailer-modal">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3 id="trailer-modal-title">
+
+                    Agregar tráiler
+
+                </h3>
+
+                <input type="hidden" id="trailer-id" name="trailer_id">
+
+                <p>
+
+                    Agrega un nuevo tráiler para {{ game.name }}.
+
+                </p>
+
+            </div>
+
+            <button type="button" class="modal-close" id="close-trailer-modal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form method="POST" action="" id="trailer-form" data-create-url="{% url 'management:game_trailer_create' game.pk %}">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label for="{{ trailer_form.title.id_for_label }}">
+
+                    Título
+
+                </label>
+
+                {{ trailer_form.title }}
+
+                {% if trailer_form.title.errors %}
+
+                    <div class="form-error">
+
+                        {{ trailer_form.title.errors }}
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="{{ trailer_form.youtube_url.id_for_label }}">
+
+                    URL de YouTube
+
+                </label>
+
+                {{ trailer_form.youtube_url }}
+
+                {% if trailer_form.youtube_url.errors %}
+
+                    <div class="form-error">
+
+                        {{ trailer_form.youtube_url.errors }}
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="form-check">
+
+                {{ trailer_form.is_official }}
+
+                <label for="{{ trailer_form.is_official.id_for_label }}">
+
+                    Tráiler oficial
+
+                </label>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button type="button" class="btn-modal-cancel" id="cancel-trailer-modal">
+
+                    Cancelar
+
+                </button>
+
+                <button type="submit" class="btn-modal-save" id="trailer-modal-submit">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    <span>Guardar tráiler</span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

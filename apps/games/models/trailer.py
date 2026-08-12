@@ -38,8 +38,8 @@ class Trailer(models.Model):
 
         super().save(*args, **kwargs)
 
-        def __str__(self):
-            return f"{self.game.name} - {self.title}"
+    def __str__(self):
+        return f"{self.game.name} - {self.title}"
 
 
     @property

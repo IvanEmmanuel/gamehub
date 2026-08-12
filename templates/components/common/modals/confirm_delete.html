@@ -15,7 +15,7 @@
         <p>
 
             ¿Estás seguro de eliminar
-            <strong id="deleteGameName"></strong>?
+            <strong id="deleteItemName"></strong>?
 
         </p>
 
@@ -25,25 +25,15 @@
 
         </p>
 
-        <form
-            method="post"
-            id="deleteForm"
-        >
+        <form method="post" id="deleteForm">
 
             {% csrf_token %}
 
-            <button
-                type="button"
-                id="cancelDelete"
-                class="modal-cancel"
-            >
+            <button type="button" id="cancelDelete" class="modal-cancel">
                 Cancelar
             </button>
 
-            <button
-                type="submit"
-                class="modal-delete"
-            >
+            <button type="submit" class="modal-delete">
                 Eliminar
 
             </button>

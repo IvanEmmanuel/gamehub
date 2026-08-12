@@ -1,11 +1,13 @@
 console.log("Delete modal cargado");
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const modal = document.getElementById("deleteModal");
 
-    const gameName = document.getElementById("deleteGameName");
+    const itemName = document.getElementById("deleteItemName");
 
     const deleteForm = document.getElementById("deleteForm");
+
 
     document.querySelectorAll(".open-delete-modal").forEach(button => {
 
@@ -15,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             console.log("Click en eliminar");
 
-            gameName.textContent = button.dataset.gameName;
+            itemName.textContent = button.dataset.itemName;
 
             deleteForm.action = button.dataset.deleteUrl;
 
@@ -24,6 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     });
+
 
     document.getElementById("cancelDelete").addEventListener("click", () => {
 

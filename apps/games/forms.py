@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Game, Genre
+from .models import Game, Genre, Trailer
 
 
 class GameForm(forms.ModelForm):
@@ -116,4 +116,40 @@ class GameForm(forms.ModelForm):
                     "class": "form-control",
                 }
             ),
+        }
+        
+class TrailerForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Trailer
+
+        fields = [
+            "title",
+            "youtube_url",
+            "is_official",
+        ]
+
+        widgets = {
+
+            "title": forms.TextInput(
+                attrs={
+                    "placeholder": "Ej. Halo Infinite Official Campaign Trailer",
+                    "class": "form-control",
+                }
+            ),
+
+            "youtube_url": forms.URLInput(
+                attrs={
+                    "placeholder": "https://www.youtube.com/watch?v=...",
+                    "class": "form-control",
+                }
+            ),
+
+            "is_official": forms.CheckboxInput(
+                attrs={
+                    "class": "form-check-input",
+                }
+            ),
+
         }
