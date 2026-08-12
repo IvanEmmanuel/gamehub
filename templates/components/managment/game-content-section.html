@@ -16,11 +16,14 @@
 
     </div>
 
+    {% url 'management:game_trailer_list' game.pk as trailer_url %}
+    {% url 'management:game_screenshot_list' game.pk as screenshot_url %}
+
     <div class="content-grid">
 
-        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-film" icon_class="red" title="Trailers" description="Administra los videos oficiales del juego." count=game.trailers.count url="#" %}
+        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-film" icon_class="red" title="Trailers" description="Administra los videos oficiales del juego." count=game.trailers.count url=trailer_url %}
 
-        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-image" icon_class="green" title="Screenshots" description="Administra las capturas del juego." count=game.screenshots.count url="#" %}
+        {% include "components/common/cards/content_card.html" with icon="fa-solid fa-image" icon_class="green" title="Screenshots" description="Administra las capturas del juego." count=game.screenshots.count url=screenshot_url %}
 
         {% include "components/common/cards/content_card.html" with icon="fa-solid fa-trophy" icon_class="yellow" title="Logros" description="Administra los logros." count=game.achievements.count url="#" %}
 

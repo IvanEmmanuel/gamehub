@@ -1,5 +1,10 @@
 from django.urls import path
-from ..views.management import GameManageView, GameTrailerListView, GameTrailerCreateView, GameTrailerUpdateView, GameTrailerDeleteView, GameTrailerReorderView
+from ..views.management import ( GameManageView, GameTrailerListView, GameTrailerCreateView, GameTrailerUpdateView, 
+                                GameTrailerDeleteView, GameTrailerReorderView, GameScreenshotListView, GameScreenshotReorderView,
+                                GameScreenshotCreateView, GameScreenshotUpdateView, GameScreenshotDeleteView
+                                )
+
+
 
 app_name = "management"
 
@@ -10,4 +15,9 @@ urlpatterns = [
     path("games/<int:pk>/trailers/<int:trailer_id>/edit/", GameTrailerUpdateView.as_view(), name="game_trailer_update",),
     path("games/<int:pk>/trailers/<int:trailer_id>/delete/", GameTrailerDeleteView.as_view(), name="game_trailer_delete",),
     path("games/<int:pk>/trailers/reorder/", GameTrailerReorderView.as_view(), name="game_trailer_reorder",),
+    path("games/<int:pk>/screenshots/", GameScreenshotListView.as_view(), name="game_screenshot_list",),
+    path("games/<int:pk>/screenshots/reorder/", GameScreenshotReorderView.as_view(), name="game_screenshot_reorder",),
+    path("games/<int:pk>/screenshots/create/", GameScreenshotCreateView.as_view(), name="game_screenshot_create",),
+    path("games/<int:pk>/screenshots/<int:screenshot_id>/edit/", GameScreenshotUpdateView.as_view(), name="game_screenshot_update",),
+    path("games/<int:pk>/screenshots/<int:screenshot_id>/delete/", GameScreenshotDeleteView.as_view(), name="game_screenshot_delete",),
 ]

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Game, Genre, Trailer
+from .models import Game, Genre, Trailer, Screenshot
 
 
 class GameForm(forms.ModelForm):
@@ -153,3 +153,37 @@ class TrailerForm(forms.ModelForm):
             ),
 
         }
+        
+class ScreenshotForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Screenshot
+
+        fields = [
+            "title",
+            "image",
+        ]
+
+        widgets = {
+
+            "title": forms.TextInput(
+                attrs={
+                    "placeholder": "Ej. Master Chief en Zeta Halo",
+                    "class": "form-control",
+                }
+            ),
+
+            "image": forms.FileInput(
+                attrs={
+                    "accept": "image/*",
+                }
+            ),
+
+        }
+    def __init__(self, *args, **kwargs):
+
+        super().__init__(*args, **kwargs)
+
+        self.fields["image"].required = False
+        

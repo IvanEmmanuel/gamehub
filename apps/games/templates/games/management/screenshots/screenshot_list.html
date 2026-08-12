@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}NexusPlay | Screenshots {% endblock title %}
+
+{% block custom_styles %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/screenshot.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/trailer.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+{% endblock custom_styles %}
+
+
+{% block content %}
+
+<div class="screenshots-container">
+
+    <!-- ========================================
+         HEADER
+    ======================================== -->
+
+    <div class="screenshots-header">
+
+        <div class="screenshots-title">
+
+            <a href="{% url 'management:game_manage' game.pk %}" class="back-link">
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Volver a administrar {{ game.name }}
+
+            </a>
+
+
+            <div class="screenshots-heading">
+
+                <div class="game-mini-cover">
+
+                    {% if game.cover %}
+
+                        <img src="{{ game.cover.url }}" alt="{{ game.name }}">
+
+                    {% endif %}
+
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        Screenshots
+                    </h1>
+
+                    <p>
+                        {{ game.name }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <p class="screenshots-description">
+
+                Gestiona todas las screenshots de este juego.
+
+            </p>
+
+        </div>
+
+
+        <button type="button" class="btn-add-screenshot" id="open-screenshot-modal">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Agregar screenshot
+
+        </button>
+
+    </div>
+
+
+    <!-- ========================================
+         GALERÍA
+    ======================================== -->
+
+    <div class="screenshots-list" data-drag-drop data-game-id="{{ game.pk }}" data-drag-url="{% url 'management:game_screenshot_reorder' game.pk %}" data-drag-parameter="screenshot_ids[]">
+
+        {% for screenshot in game.screenshots.all %}
+
+            <div class="screenshot-item" data-drag-item data-drag-id="{{ screenshot.id }}" draggable="true">
+
+                <!-- Drag handle -->
+
+                <div class="screenshot-drag">
+
+                    <i class="fa-solid fa-grip-vertical"></i>
+
+                </div>
+
+
+                <!-- Imagen -->
+
+                <div class="screenshot-image">
+
+                    <img src="{{ screenshot.image.url }}" alt="{{ screenshot.title|default:'Screenshot' }}">
+
+                </div>
+
+
+                <!-- Información -->
+
+                <div class="screenshot-info">
+
+                    <h3>
+
+                        {{ screenshot.title|default:"Screenshot sin título" }}
+
+                    </h3>
+
+
+                    <span>
+
+                        <i class="fa-regular fa-calendar"></i>
+
+                        Agregado el
+                        {{ screenshot.created_at|date:"d/m/Y" }}
+
+                    </span>
+
+                </div>
+
+
+                <!-- Acciones -->
+
+                <div class="screenshot-actions">
+
+                    <button type="button" class="btn-edit-screenshot" data-screenshot-id="{{ screenshot.id }}">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        Editar
+
+                    </button>
+
+
+                    <button type="button" class="btn-delete-screenshot open-delete-modal" data-game-name="{{ screenshot.title|default:'Screenshot' }}" data-delete-url="{% url 'management:game_screenshot_delete' game.pk screenshot.id %}">
+                        
+                        <i class="fa-solid fa-trash"></i>
+                        
+                        Eliminar
+                    
+                    </button>
+
+                </div>
+
+            </div>
+
+        {% empty %}
+
+            <div class="screenshots-empty">
+
+                <i class="fa-regular fa-images"></i>
+
+                <h3>
+
+                    No hay screenshots
+
+                </h3>
+
+                <p>
+
+                    Agrega la primera screenshot de este juego.
+
+                </p>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- ========================================
+         AYUDA DRAG & DROP
+    ======================================== -->
+
+    {% if game.screenshots.exists %}
+
+        <div class="drag-drop-help">
+
+            <i class="fa-solid fa-grip-vertical"></i>
+
+            Arrastra y suelta para reordenar las screenshots.
+
+        </div>
+
+    {% endif %}
+
+
+</div>
+
+{% include "components/common/modals/screenshot_modal.html" %}
+
+{% include "components/common/modals/confirm_delete.html" %}
+
+{% endblock content %}
+  
+
+{% block scripts %}
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+
+  <script src="{% static 'assets/js/isotope.min.js'%}"></script>
+  <script src="{% static 'assets/js/owl-carousel.js'%}"></script>
+  <script src="{% static 'assets/js/tabs.js'%}"></script>
+  <script src="{% static 'assets/js/popup.js'%}"></script>
+  <script src="{% static 'assets/js/custom.js'%}"></script>
+
+  <script src="{% static 'assets/js/delete-modal.js'%}"></script>
+  <script src="{% static 'assets/js/screenshot-modal.js'%}"></script>
+  <script src="{% static 'assets/js/drag-and-drop.js'%}"></script>
+  
+{% endblock scripts %}

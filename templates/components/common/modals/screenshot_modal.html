@@ -1,0 +1,118 @@
+<div class="modal-overlay" id="screenshot-modal">
+
+    <div class="modal-card">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3 id="screenshot-modal-title">
+                    Agregar screenshot
+                </h3>
+
+                <p>
+                    Agrega una nueva screenshot para {{ game.name }}.
+                </p>
+
+            </div>
+
+            <button type="button" class="modal-close" id="close-screenshot-modal">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form method="POST" action="{% url 'management:game_screenshot_create' game.pk %}" enctype="multipart/form-data" id="screenshot-form">
+
+            {% csrf_token %}
+
+
+            <!-- TÍTULO -->
+
+            <div class="form-group">
+
+                <label for="{{ screenshot_form.title.id_for_label }}">
+
+                    Título
+
+                </label>
+
+                {{ screenshot_form.title }}
+
+                {% if screenshot_form.title.errors %}
+
+                    <div class="form-error">
+
+                        {{ screenshot_form.title.errors }}
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- IMAGEN -->
+
+            <div class="form-group">
+
+                <label for="{{ screenshot_form.image.id_for_label }}">
+
+                    Imagen
+
+                </label>
+
+                {{ screenshot_form.image }}
+
+                {% if screenshot_form.image.errors %}
+
+                    <div class="form-error">
+
+                        {{ screenshot_form.image.errors }}
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- PREVISUALIZACIÓN -->
+
+            <div class="screenshot-preview" id="screenshot-preview">
+
+                <img src="" alt="Vista previa" id="screenshot-preview-image">
+
+            </div>
+
+
+            <!-- ACCIONES -->
+
+            <div class="modal-actions">
+
+                <button type="button" class="btn-modal-cancel" id="cancel-screenshot-modal">
+
+                    Cancelar
+
+                </button>
+
+                <button type="submit" class="btn-modal-save" id="screenshot-modal-submit">
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    <span>
+                        Guardar screenshot
+                    </span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

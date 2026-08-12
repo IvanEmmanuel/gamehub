@@ -40,5 +40,5 @@ class Screenshot(models.Model):
 
         super().save(*args, **kwargs)
     
-        def __str__(self):
-            return f"{self.game.name} - {self.title or 'Screenshot'}"
+    def __str__(self):
+        return f"{self.game.name} - {self.title or 'Screenshot'}"
