@@ -4,7 +4,8 @@ from ..views.management import ( GameManageView, GameTrailerListView, GameTraile
                                 GameScreenshotCreateView, GameScreenshotUpdateView, GameScreenshotDeleteView, GameAchievementListView,
                                 GameAchievementCreateView, GameAchievementUpdateView, GameAchievementDeleteView, GameAchievementReorderView,
                                 GameSoundtrackListView,GameSoundtrackCreateView, GameSoundtrackUpdateView,GameSoundtrackDeleteView, GameSoundtrackReorderView,
-                                GameDLCListView, GameDLCCreateView, GameDLCUpdateView, GameDLCDeleteView,GameDLCReorderView
+                                GameDLCListView, GameDLCCreateView, GameDLCUpdateView, GameDLCDeleteView,GameDLCReorderView, GameGuideListView,
+                                GameGuideCreateView, GameGuideUpdateView, GameGuideDeleteView, GameGuideReorderView
                                 )
 
 
@@ -38,4 +39,9 @@ urlpatterns = [
     path("games/<int:pk>/dlcs/<int:dlc_id>/edit/", GameDLCUpdateView.as_view(), name="game_dlc_update",),
     path("games/<int:pk>/dlcs/<int:dlc_id>/delete/", GameDLCDeleteView.as_view(), name="game_dlc_delete",),
     path("games/<int:pk>/dlcs/reorder/", GameDLCReorderView.as_view(), name="game_dlc_reorder",),
+    path("games/<int:pk>/guides/", GameGuideListView.as_view(), name="game_guide_list",),
+    path("games/<int:pk>/guides/create/", GameGuideCreateView.as_view(), name="game_guide_create",),
+    path("games/<int:pk>/guides/<int:guide_id>/edit/", GameGuideUpdateView.as_view(), name="game_guide_update",),
+    path("games/<int:pk>/guides/<int:guide_id>/delete/", GameGuideDeleteView.as_view(), name="game_guide_delete",),
+    path("games/<int:pk>/guides/reorder/", GameGuideReorderView.as_view(), name="game_guide_reorder",),
 ]

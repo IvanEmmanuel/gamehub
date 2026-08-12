@@ -1,0 +1,385 @@
+/* =========================================================
+   GUIDE MODAL
+========================================================= */
+
+#guide-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, .70);
+
+    backdrop-filter: blur(4px);
+
+}
+
+
+/* =========================================================
+   MODAL CARD
+========================================================= */
+
+#guide-modal .guide-modal-card {
+
+    width: 100%;
+
+    max-width: 560px;
+
+    padding: 28px;
+
+    background: #1b1d2b;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    border-radius: 16px;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .45);
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+#guide-modal .modal-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+
+}
+
+#guide-modal .modal-header h3 {
+
+    margin: 0;
+
+    color: #fff;
+
+    font-size: 1.35rem;
+
+}
+
+#guide-modal .modal-header p {
+
+    margin: 6px 0 0;
+
+    color: #8b93a7;
+
+    font-size: .9rem;
+
+    line-height: 1.4;
+
+}
+
+
+/* =========================================================
+   CLOSE
+========================================================= */
+
+#guide-modal .modal-close {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 36px;
+
+    height: 36px;
+
+    flex-shrink: 0;
+
+    padding: 0;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    border-radius: 8px;
+
+    background: #181b25;
+
+    color: #9ca3af;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+#guide-modal .modal-close:hover {
+
+    color: #fff;
+
+    border-color: #7b5cff;
+
+}
+
+
+/* =========================================================
+   FORM GROUP
+========================================================= */
+
+#guide-modal .form-group {
+
+    margin-bottom: 20px;
+
+}
+
+#guide-modal .form-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #fff;
+
+    font-size: .9rem;
+
+    font-weight: 500;
+
+}
+
+
+/* =========================================================
+   INPUTS
+========================================================= */
+
+#guide-modal input[type="text"],
+#guide-modal input[type="url"],
+#guide-modal textarea,
+#guide-modal select {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    border: 1px solid rgba(255, 255, 255, .10);
+
+    border-radius: 9px;
+
+    background: #181b25;
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: .9rem;
+
+}
+
+#guide-modal textarea {
+
+    min-height: 100px;
+
+    resize: vertical;
+
+}
+
+#guide-modal input::placeholder,
+#guide-modal textarea::placeholder {
+
+    color: #626a7d;
+
+}
+
+
+/* =========================================================
+   SELECT
+========================================================= */
+
+#guide-modal select {
+
+    cursor: pointer;
+
+}
+
+#guide-modal select option {
+
+    background: #181b25;
+
+    color: #fff;
+
+}
+
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+#guide-modal input:focus,
+#guide-modal textarea:focus,
+#guide-modal select:focus {
+
+    outline: none;
+
+    border-color: #7b5cff;
+
+    box-shadow: 0 0 0 2px rgba(123, 92, 255, .10);
+
+}
+
+
+/* =========================================================
+   ERRORS
+========================================================= */
+
+#guide-modal .form-errors {
+
+    margin-top: 10px;
+
+    color: #ff7b7b;
+
+    font-size: .82rem;
+
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+#guide-modal .modal-actions {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+    padding-top: 20px;
+
+    margin-top: 5px;
+
+    border-top: 1px solid rgba(255, 255, 255, .06);
+
+}
+
+#guide-modal .btn-modal-cancel,
+#guide-modal .btn-modal-submit {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 18px;
+
+    border-radius: 9px;
+
+    font-family: inherit;
+
+    font-size: .85rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+
+/* CANCELAR */
+
+#guide-modal .btn-modal-cancel {
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    background: #181b25;
+
+    color: #d1d5db;
+
+}
+
+#guide-modal .btn-modal-cancel:hover {
+
+    border-color: rgba(255, 255, 255, .15);
+
+    color: #fff;
+
+}
+
+
+/* GUARDAR */
+
+#guide-modal .btn-modal-submit {
+
+    border: 0;
+
+    background: #7b5cff;
+
+    color: #fff;
+
+}
+
+#guide-modal .btn-modal-submit:hover {
+
+    background: #6848e8;
+
+}
+
+#guide-modal .btn-modal-submit:disabled {
+
+    opacity: .6;
+
+    cursor: not-allowed;
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    #guide-modal {
+
+        padding: 15px;
+
+    }
+
+    #guide-modal .guide-modal-card {
+
+        padding: 22px;
+
+    }
+
+    #guide-modal .modal-actions {
+
+        flex-direction: column-reverse;
+
+    }
+
+    #guide-modal .btn-modal-cancel,
+    #guide-modal .btn-modal-submit {
+
+        width: 100%;
+
+    }
+
+}

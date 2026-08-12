@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import (Game, Genre, Trailer, Screenshot, Achievement, Soundtrack, DLC)
+from .models import (Game, Genre, Trailer, Screenshot, Achievement, Soundtrack, DLC, Guide)
 
 
 class GameForm(forms.ModelForm):
@@ -358,5 +358,57 @@ class DLCForm(forms.ModelForm):
             "cover": "Portada",
             "release_date": "Fecha de lanzamiento",
             "purchase_url": "Enlace de compra",
+        }
+        
+class GuideForm(forms.ModelForm):
+
+    class Meta:
+
+        model = Guide
+
+        fields = [
+            "title",
+            "description",
+            "url",
+            "source",
+        ]
+
+        widgets = {
+
+            "title": forms.TextInput(
+                attrs={
+                    "placeholder": "Ej. Guía completa de Halo Infinite",
+                    "class": "form-control",
+                }
+            ),
+
+            "description": forms.Textarea(
+                attrs={
+                    "rows": 4,
+                    "placeholder": "Describe brevemente esta guía...",
+                    "class": "form-control",
+                }
+            ),
+
+            "url": forms.URLInput(
+                attrs={
+                    "placeholder": "https://...",
+                    "class": "form-control",
+                }
+            ),
+
+            "source": forms.Select(
+                attrs={
+                    "class": "form-control",
+                }
+            ),
+
+        }
+
+        labels = {
+            "title": "Título",
+            "description": "Descripción",
+            "url": "Enlace",
+            "source": "Fuente",
         }
         

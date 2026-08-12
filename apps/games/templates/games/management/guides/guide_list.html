@@ -1,0 +1,369 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Guías | {{ game.name }} {% endblock title %}
+
+{% block custom_styles %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/guide.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/guide-modal.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/trailer.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+{% endblock custom_styles %}
+
+
+{% block content %}
+<div class="management-page guide-page">
+
+
+    <!-- =====================================================
+         ENCABEZADO
+    ====================================================== -->
+
+    <div class="guide-header">
+
+        <div class="guide-title">
+
+            <a
+                href="{% url 'management:game_manage' game.pk %}"
+                class="back-link"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                Volver a administrar {{ game.name }}
+
+            </a>
+
+
+            <div class="guide-heading">
+
+                <div class="game-mini-cover">
+
+                    {% if game.cover %}
+
+                        <img
+                            src="{{ game.cover.url }}"
+                            alt="{{ game.name }}"
+                        >
+
+                    {% endif %}
+
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        Guías
+                    </h1>
+
+                    <p>
+                        {{ game.name }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <p class="guide-description">
+
+                Gestiona las guías y recursos externos de este juego.
+
+            </p>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn-add-guide"
+            id="open-guide-modal"
+        >
+
+            <i class="fa-solid fa-plus"></i>
+
+            Agregar guía
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         LISTA DE GUÍAS
+    ====================================================== -->
+
+    <div
+        class="guides-list"
+        data-drag-drop
+        data-game-id="{{ game.pk }}"
+        data-drag-url="{% url 'management:game_guide_reorder' game.pk %}"
+        data-drag-parameter="guide_ids[]"
+    >
+
+
+        {% for guide in guides %}
+
+
+            <div
+                class="guide-item"
+                data-drag-item
+                data-drag-id="{{ guide.id }}"
+                draggable="true"
+            >
+
+
+                <!-- DRAG HANDLE -->
+
+                <div class="guide-drag-handle">
+
+                    <i class="fa-solid fa-grip-vertical"></i>
+
+                </div>
+
+
+                <!-- ICONO -->
+
+                <div class="guide-icon">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+
+                <!-- INFORMACIÓN -->
+
+                <div class="guide-info">
+
+                    <h3>
+
+                        {{ guide.title }}
+
+                    </h3>
+
+
+                    {% if guide.description %}
+
+                        <p>
+
+                            {{ guide.description }}
+
+                        </p>
+
+                    {% else %}
+
+                        <p class="no-description">
+
+                            Sin descripción
+
+                        </p>
+
+                    {% endif %}
+
+
+                    <div class="guide-meta">
+
+
+                        {% if guide.source == "IGN" %}
+
+                            <span class="guide-source source-ign">
+
+                                <i class="fa-solid fa-globe"></i>
+
+                                IGN
+
+                            </span>
+
+
+                        {% elif guide.source == "FEXTRALIFE" %}
+
+                            <span class="guide-source source-fextralife">
+
+                                <i class="fa-solid fa-book"></i>
+
+                                Fextralife
+
+                            </span>
+
+
+                        {% elif guide.source == "STEAM" %}
+
+                            <span class="guide-source source-steam">
+
+                                <i class="fa-brands fa-steam"></i>
+
+                                Steam Community
+
+                            </span>
+
+
+                        {% elif guide.source == "YOUTUBE" %}
+
+                            <span class="guide-source source-youtube">
+
+                                <i class="fa-brands fa-youtube"></i>
+
+                                YouTube
+
+                            </span>
+
+
+                        {% else %}
+
+                            <span class="guide-source source-other">
+
+                                <i class="fa-solid fa-link"></i>
+
+                                Other
+
+                            </span>
+
+                        {% endif %}
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- ABRIR GUÍA -->
+
+                <div class="guide-link">
+
+                    <a
+                        href="{{ guide.url }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-open-guide"
+                    >
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        Abrir guía
+
+                    </a>
+
+                </div>
+
+
+                <!-- ACCIONES -->
+
+                <div class="guide-actions">
+
+
+                    <button
+                        type="button"
+                        class="btn-edit-guide"
+                        data-guide-id="{{ guide.id }}"
+                    >
+
+                        <i class="fa-solid fa-pen"></i>
+
+                        Editar
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn-delete-guide open-delete-modal"
+                        data-game-name="{{ guide.title }}"
+                        data-delete-url="{% url 'management:game_guide_delete' game.pk guide.id %}"
+                    >
+
+                        <i class="fa-solid fa-trash"></i>
+
+                        Eliminar
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        {% empty %}
+
+
+            <!-- =================================================
+                 ESTADO VACÍO
+            ================================================== -->
+
+            <div class="empty-guides">
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+
+                <h3>
+
+                    No hay guías todavía
+
+                </h3>
+
+
+                <p>
+
+                    Agrega el primer recurso para
+                    {{ game.name }}.
+
+                </p>
+
+            </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+    <!-- =====================================================
+         MODAL
+    ====================================================== -->
+
+    {% include "components/common/modals/guide_modal.html" %}
+
+
+</div>
+
+
+{% include "components/common/modals/confirm_delete.html" %}
+
+{% endblock content %}
+  
+
+{% block scripts %}
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+
+  <script src="{% static 'assets/js/isotope.min.js'%}"></script>
+  <script src="{% static 'assets/js/owl-carousel.js'%}"></script>
+  <script src="{% static 'assets/js/tabs.js'%}"></script>
+  <script src="{% static 'assets/js/popup.js'%}"></script>
+  <script src="{% static 'assets/js/custom.js'%}"></script>
+
+  <script src="{% static 'assets/js/delete-modal.js'%}"></script>
+  <script src="{% static 'assets/js/drag-and-drop.js'%}"></script>
+  <script src="{% static 'assets/js/guide-modal.js' %}"></script>
+  
+{% endblock scripts %}

@@ -1,0 +1,198 @@
+<div
+    class="modal-overlay"
+    id="guide-modal"
+    style="display: none;"
+>
+
+    <div class="modal-card guide-modal-card">
+
+        <!-- =========================================
+             HEADER
+        ========================================== -->
+
+        <div class="modal-header">
+
+            <div>
+
+                <h3 id="guide-modal-title">
+                    Agregar guía
+                </h3>
+
+                <p>
+                    Agrega un recurso externo para este juego.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="close-guide-modal"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- =========================================
+             FORMULARIO
+        ========================================== -->
+
+        <form
+            method="POST"
+            action="{% url 'management:game_guide_create' game.pk %}"
+            id="guide-form"
+        >
+
+            {% csrf_token %}
+
+
+            <!-- TÍTULO -->
+
+            <div class="form-group">
+
+                <label for="id_title">
+                    Título
+                </label>
+
+                <input
+                    type="text"
+                    name="title"
+                    id="id_title"
+                    class="form-control"
+                    placeholder="Ej. Guía completa de Halo Infinite"
+                    required
+                >
+
+            </div>
+
+
+            <!-- DESCRIPCIÓN -->
+
+            <div class="form-group">
+
+                <label for="id_description">
+                    Descripción
+                </label>
+
+                <textarea
+                    name="description"
+                    id="id_description"
+                    class="form-control"
+                    rows="4"
+                    placeholder="Describe brevemente esta guía..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- URL -->
+
+            <div class="form-group">
+
+                <label for="id_url">
+                    Enlace de la guía
+                </label>
+
+                <input
+                    type="url"
+                    name="url"
+                    id="id_url"
+                    class="form-control"
+                    placeholder="https://..."
+                    required
+                >
+
+            </div>
+
+
+            <!-- FUENTE -->
+
+            <div class="form-group">
+
+                <label for="id_source">
+                    Fuente
+                </label>
+
+                <select
+                    name="source"
+                    id="id_source"
+                    class="form-control"
+                    required
+                >
+
+                    <option value="IGN">
+                        IGN
+                    </option>
+
+                    <option value="FEXTRALIFE">
+                        Fextralife
+                    </option>
+
+                    <option value="STEAM">
+                        Steam Community
+                    </option>
+
+                    <option value="YOUTUBE">
+                        YouTube
+                    </option>
+
+                    <option value="OTHER">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ERRORES -->
+
+            <div
+                class="form-errors"
+                id="guide-form-errors"
+            ></div>
+
+
+            <!-- =========================================
+                 ACCIONES
+            ========================================== -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-modal-cancel"
+                    id="cancel-guide-modal"
+                >
+
+                    Cancelar
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-modal-submit"
+                    id="guide-modal-submit"
+                >
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    <span>
+                        Guardar guía
+                    </span>
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

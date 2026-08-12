@@ -1,9 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import DetailView, CreateView, UpdateView, DeleteView, ListView
 
-from ..models import Game, Trailer, Screenshot, Achievement, Soundtrack, DLC
+from ..models import Game, Trailer, Screenshot, Achievement, Soundtrack, DLC, Guide
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from ..forms import TrailerForm, ScreenshotForm, AchievementForm, SoundtrackForm, DLCForm
+from ..forms import TrailerForm, ScreenshotForm, AchievementForm, SoundtrackForm, DLCForm, GuideForm
 from django.urls import reverse, reverse_lazy
 from django.http import JsonResponse
 from django.db import transaction
@@ -728,3 +728,141 @@ class GameDLCReorderView(ModerationRequiredMixin, View):
         return JsonResponse({
             "success": True
         })
+        
+class GameGuideListView(ModerationRequiredMixin, ListView):
+
+    model = Guide
+    template_name = "games/management/guides/guide_list.html"
+    context_object_name = "guides"
+
+    def get_queryset(self):
+
+        return Guide.objects.filter(
+            game_id=self.kwargs["pk"]
+        )
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        context["game"] = get_object_or_404(
+            Game,
+            pk=self.kwargs["pk"]
+        )
+
+        return context
+    
+class GameGuideCreateView(ModerationRequiredMixin, CreateView):
+
+    model = Guide
+    form_class = GuideForm
+
+    def form_valid(self, form):
+
+        form.instance.game_id = self.kwargs["pk"]
+
+        return super().form_valid(form)
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_guide_list",
+            kwargs={
+                "pk": self.kwargs["pk"]
+            }
+        )
+        
+class GameGuideUpdateView(ModerationRequiredMixin, UpdateView):
+
+    model = Guide
+    form_class = GuideForm
+
+    def get_object(self, queryset=None):
+
+        return get_object_or_404(
+            Guide,
+            id=self.kwargs["guide_id"],
+            game_id=self.kwargs["pk"]
+        )
+
+    def get(self, request, *args, **kwargs):
+
+        self.object = self.get_object()
+
+        return JsonResponse({
+            "id": self.object.id,
+            "title": self.object.title,
+            "description": self.object.description,
+            "url": self.object.url,
+            "source": self.object.source,
+        })
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_guide_list",
+            kwargs={
+                "pk": self.kwargs["pk"]
+            }
+        )
+        
+class GameGuideDeleteView(ModerationRequiredMixin, DeleteView):
+
+    model = Guide
+
+    def get_object(self, queryset=None):
+
+        return get_object_or_404(
+            Guide,
+            id=self.kwargs["guide_id"],
+            game_id=self.kwargs["pk"]
+        )
+
+    def get_success_url(self):
+
+        return reverse_lazy(
+            "management:game_guide_list",
+            kwargs={
+                "pk": self.kwargs["pk"]
+            }
+        )
+        
+class GameGuideReorderView(ModerationRequiredMixin, View):
+
+    def post(self, request, *args, **kwargs):
+
+        game_id = kwargs["pk"]
+
+        guide_ids = request.POST.getlist(
+            "guide_ids[]"
+        )
+
+        guides = Guide.objects.filter(
+            game_id=game_id,
+            id__in=guide_ids
+        )
+
+        guides_by_id = {
+            str(guide.id): guide
+            for guide in guides
+        }
+
+        for index, guide_id in enumerate(
+            guide_ids,
+            start=1
+        ):
+
+            guide = guides_by_id.get(guide_id)
+
+            if guide:
+
+                guide.display_order = index
+
+                guide.save(
+                    update_fields=["display_order"]
+                )
+
+        return JsonResponse({
+            "success": True
+        })
+        
