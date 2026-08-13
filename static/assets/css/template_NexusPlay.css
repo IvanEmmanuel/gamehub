@@ -463,7 +463,9 @@ Header Style
 }
 
 .header-area .main-nav .nav li:last-child a {
-  background-color: #27292a;
+  margin-top: 5px;
+  color: #d8d8d8;
+  background-color: #7654ff;
   padding: 8px 10px 8px 20px;
   border-radius: 23px;
 }
@@ -1786,4 +1788,35 @@ body {
 
     font-size:14px;
 
+}
+
+/* ========================================
+   CERRAR SESIÓN
+======================================== */
+
+.dashboard-logout-form {
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-logout {
+    width: 100%;
+
+    border: 0;
+
+    background: transparent;
+
+    text-align: left;
+
+    font: inherit;
+
+    cursor: pointer;
+}
+
+.dashboard-logout:hover {
+    color: #ff5c5c;
+}
+
+.dashboard-logout:hover i {
+    color: #ff5c5c;
 }

@@ -37,7 +37,7 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
+                    <a href="{% url 'public:games_list' %}" class="logo">
                         <img src="{% static 'assets/images/NexusPlayLogo.png'%}" alt="">
                     </a>
                     <!-- ***** Logo End ***** -->
@@ -51,25 +51,30 @@
                     <!-- ***** Search End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="{% url 'dashboard' %}">Inicio</a></li>
+                        {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                        {% endif %}
                         <li><a href="{% url 'public:games_list' %}" class="active">Juegos</a></li>
                         <li><a href="{% url 'public:my_library' %}">Biblioteca</a></li>
                         <li><a href="streams.html">Comunidad</a></li>
                         <li><a href="streams.html">Noticias</a></li>
-                        <!-- Notificaciones -->
-                        <li>
-                            <a href="#" title="Notificaciones">
-                                <i class="fa fa-bell"></i>
-                            </a>
-                        </li>
 
-                        <!-- Mensajes -->
-                        <li>
-                            <a href="#" title="Mensajes">
-                                <i class="fa fa-envelope"></i>
-                            </a>
-                        </li>
-                        <li><a href="{% url 'profile' %}">Perfil <img src="{% static 'assets/images/profile-header.jpg'%}" alt=""></a></li>
+                        <!-- Notificaciones -->
+                        {% if request.user.is_authenticated %}
+                            <li><a href="#" title="Notificaciones"><i class="fa fa-bell"></i></a></li>
+
+                            <!-- Mensajes -->
+                            <li><a href="#" title="Mensajes"><i class="fa fa-envelope"></i></a></li>
+
+                            <!-- Profile Image -->
+                            <li><a href="{% url 'dashboard_profile' %}">Perfil <img src="{% static 'assets/images/profile-header.jpg'%}" alt=""></a></li>
+
+                        {% else %}
+                            <li><a href="{% url 'login' %}">Iniciar sesión </a></li>
+
+                        {% endif %}
+
+
                     </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>

@@ -40,7 +40,7 @@
             class="dashboard-link {% if request.resolver_match.url_name == 'my_library' %}active{% endif %}"
         >
 
-            <i class="fa-solid fa-book-bookmark"></i>
+            <i class="fa-solid fa-gamepad"></i>
 
             <span>Mi Biblioteca</span>
 
@@ -70,12 +70,12 @@
 
         <!-- Estadísticas -->
 
-        <a href="#"
+        <a href="{% url 'moderation:game_list' %}"
            class="dashboard-link {% if request.resolver_match.url_name == 'dashboard_statistics' %}active{% endif %}">
 
-            <i class="fa-solid fa-chart-line"></i>
+            <i class="fas fa-user-shield"></i>
 
-            <span>Estadísticas</span>
+            <span>Panel de moderador</span>
 
         </a>
 
@@ -89,6 +89,25 @@
             <span>Mi Perfil</span>
 
         </a>
+
+        <!-- Cerrar sesión -->
+
+        <form action="{% url 'logout' %}" method="post" class="dashboard-logout-form">
+
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="dashboard-link dashboard-logout"
+            >
+
+                <i class="fa-solid fa-power-off"></i>
+
+                <span>Cerrar sesión</span>
+
+            </button>
+
+        </form>
 
     </nav>
 

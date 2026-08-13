@@ -1,8 +1,10 @@
-from django.urls import path
-from . import views
+# apps/games/urls.py
+
+from django.urls import include, path
+
 
 urlpatterns = [
-    path("", views.games_list, name="games_list"),  # /games
-    path("detail/<str:slug>", views.games_detail, name="games_detail"),
-    path("<str:slug>/content/", views.games_content, name="games_content")
+
+    path("", include("apps.games.urls.public")),
+
 ]
