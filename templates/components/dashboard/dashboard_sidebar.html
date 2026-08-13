@@ -35,8 +35,10 @@
 
         <!-- Biblioteca -->
 
-        <a href="#"
-           class="dashboard-link {% if request.resolver_match.url_name == 'dashboard_library' %}active{% endif %}">
+        <a
+            href="{% url 'public:my_library' %}"
+            class="dashboard-link {% if request.resolver_match.url_name == 'my_library' %}active{% endif %}"
+        >
 
             <i class="fa-solid fa-book-bookmark"></i>
 

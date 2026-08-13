@@ -18,7 +18,7 @@
 
     <div class="container hero-container">
 
-        <a href="{% url 'games_list' %}" class="back-link">
+        <a href="{% url 'public:games_list' %}" class="back-link">
 
             <i class="fa-solid fa-arrow-left"></i>
 
@@ -112,15 +112,50 @@
 
                    <div class="hero-buttons">
 
-                        <button class="library-btn">
+                        {% if is_in_library %}
+                            <span class="library-btn">
+                                <i class="fa-solid fa-heart"></i>
+                                En mi biblioteca
+                            </span>
 
-                            <i class="fa-solid fa-plus"></i>
+                            <form
+                                method="post"
+                                action="{% url 'public:remove_from_library' slug=game.slug %}"
+                            >
+                                {% csrf_token %}
 
-                            Agregar a mi biblioteca
+                                <button type="submit" class="library-btn">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                    Quitar de mi biblioteca
+                                </button>
+                            </form>
+                        {% else %}
 
-                        </button>
+                            {% if request.user.is_authenticated %}
+                                <form
+                                    method="post"
+                                    action="{% url 'public:add_to_library' slug=game.slug %}"
+                                >
+                                    {% csrf_token %}
 
-                        <a href="{% url 'games_content' slug=game.slug %}" class="content-btn">
+                                    <button type="submit" class="library-btn">
+                                        <i class="fa-regular fa-heart"></i>
+                                        Agregar a mi biblioteca
+                                    </button>
+                                </form>
+                            {% else %}
+                                <a
+                                    href="{% url 'login' %}?next={{ request.path }}"
+                                    class="library-btn"
+                                >
+                                    <i class="fa-regular fa-heart"></i>
+                                    Inicia sesión para agregarlo
+                                </a>
+                            {% endif %}
+
+                        {% endif %}
+
+                        <a href="{% url 'public:games_content' slug=game.slug %}" class="content-btn">
 
                             <i class="fa-solid fa-compass"></i>
 

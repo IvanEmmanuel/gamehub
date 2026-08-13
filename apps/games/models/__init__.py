@@ -7,3 +7,4 @@ from .dlc import DLC
 from .guide import Guide
 from .soundtrack import Soundtrack
 from .patchNote import PatchNote
+from .userGameLibrary import UserGameLibrary

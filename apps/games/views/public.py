@@ -1,7 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from ..models.game import Game
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+from ..models.userGameLibrary import UserGameLibrary
+from django.views.decorators.http import require_POST
 
 
 # Create your views here.
@@ -41,11 +44,19 @@ def games_list(request):
     })
 
 def games_detail(request, slug):
-    
     game = get_object_or_404(Game, slug=slug)
-    
+
+    is_in_library = (
+        request.user.is_authenticated
+        and UserGameLibrary.objects.filter(
+            user=request.user,
+            game=game,
+        ).exists()
+    )
+
     return render(request, "games/games_detail.html", {
-        'game': game
+        "game": game,
+        "is_in_library": is_in_library,
     })
 
 def games_content(request, slug):
@@ -73,3 +84,50 @@ def games_content(request, slug):
             "game": game
         }
     )
+    
+@login_required
+def my_library(request):
+    library_entries = (
+        UserGameLibrary.objects
+        .filter(user=request.user)
+        .select_related("game")
+        .prefetch_related("game__genres")
+        .order_by("-added_at")
+    )
+
+    return render(
+        request,
+        "games/my_library.html",
+        {
+            "library_entries": library_entries,
+        },
+    )
+    
+@login_required
+@require_POST
+def add_to_library(request, slug):
+    game = get_object_or_404(
+        Game,
+        slug=slug,
+        is_active=True,
+    )
+
+    UserGameLibrary.objects.get_or_create(
+        user=request.user,
+        game=game,
+    )
+
+    return redirect("public:my_library")
+
+@login_required
+@require_POST
+def remove_from_library(request, slug):
+    library_entry = get_object_or_404(
+        UserGameLibrary,
+        user=request.user,
+        game__slug=slug,
+    )
+
+    library_entry.delete()
+
+    return redirect("public:my_library")

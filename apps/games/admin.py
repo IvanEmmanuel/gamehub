@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Game, Genre, Achievement, Trailer, Screenshot, DLC, Guide, Soundtrack, PatchNote)
+from .models import (Game, Genre, Achievement, Trailer, Screenshot, DLC, Guide, Soundtrack, PatchNote, UserGameLibrary)
 from django.utils.html import format_html
 
 @admin.register(Genre)
@@ -430,3 +430,11 @@ class PatchNoteAdmin(admin.ModelAdmin):
     @admin.display(description="Version")
     def version_display(self, obj):
         return f"v{obj.version}"
+    
+    
+@admin.register(UserGameLibrary)
+class UserGameLibraryAdmin(admin.ModelAdmin):
+    list_display = ("user", "game", "added_at")
+    list_filter = ("game", "added_at")
+    search_fields = ("user__username", "game__name")
+    list_select_related = ("user", "game")

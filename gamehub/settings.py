@@ -132,5 +132,6 @@ STATICFILES_DIRS = [
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-LOGIN_REDIRECT_URL = "games_list"
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "public:games_list"
 LOGOUT_REDIRECT_URL = "login"
