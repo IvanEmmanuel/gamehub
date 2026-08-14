@@ -1,8 +1,9 @@
 from django.urls import path
 from . import views
+from apps.profiles.views import ProfileUpdateView
 
 
 urlpatterns = [
     path("", views.dashboard_home, name="dashboard"),
-    path("profile/", views.dashboard_profile, name="dashboard_profile"),
+    path("profile/", ProfileUpdateView.as_view(), name="dashboard_profile"),
 ]

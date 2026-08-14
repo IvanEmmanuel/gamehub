@@ -6,16 +6,23 @@
 
     <div class="profile-banner-image">
 
-        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop"
-             alt="Banner del usuario">
+        <img
+            src="{{ banner_picture }}"
+            alt="Banner del usuario"
+            id="banner-preview"
+        >
 
-        <!-- Editar Banner -->
-
-        <button class="profile-banner-edit">
-
-            <i class="fa-solid fa-pencil"></i>
-
+        <button
+            type="button"
+            class="profile-banner-edit"
+            id="banner-edit-button"
+        >
+            <i class="fa-solid fa-camera"></i>
         </button>
+
+        <div class="d-none">
+            {{ form.banner }}
+        </div>
 
     </div>
 
@@ -29,14 +36,23 @@
 
         <div class="profile-avatar">
 
-            <img src="https://i.pravatar.cc/250?img=12"
-                 alt="Avatar">
+            <img
+                src="{{ profile_picture }}"
+                alt="Avatar"
+                id="avatar-preview"
+            >
 
-            <button class="profile-avatar-edit">
-
+            <button
+                type="button"
+                class="profile-avatar-edit"
+                id="avatar-edit-button"
+            >
                 <i class="fa-solid fa-camera"></i>
-
             </button>
+
+            <div class="d-none">
+                {{ form.avatar }}
+            </div>
 
         </div>
 
@@ -44,72 +60,142 @@
 
         <div class="profile-user-info">
 
-            <h2>Iván Emmanuel</h2>
+            <h2>{{ user.get_full_name }}</h2>
 
-            <span>@ivanemmanuel</span>
+            <span>{{ profile.gamer_tag }}</span>
 
             <p>
 
-                Backend Developer apasionado por los videojuegos,
-                RPG's y el desarrollo web con Django.
+                {{ profile.bio }}
 
             </p>
 
             <!-- Información adicional -->
 
             <div class="profile-user-meta">
+                
+                {% if profile.city and profile.country %}
+                
+                    <span>
 
-                <span>
+                        <i class="fa-solid fa-location-dot"></i>
 
-                    <i class="fa-solid fa-location-dot"></i>
+                        {{ profile.city }}, {{ profile.country }}
 
-                    Aguascalientes, México
+                    </span>
 
-                </span>
+                {% else %}
+
+                    <span>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        No especificado
+
+                    </span>
+
+                    
+                {% endif %}
 
                 <span>
 
                     <i class="fa-solid fa-calendar-days"></i>
 
-                    Miembro desde Julio 2026
+                    Miembro desde {{ user.date_joined|date:"F Y" }}
 
                 </span>
+                    
+
 
             </div>
 
             <!-- Redes Sociales -->
 
+            <span>Redes sociales</span>
             <div class="profile-social-links">
 
-                <a href="#">
+                {% if profile.website %}
+                
+                    <a href="{{ profile.website }}" target="_blank" rel="noopener noreferrer">
 
-                    <i class="fa-brands fa-github"></i>
+                        <i class="fa-solid fa-globe"></i>
 
-                </a>
+                    </a>
+                    
+                {% endif %}
 
-                <a href="#">
+                
+                {% if profile.youtube_url %}
+                
+                    <a href="{{ profile.youtube_url }}" target="_blank" rel="noopener noreferrer">
 
-                    <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-youtube"></i>
 
-                </a>
+                    </a>
 
-                <a href="#">
+                {% endif %}
+                    
 
-                    <i class="fa-brands fa-x"></i>
+                {% if profile.instagram_url %}
 
-                </a>
+                    <a href="{{ profile.instagram_url }}" target="_blank" rel="noopener noreferrer">
 
-                <a href="#">
+                        <i class="fa-brands fa-instagram"></i>
 
-                    <i class="fa-brands fa-facebook"></i>
+                    </a>
 
-                </a>
+                {% endif %}
 
-                <a href="#">
+                {% if profile.x_url %}
 
-                    <i class="fa-brands fa-twitch"></i>
+                    <a href="{{ profile.x_url }}" target="_blank" rel="noopener noreferrer">
 
-                </a>
+                        <i class="fa-brands fa-x"></i>
+
+                    </a>
+
+                {% endif %}
+
+                {% if profile.facebook_url %}
+
+                    <a href="{{ profile.facebook_url }}" target="_blank" rel="noopener noreferrer">
+
+                        <i class="fa-brands fa-facebook"></i>
+
+                    </a>
+                
+                {% endif %}
+
+                {% if profile.twitch_url %}
+
+                    <a href="{{ profile.twitch_url }}" target="_blank" rel="noopener noreferrer">
+
+                        <i class="fa-brands fa-twitch"></i>
+
+                    </a>
+                
+                {% endif %}
+
+                {% if profile.discord_username %}
+
+                    <a href="{{ profile.discord_username }}" target="_blank" rel="noopener noreferrer">
+
+                        <i class="fa-brands fa-discord"></i>
+
+                    </a>
+                
+                {% endif %}
+
+                {% if profile.tiktok_url %}
+
+                    <a href="{{ profile.tiktok_url }}" target="_blank" rel="noopener noreferrer">
+
+                        <i class="fa-brands fa-tiktok"></i>
+
+                    </a>
+
+                {% endif %}
+
 
             </div>
 

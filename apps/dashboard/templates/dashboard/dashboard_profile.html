@@ -2,18 +2,30 @@
 
 {% block dashboard_content %}
 
-    {% include "components/profiles/profile_banner.html" %}
+    <form method="post" enctype="multipart/form-data">
 
-    <div class="mt-4">
+        {% csrf_token %}
 
-        {% include "components/profiles/profile_summary.html" %}
+        {% include "components/profiles/profile_banner.html" %}
 
-    </div>
+        <div class="mt-4">
 
-    <div class="mt-4">
+            {% include "components/profiles/profile_summary.html" %}
 
-        {% include "components/profiles/profile_form.html" %}
+        </div>
 
-    </div>
+        <div class="mt-4">
+
+            {% include "components/profiles/profile_preferences.html" %}
+
+        </div>
+
+        <div class="mt-4">
+
+            {% include "components/profiles/profile_form.html" %}
+
+        </div>
+
+    </form>
 
 {% endblock dashboard_content %}

@@ -146,6 +146,8 @@
 
 .profile-user-info span{
 
+    margin-top: 25px;
+
     display:block;
 
     margin-bottom:18px;
@@ -567,5 +569,271 @@
     justify-content:flex-end;
 
     margin-top:10px;
+
+}
+
+/*==================================================
+=            PROFILE PREFERENCES
+==================================================*/
+
+.profile-preferences{
+
+    margin-top:35px;
+
+}
+
+
+/*=====================================
+=        PREFERENCES CARD
+=====================================*/
+
+.profile-preferences-card{
+
+    width:100%;
+
+    padding:35px;
+
+    border-radius:18px;
+
+    background:#1A1D2B;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.20);
+
+}
+
+
+/*=====================================
+=        PREFERENCES HEADER
+=====================================*/
+
+.profile-preferences-header{
+
+    margin-bottom:30px;
+
+    padding-bottom:20px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.profile-preferences-header h3{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin:0 0 8px;
+
+    color:#FFF;
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.profile-preferences-header h3 i{
+
+    color:#7C4DFF;
+
+}
+
+.profile-preferences-header p{
+
+    margin:0;
+
+    color:#9AA3C5;
+
+    font-size:15px;
+
+}
+
+
+/*=====================================
+=        PREFERENCE ITEM
+=====================================*/
+
+.profile-preference-item{
+
+    padding:18px 0;
+
+}
+
+
+/*=====================================
+=        PREFERENCE LABEL
+=====================================*/
+
+.profile-preference-label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:8px;
+
+    color:#8E95B8;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+.profile-preference-label i{
+
+    width:18px;
+
+    color:#7C4DFF;
+
+    text-align:center;
+
+}
+
+
+/*=====================================
+=        PREFERENCE VALUE
+=====================================*/
+
+.profile-preference-value{
+
+    display:block;
+
+    color:#FFF;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    line-height:1.5;
+
+    word-break:break-word;
+
+}
+
+
+/*=====================================
+=        SEPARATORS
+=====================================*/
+
+.profile-preference-item:not(:last-child){
+
+    border-bottom:1px solid rgba(255,255,255,.06);
+
+}
+
+
+/*=====================================
+=        FAVORITE QUOTE
+=====================================*/
+
+.profile-preference-quote{
+
+    padding-bottom:0;
+
+}
+
+.profile-preference-quote blockquote{
+
+    margin:10px 0 0;
+
+    padding:15px 20px;
+
+    border-left:3px solid #7C4DFF;
+
+    border-radius:0 8px 8px 0;
+
+    background:#111522;
+
+    color:#D7DBF5;
+
+    font-size:15px;
+
+    font-style:italic;
+
+    line-height:1.7;
+
+    word-break:break-word;
+
+}
+
+
+/*=====================================
+=        RESPONSIVE
+=====================================*/
+
+@media(max-width:767px){
+
+    .profile-preferences-card{
+
+        padding:25px;
+
+    }
+
+    .profile-preferences-header h3{
+
+        font-size:21px;
+
+    }
+
+    .profile-preference-item{
+
+        padding:15px 0;
+
+    }
+
+    .profile-preference-value{
+
+        font-size:16px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .profile-preferences-card{
+
+        padding:20px;
+
+        border-radius:15px;
+
+    }
+
+    .profile-preferences-header{
+
+        margin-bottom:20px;
+
+    }
+
+    .profile-preferences-header h3{
+
+        font-size:19px;
+
+    }
+
+    .profile-preference-label{
+
+        font-size:13px;
+
+    }
+
+    .profile-preference-value{
+
+        font-size:15px;
+
+    }
+
+    .profile-preference-quote blockquote{
+
+        padding:12px 15px;
+
+        font-size:14px;
+
+    }
 
 }

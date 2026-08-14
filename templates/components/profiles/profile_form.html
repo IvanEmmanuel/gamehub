@@ -1,7 +1,5 @@
 <section class="profile-form-section">
 
-    <form action="#" method="post">
-
         <!--====================================
                 INFORMACIÓN PERSONAL
         =====================================-->
@@ -32,27 +30,11 @@
 
                     <div class="np-form-group">
 
-                        <label>Nombre</label>
+                        <label for="{{ form.first_name.id_for_label }}">
+                            Nombre
+                        </label>
 
-                        <input
-                            type="text"
-                            class="np-input"
-                            value="Iván">
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-6">
-
-                    <div class="np-form-group">
-
-                        <label>Apellido</label>
-
-                        <input
-                            type="text"
-                            class="np-input"
-                            value="Emmanuel">
+                        {{ form.first_name }}
 
                     </div>
 
@@ -62,12 +44,11 @@
 
                     <div class="np-form-group">
 
-                        <label>Nombre de usuario</label>
+                        <label for="{{ form.last_name.id_for_label }}">
+                            Apellido
+                        </label>
 
-                        <input
-                            type="text"
-                            class="np-input"
-                            value="@ivanemmanuel">
+                        {{ form.last_name }}
 
                     </div>
 
@@ -77,12 +58,25 @@
 
                     <div class="np-form-group">
 
-                        <label>Correo electrónico</label>
+                        <label for="{{ form.gamer_tag.id_for_label }}">
+                            Gamer Tag
+                        </label>
 
-                        <input
-                            type="email"
-                            class="np-input"
-                            value="ivan@email.com">
+                        {{ form.gamer_tag }}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="np-form-group">
+
+                        <label for="{{ form.email.id_for_label }}">
+                            Correo electrónico
+                        </label>
+
+                        {{ form.email }}
 
                     </div>
 
@@ -92,11 +86,11 @@
 
                     <div class="np-form-group">
 
-                        <label>Biografía</label>
+                        <label for="{{ form.bio.id_for_label }}">
+                            Biografía
+                        </label>
 
-                        <textarea
-                            class="np-textarea"
-                            rows="5">Backend Developer apasionado por los videojuegos y el desarrollo web.</textarea>
+                        {{ form.bio }}
 
                     </div>
 
@@ -137,12 +131,11 @@
 
                     <div class="np-form-group">
 
-                        <label>Ciudad</label>
+                        <label for="{{ form.city.id_for_label }}">
+                            Ciudad
+                        </label>
 
-                        <input
-                            type="text"
-                            class="np-input"
-                            value="Aguascalientes">
+                        {{ form.city }}
 
                     </div>
 
@@ -152,12 +145,104 @@
 
                     <div class="np-form-group">
 
-                        <label>País</label>
+                        <label {{ form.country.id_for_label }}>
+                            País
+                        </label>
 
-                        <input
-                            type="text"
-                            class="np-input"
-                            value="México">
+                        {{ form.country }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!--====================================
+                PREFERENCIAS GAMER
+        =====================================-->
+
+        <div class="profile-form-card">
+
+            <div class="profile-form-header">
+
+                <h3>
+                    <i class="fa-solid fa-gamepad"></i>
+                    Preferencias Gamer
+                </h3>
+
+                <p>
+                    Cuéntanos un poco más sobre tus gustos como jugador.
+                </p>
+
+            </div>
+
+            <div class="row">
+
+                <!-- Plataforma favorita -->
+
+                <div class="col-md-6">
+
+                    <div class="np-form-group">
+
+                        <label for="{{ form.favorite_platform.id_for_label }}">
+                            Plataforma favorita
+                        </label>
+
+                        {{ form.favorite_platform }}
+
+                    </div>
+
+                </div>
+
+
+                <!-- Género favorito -->
+
+                <div class="col-md-6">
+
+                    <div class="np-form-group">
+
+                        <label for="{{ form.favorite_genre.id_for_label }}">
+                            Género favorito
+                        </label>
+
+                        {{ form.favorite_genre }}
+
+                    </div>
+
+                </div>
+
+
+                <!-- Juego favorito -->
+
+                <div class="col-12">
+
+                    <div class="np-form-group">
+
+                        <label for="{{ form.favorite_game.id_for_label }}">
+                            Juego favorito
+                        </label>
+
+                        {{ form.favorite_game }}
+
+                    </div>
+
+                </div>
+
+
+                <!-- Cita favorita -->
+
+                <div class="col-12">
+
+                    <div class="np-form-group">
+
+                        <label for="{{ form.favorite_quote.id_for_label }}">
+                            Cita favorita
+                        </label>
+
+                        {{ form.favorite_quote }}
 
                     </div>
 
@@ -198,18 +283,15 @@
 
                     <div class="np-form-group">
 
-                        <label>
+                        <label for="{{ form.website.id_for_label }}">
 
-                            <i class="fa-brands fa-github"></i>
+                            <i class="fa-solid fa-globe"></i>
 
-                            GitHub
+                            Website
 
                         </label>
 
-                        <input
-                            type="text"
-                            class="np-input"
-                            placeholder="usuario">
+                        {{ form.website }}
 
                     </div>
 
@@ -219,18 +301,15 @@
 
                     <div class="np-form-group">
 
-                        <label>
+                        <label for="{{ form.youtube_url.id_for_label }}">
 
-                            <i class="fa-brands fa-linkedin"></i>
+                            <i class="fa-brands fa-youtube"></i>
 
-                            LinkedIn
+                            Youtube
 
                         </label>
 
-                        <input
-                            type="text"
-                            class="np-input"
-                            placeholder="usuario">
+                        {{ form.youtube_url }}
 
                     </div>
 
@@ -240,18 +319,15 @@
 
                     <div class="np-form-group">
 
-                        <label>
+                        <label for="{{ form.instagram_url.id_for_label }}">
 
-                            <i class="fa-brands fa-steam"></i>
+                            <i class="fa-brands fa-instagram"></i>
 
-                            Steam
+                            Instagram
 
                         </label>
 
-                        <input
-                            type="text"
-                            class="np-input"
-                            placeholder="usuario">
+                        {{ form.instagram_url }}
 
                     </div>
 
@@ -261,7 +337,61 @@
 
                     <div class="np-form-group">
 
-                        <label>
+                        <label for="{{ form.x_url.id_for_label }}">
+
+                            <i class="fa-brands fa-x"></i>
+
+                            
+
+                        </label>
+
+                        {{ form.x_url }}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="np-form-group">
+
+                        <label for="{{ form.facebook_url.id_for_label }}">
+
+                            <i class="fa-brands fa-facebook"></i>
+
+                            Facebook
+
+                        </label>
+
+                        {{ form.facebook_url }}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="np-form-group">
+
+                        <label for="{{ form.facebook_url.id_for_label }}">
+
+                            <i class="fa-brands fa-twitch"></i>
+
+                            Twitch
+
+                        </label>
+
+                        {{ form.twitch_url }}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="np-form-group">
+
+                        <label for="{{ form.discord_username.id_for_label }}">
 
                             <i class="fa-brands fa-discord"></i>
 
@@ -269,10 +399,25 @@
 
                         </label>
 
-                        <input
-                            type="text"
-                            class="np-input"
-                            placeholder="usuario">
+                        {{ form.discord_username }}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="np-form-group">
+
+                        <label for="{{ form.tiktok_url.id_for_label }}">
+
+                            <i class="fa-brands fa-tiktok"></i>
+
+                            Tik Toc
+
+                        </label>
+
+                        {{ form.tiktok_url }}
 
                     </div>
 
@@ -300,7 +445,5 @@
             </button>
 
         </div>
-
-    </form>
 
 </section>

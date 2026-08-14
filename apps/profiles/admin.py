@@ -40,6 +40,7 @@ class UserProfileAdmin(admin.ModelAdmin):
                     "gamer_tag",
                     "bio",
                     "avatar",
+                    "banner",
                 )
             },
         ),

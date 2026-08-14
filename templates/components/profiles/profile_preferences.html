@@ -1,0 +1,113 @@
+<div class="profile-preferences">
+
+    <div class="profile-preferences-card">
+
+        <div class="profile-preferences-header">
+
+            <h3>
+                <i class="fa-solid fa-gamepad"></i>
+                Preferencias Gamer
+            </h3>
+
+            <p>
+                Tus preferencias dentro de GameHub.
+            </p>
+
+        </div>
+
+        <div class="row">
+
+            <!-- Plataforma -->
+
+            <div class="col-md-6">
+
+                <div class="profile-preference-item">
+
+                    <span class="profile-preference-label">
+                        <i class="fa-solid fa-gamepad"></i>
+                        Plataforma favorita
+                    </span>
+
+                    <span class="profile-preference-value">
+                        {{ profile.favorite_platform|default:"No especificada" }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Género -->
+
+            <div class="col-md-6">
+
+                <div class="profile-preference-item">
+
+                    <span class="profile-preference-label">
+                        <i class="fa-solid fa-tags"></i>
+                        Género favorito
+                    </span>
+
+                    <span class="profile-preference-value">
+                        {{ profile.favorite_genre|default:"No especificado" }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Juego favorito -->
+
+            <div class="col-12">
+
+                <div class="profile-preference-item">
+
+                    <span class="profile-preference-label">
+                        <i class="fa-solid fa-star"></i>
+                        Juego favorito
+                    </span>
+
+                    <span class="profile-preference-value">
+                        {{ profile.favorite_game|default:"No especificado" }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Cita favorita -->
+
+            <div class="col-12">
+
+                <div class="profile-preference-item profile-preference-quote">
+
+                    <span class="profile-preference-label">
+                        <i class="fa-solid fa-quote-left"></i>
+                        Cita favorita
+                    </span>
+
+                    {% if profile.favorite_quote %}
+
+                        <blockquote>
+                            "{{ profile.favorite_quote }}"
+                        </blockquote>
+
+                    {% else %}
+
+                        <span class="profile-preference-value">
+                            No especificada
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
