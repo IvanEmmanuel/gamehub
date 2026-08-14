@@ -1,0 +1,255 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}NexusPlay | Profile{% endblock title %}
+
+{% block custom_styles %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/support.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+{% endblock custom_styles %}
+
+
+{% block content %}
+
+    <section class="support-section">
+
+        <div class="support-container">
+
+            <!--==============================
+                    ENCABEZADO
+            ===============================-->
+
+            <div class="support-header">
+
+                <div class="support-header-icon">
+
+                    <i class="fa-solid fa-headset"></i>
+
+                </div>
+
+                <div class="support-header-content">
+
+                    <h1>Centro de soporte</h1>
+
+                    <p>
+                        ¿Necesitas ayuda? Envíanos tu consulta y
+                        nuestro equipo de soporte se pondrá en contacto
+                        contigo.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!--==============================
+                    MENSAJES
+            ===============================-->
+
+            {% if messages %}
+
+                <div class="support-messages">
+
+                    {% for message in messages %}
+
+                        <div class="support-message {{ message.tags }}">
+
+                            {% if message.tags == "success" %}
+
+                                <i class="fa-solid fa-circle-check"></i>
+
+                            {% elif message.tags == "error" %}
+
+                                <i class="fa-solid fa-circle-exclamation"></i>
+
+                            {% else %}
+
+                                <i class="fa-solid fa-circle-info"></i>
+
+                            {% endif %}
+
+                            <span>
+                                {{ message }}
+                            </span>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+
+            <!--==============================
+                    FORMULARIO
+            ===============================-->
+
+            <div class="support-card">
+
+                <div class="support-card-header">
+
+                    <h2>
+                        <i class="fa-solid fa-envelope"></i>
+                        Enviar una solicitud
+                    </h2>
+
+                    <p>
+                        Describe el problema que estás teniendo
+                        y proporciona todos los detalles que puedan
+                        ayudarnos a resolverlo.
+                    </p>
+
+                </div>
+
+
+                <form
+                    method="post"
+                    class="support-form"
+                >
+
+                    {% csrf_token %}
+
+
+                    <!--==============================
+                            ERRORES GENERALES
+                    ===============================-->
+
+                    {% if form.non_field_errors %}
+
+                        <div class="support-form-error">
+
+                            <i class="fa-solid fa-circle-exclamation"></i>
+
+                            <div>
+                                {{ form.non_field_errors }}
+                            </div>
+
+                        </div>
+
+                    {% endif %}
+
+
+                    <!--==============================
+                            ASUNTO
+                    ===============================-->
+
+                    <div class="support-form-group">
+
+                        <label
+                            for="{{ form.subject.id_for_label }}"
+                        >
+                            {{ form.subject.label }}
+                        </label>
+
+                        {{ form.subject }}
+
+                        {% if form.subject.errors %}
+
+                            <div class="support-field-error">
+
+                                {{ form.subject.errors }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!--==============================
+                            MENSAJE
+                    ===============================-->
+
+                    <div class="support-form-group">
+
+                        <label
+                            for="{{ form.message.id_for_label }}"
+                        >
+                            {{ form.message.label }}
+                        </label>
+
+                        {{ form.message }}
+
+                        {% if form.message.errors %}
+
+                            <div class="support-field-error">
+
+                                {{ form.message.errors }}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!--==============================
+                            INFORMACIÓN DEL USUARIO
+                    ===============================-->
+
+                    <div class="support-user-info">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        <p>
+                            La solicitud será enviada utilizando
+                            el correo electrónico asociado a tu cuenta.
+                        </p>
+
+                    </div>
+
+
+                    <!--==============================
+                            BOTÓN
+                    ===============================-->
+
+                    <div class="support-form-actions">
+
+                        <button
+                            type="submit"
+                            class="support-submit"
+                        >
+
+                            <i class="fa-solid fa-paper-plane"></i>
+
+                            Enviar solicitud
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}
+  
+
+{% block scripts %}
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+
+  <script src="{% static 'assets/js/isotope.min.js'%}"></script>
+  <script src="{% static 'assets/js/owl-carousel.js'%}"></script>
+  <script src="{% static 'assets/js/tabs.js'%}"></script>
+  <script src="{% static 'assets/js/popup.js'%}"></script>
+  <script src="{% static 'assets/js/custom.js'%}"></script>
+  
+{% endblock scripts %}

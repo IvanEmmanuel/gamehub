@@ -63,8 +63,8 @@
                         {% if request.user.is_authenticated %}
                             <li><a href="#" title="Notificaciones"><i class="fa fa-bell"></i></a></li>
 
-                            <!-- Mensajes -->
-                            <li><a href="#" title="Mensajes"><i class="fa fa-envelope"></i></a></li>
+                            <!-- Support -->
+                            <li><a href="{% url 'support' %}" title="Soporte"><i class="fa-solid fa-headset"></i></a></li>
 
                             <!-- Profile Image -->
                             <li><a href="{% url 'dashboard_profile' %}">Perfil <img src="{{ profile_picture }}" alt="Avatar"></a></li>

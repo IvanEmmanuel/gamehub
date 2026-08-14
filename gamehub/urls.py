@@ -36,6 +36,7 @@ urlpatterns = [
     path('moderator/', include("apps.games.urls.moderation")),
     path("moderator/", include("apps.games.urls.management")),
     path("games/",include("apps.games.urls.public"),),
+    path("support/", include("apps.support.urls")),
     
 ]
 

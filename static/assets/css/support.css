@@ -1,0 +1,645 @@
+/*==================================================
+=                 SUPPORT SECTION
+==================================================*/
+
+.support-section {
+
+    width: 100%;
+
+    padding: 60px 20px;
+
+}
+
+
+/*==================================================
+=                 CONTAINER
+==================================================*/
+
+.support-container {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+}
+
+
+/*==================================================
+=                 HEADER
+==================================================*/
+
+.support-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+
+}
+
+.support-header-icon {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 60px;
+
+    height: 60px;
+
+    flex-shrink: 0;
+
+    background: rgba(124, 77, 255, .12);
+
+    border: 1px solid rgba(124, 77, 255, .25);
+
+    border-radius: 14px;
+
+    color: #7C4DFF;
+
+    font-size: 24px;
+
+}
+
+.support-header-content h1 {
+
+    margin: 0 0 8px;
+
+    color: #FFFFFF;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+}
+
+.support-header-content p {
+
+    max-width: 700px;
+
+    margin: 0;
+
+    color: #9AA3C5;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+
+/*==================================================
+=                 MESSAGES
+==================================================*/
+
+.support-messages {
+
+    margin-bottom: 25px;
+
+}
+
+.support-message {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 14px 16px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+/*---------- Success ----------*/
+
+.support-message.success {
+
+    background: rgba(76, 175, 80, .08);
+
+    border: 1px solid rgba(76, 175, 80, .20);
+
+    color: #8FD694;
+
+}
+
+
+/*---------- Error ----------*/
+
+.support-message.error {
+
+    background: rgba(255, 107, 129, .08);
+
+    border: 1px solid rgba(255, 107, 129, .20);
+
+    color: #FF8A9A;
+
+}
+
+
+/*---------- Warning ----------*/
+
+.support-message.warning {
+
+    background: rgba(255, 193, 7, .08);
+
+    border: 1px solid rgba(255, 193, 7, .20);
+
+    color: #FFD76A;
+
+}
+
+
+/*---------- Info ----------*/
+
+.support-message.info {
+
+    background: rgba(33, 150, 243, .08);
+
+    border: 1px solid rgba(33, 150, 243, .20);
+
+    color: #72B9F5;
+
+}
+
+
+/*==================================================
+=                 SUPPORT CARD
+==================================================*/
+
+.support-card {
+
+    width: 100%;
+
+    padding: 35px;
+
+    background: #1A1D2B;
+
+    border: 1px solid rgba(255, 255, 255, .06);
+
+    border-radius: 18px;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .20);
+
+}
+
+
+/*==================================================
+=                 CARD HEADER
+==================================================*/
+
+.support-card-header {
+
+    margin-bottom: 30px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+
+}
+
+.support-card-header h2 {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin: 0 0 8px;
+
+    color: #FFFFFF;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+}
+
+.support-card-header h2 i {
+
+    color: #7C4DFF;
+
+}
+
+.support-card-header p {
+
+    margin: 0;
+
+    color: #9AA3C5;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+}
+
+
+/*==================================================
+=                 FORM
+==================================================*/
+
+.support-form {
+
+    width: 100%;
+
+}
+
+.support-form-group {
+
+    margin-bottom: 24px;
+
+}
+
+.support-form-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #FFFFFF;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+/*==================================================
+=                 INPUT
+==================================================*/
+
+.support-input,
+.support-textarea {
+
+    width: 100%;
+
+    padding: 13px 15px;
+
+    background: #111522;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    border-radius: 10px;
+
+    color: #FFFFFF;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+
+}
+
+
+/*---------- Placeholder ----------*/
+
+.support-input::placeholder,
+.support-textarea::placeholder {
+
+    color: #6F7695;
+
+}
+
+
+/*---------- Focus ----------*/
+
+.support-input:focus,
+.support-textarea:focus {
+
+    border-color: #7C4DFF;
+
+    background: #121626;
+
+    box-shadow: 0 0 0 3px rgba(124, 77, 255, .12);
+
+}
+
+
+/*==================================================
+=                 TEXTAREA
+==================================================*/
+
+.support-textarea {
+
+    min-height: 170px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+
+}
+
+
+/*==================================================
+=                 FIELD ERRORS
+==================================================*/
+
+.support-field-error {
+
+    margin-top: 8px;
+
+    color: #FF7F91;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+.support-field-error ul {
+
+    margin: 0;
+
+    padding-left: 18px;
+
+}
+
+
+/*==================================================
+=                 GENERAL FORM ERROR
+==================================================*/
+
+.support-form-error {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-bottom: 24px;
+
+    padding: 13px 15px;
+
+    background: rgba(255, 107, 129, .08);
+
+    border: 1px solid rgba(255, 107, 129, .20);
+
+    border-radius: 10px;
+
+    color: #FF8A9A;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+.support-form-error > i {
+
+    margin-top: 2px;
+
+    flex-shrink: 0;
+
+}
+
+.support-form-error ul {
+
+    margin: 0;
+
+    padding-left: 18px;
+
+}
+
+
+/*==================================================
+=                 USER INFO
+==================================================*/
+
+.support-user-info {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-top: 5px;
+
+    margin-bottom: 25px;
+
+    padding: 13px 15px;
+
+    background: rgba(124, 77, 255, .06);
+
+    border: 1px solid rgba(124, 77, 255, .14);
+
+    border-radius: 10px;
+
+    color: #9AA3C5;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+.support-user-info i {
+
+    margin-top: 3px;
+
+    flex-shrink: 0;
+
+    color: #7C4DFF;
+
+}
+
+.support-user-info p {
+
+    margin: 0;
+
+}
+
+
+/*==================================================
+=                 FORM ACTIONS
+==================================================*/
+
+.support-form-actions {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+}
+
+
+/*==================================================
+=                 SUBMIT BUTTON
+==================================================*/
+
+.support-submit {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 12px 22px;
+
+    border: 0;
+
+    border-radius: 9px;
+
+    background: #7C4DFF;
+
+    color: #FFFFFF;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        transform .2s ease,
+        box-shadow .2s ease;
+
+}
+
+.support-submit:hover {
+
+    background: #6B3FEF;
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 6px 18px rgba(124, 77, 255, .20);
+
+}
+
+.support-submit:active {
+
+    transform: translateY(0);
+
+}
+
+
+/*==================================================
+=                 RESPONSIVE
+==================================================*/
+
+@media (max-width: 767px) {
+
+    .support-section {
+
+        padding: 40px 15px;
+
+    }
+
+    .support-header {
+
+        align-items: flex-start;
+
+    }
+
+    .support-header-content h1 {
+
+        font-size: 25px;
+
+    }
+
+    .support-card {
+
+        padding: 28px;
+
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .support-section {
+
+        padding: 30px 10px;
+
+    }
+
+    .support-header {
+
+        gap: 14px;
+
+    }
+
+    .support-header-icon {
+
+        width: 48px;
+
+        height: 48px;
+
+        border-radius: 11px;
+
+        font-size: 19px;
+
+    }
+
+    .support-header-content h1 {
+
+        font-size: 22px;
+
+    }
+
+    .support-header-content p {
+
+        font-size: 13px;
+
+    }
+
+    .support-card {
+
+        padding: 20px;
+
+        border-radius: 14px;
+
+    }
+
+    .support-card-header h2 {
+
+        font-size: 19px;
+
+    }
+
+    .support-form-actions {
+
+        justify-content: stretch;
+
+    }
+
+    .support-submit {
+
+        width: 100%;
+
+    }
+
+}

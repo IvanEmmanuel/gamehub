@@ -1,0 +1,16 @@
+Nueva solicitud de soporte
+
+Asunto: {{ subject }}
+
+Mensaje: 
+
+{{ message }}
+
+-- Datos del usuario --
+
+Nombre: {{ user_full_name }}
+Email: {{ user_email }}
+
+________________________
+
+Enviado desde la sección de soporte del sitio.
