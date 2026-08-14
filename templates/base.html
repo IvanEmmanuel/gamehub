@@ -67,7 +67,7 @@
                             <li><a href="#" title="Mensajes"><i class="fa fa-envelope"></i></a></li>
 
                             <!-- Profile Image -->
-                            <li><a href="{% url 'dashboard_profile' %}">Perfil <img src="{% static 'assets/images/profile-header.jpg'%}" alt=""></a></li>
+                            <li><a href="{% url 'dashboard_profile' %}">Perfil <img src="{{ profile_picture }}" alt="Avatar"></a></li>
 
                         {% else %}
                             <li><a href="{% url 'login' %}">Iniciar sesión </a></li>

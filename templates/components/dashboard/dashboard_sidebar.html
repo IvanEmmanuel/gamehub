@@ -8,11 +8,11 @@
 
     <div class="sidebar-profile">
 
-        <img src="{% static 'assets/images/profile-header.jpg' %}" alt="Perfil">
+        <img src="{{ profile_picture }}" alt="Avatar">
 
-        <h4>Iván Emmanuel</h4>
+        <h4>{{ profile_name }}</h4>
 
-        <span>@ivan_dev</span>
+        <span>{{ profile_gamer_tag }}</span>
 
     </div>
 
