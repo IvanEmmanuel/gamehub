@@ -1,0 +1,207 @@
+
+{% extends 'auth_base.html' %}
+{% load static %}
+
+{% block title %}NexusPlay | Register{% endblock title %}
+
+{% block body_class %}
+    login-page
+{% endblock %}
+
+{% block content %}  
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <div class="auth-logo">
+
+            <img
+                src="{% static 'assets/images/NexusPlayLogo.png' %}"
+                alt="GameHub Logo">
+
+        </div>
+
+        <div class="auth-header">
+
+            <h1>
+
+                Crear Cuenta
+
+            </h1>
+
+        </div>
+
+        <div class="auth-form">
+
+            <form method="post" class="login-form">
+
+                {% csrf_token %}
+
+                <div class="form-group">
+
+                    <label for="{{ form.username.id_for_label }}">
+
+                        {{ form.username.label }}
+
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-user input-icon"></i>
+
+                        {{ form.username }}
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="{{ form.username.id_for_label }}">
+
+                        {{ form.first_name.label }}
+
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-user input-icon"></i>
+
+                        {{ form.first_name }}
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="{{ form.username.id_for_label }}">
+
+                        {{ form.last_name.label }}
+
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-user input-icon"></i>
+
+                        {{ form.last_name }}
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="{{ form.username.id_for_label }}">
+
+                        {{ form.email.label }}
+
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-user input-icon"></i>
+
+                        {{ form.email }}
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="{{ form.password.id_for_label }}">
+
+                        {{ form.password1.label }}
+
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock input-icon"></i>
+
+                        {{ form.password1 }}
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            aria-label="Mostrar contraseña"
+                        >
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="{{ form.password.id_for_label }}">
+
+                        {{ form.password2.label }}
+
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock input-icon"></i>
+
+                        {{ form.password2 }}
+
+                        <button
+                            type="button"
+                            class="toggle-password"
+                            aria-label="Mostrar contraseña"
+                        >
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn-submit">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+
+                    Registrarse
+                </button>
+
+                <div class="register-link">
+
+                    <span>
+
+                        ¿Ya tienes una cuenta?
+
+                    </span>
+
+                    <a href="{% url 'login' %}">
+
+                        Iniciar Sesión
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}
+
+
+
+
+
+{% block scripts %}
+  
+{% endblock scripts %}

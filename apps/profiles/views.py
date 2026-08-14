@@ -1,11 +1,16 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import UpdateView
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.messages.views import SuccessMessageMixin
+from django.views.generic.edit import UpdateView, CreateView
 from .models import UserProfile
-from .forms import ProfileForm
+from .forms import ProfileForm, CustomRegisterForm
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.templatetags.static import static
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.shortcuts import redirect
 
 def profile(request):
     return render(request, "profiles/profile.html")
@@ -36,3 +41,19 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
         messages.success(self.request, "Tu perfil se ha actualizado correctamente.")
         return super().form_valid(form)
     
+    
+class RegisterView(CreateView):
+    form_class = CustomRegisterForm
+    template_name = "registration/register.html"
+    success_url = reverse_lazy("public:games_list")
+    
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect(self.success_url)
+    
+
+class CustomPasswordChangeView(LoginRequiredMixin, SuccessMessageMixin, PasswordChangeView):
+    template_name = 'dashboard/dashboard_change_password.html'
+    success_url = reverse_lazy('change_password')
+    success_message = "Contraseña actualizada correctamente."

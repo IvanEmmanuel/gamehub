@@ -22,6 +22,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import LoginView,LogoutView
 from apps.dashboard.views import redirect_home
+from apps.profiles.views import RegisterView, CustomPasswordChangeView
 
 urlpatterns = [
     path("", redirect_home, name="home"),
@@ -31,6 +32,7 @@ urlpatterns = [
     path("profiles/", include("apps.profiles.urls")),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name="logout"),
+    path('register/', RegisterView.as_view(), name="register"),
     path('moderator/', include("apps.games.urls.moderation")),
     path("moderator/", include("apps.games.urls.management")),
     path("games/",include("apps.games.urls.public"),),

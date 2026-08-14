@@ -90,6 +90,16 @@
 
         </a>
 
+        <!-- Configuración -->
+
+        <a href="{% url 'change_password' %}" class="dashboard-link {% if request.resolver_match.url_name == 'change_password' %}active{% endif %}">
+
+            <i class="fas fa-gear"></i>
+
+            <span>Configuración</span>
+
+        </a>
+
         <!-- Cerrar sesión -->
 
         <form action="{% url 'logout' %}" method="post" class="dashboard-logout-form">
