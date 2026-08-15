@@ -13,166 +13,100 @@
 
     </div>
 
-    <!-- Juego 1 -->
+    {% for entry in library_entries %}
 
-    <div class="library-item">
+        <div class="library-item">
 
-        <img src="{% static 'assets/images/game-01.jpg' %}" alt="">
+            {% if entry.game.cover %}
+                <img
+                    src="{{ entry.game.cover.url }}"
+                    alt="{{ entry.game.name }}"
+                >
+            {% else %}
+                <img
+                    src="{% static 'assets/images/default-game-cover.png' %}"
+                    alt="{{ entry.game.name }}"
+                >
+            {% endif %}
 
-        <div class="library-content">
+            <div class="library-content">
 
-            <div class="library-top">
+                <div class="library-top">
 
-                <div>
+                    <div>
 
-                    <h4>Halo Infinite</h4>
+                        <h4>{{ entry.game.name }}</h4>
 
-                    <span>FPS • Acción</span>
+                        <span>
+                            {% for genre in entry.game.genres.all %}
+                                {{ genre.name }}{% if not forloop.last %} • {% endif %}
+                            {% endfor %}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Progreso de logros -->
+                <div class="progress mt-3">
+
+                    <div
+                        class="progress-bar"
+                        style="width: 0%"
+                    ></div>
+
+                </div>
+
+                <p>
+                    Progreso de logros próximamente
+                </p>
+                
+
+
+                <div class="library-info">
+
+                    <span>
+                        <i class="fa-solid fa-trophy"></i>
+                        {{ entry.game.achievements.count }} logros
+                    </span>
 
                 </div>
 
             </div>
 
-            <div class="progress mt-3">
 
-                <div class="progress-bar" style="width:78%"></div>
+            <div class="library-action">
 
-            </div>
+                <a
+                    href="{% url 'public:games_detail' entry.game.slug %}"
+                    class="continue-btn"
+                >
 
-            <small>78% completado</small>
+                    <i class="fa-solid fa-play"></i>
 
-            <div class="library-info">
+                    Ver juego
 
-                <span><i class="fa-regular fa-clock"></i> 125 h</span>
-
-                <span><i class="fa-brands fa-windows"></i> PC</span>
-
-                <span><i class="fa-solid fa-trophy"></i> 48 logros</span>
+                </a>
 
             </div>
 
         </div>
 
-        <div class="library-action">
+    {% empty %}
 
-            <a href="#" class="continue-btn">
+        <div class="library-empty">
 
-                <i class="fa-solid fa-play"></i>
+            <p>
+                Aún no tienes juegos en tu biblioteca.
+            </p>
 
-                Continuar
-
+            <a href="{% url 'public:games_list' %}">
+                Explorar juegos
             </a>
 
         </div>
 
-    </div>
-
-    <!-- Juego 2 -->
-
-    <div class="library-item">
-
-        <img src="{% static 'assets/images/game-04.jpg' %}" alt="">
-
-        <div class="library-content">
-
-            <div class="library-top">
-
-                <div>
-
-                    <h4>Cyberpunk 2077</h4>
-
-                    <span>RPG • Mundo Abierto</span>
-
-                </div>
-
-            </div>
-
-            <div class="progress mt-3">
-
-                <div class="progress-bar" style="width:56%"></div>
-
-            </div>
-
-            <small>56% completado</small>
-
-            <div class="library-info">
-
-                <span><i class="fa-regular fa-clock"></i> 98 h</span>
-
-                <span><i class="fa-brands fa-playstation"></i> PS5</span>
-
-                <span><i class="fa-solid fa-trophy"></i> 30 logros</span>
-
-            </div>
-
-        </div>
-
-        <div class="library-action">
-
-            <a href="#" class="continue-btn">
-
-                <i class="fa-solid fa-play"></i>
-
-                Continuar
-
-            </a>
-
-        </div>
-
-    </div>
-
-    <!-- Juego 3 -->
-
-    <div class="library-item">
-
-        <img src="{% static 'assets/images/game-03.jpg' %}" alt="">
-
-        <div class="library-content">
-
-            <div class="library-top">
-
-                <div>
-
-                    <h4>Little Nightmares</h4>
-
-                    <span>Terror</span>
-
-                </div>
-
-            </div>
-
-            <div class="progress mt-3">
-
-                <div class="progress-bar" style="width:78%"></div>
-
-            </div>
-
-            <small>78% completado</small>
-
-            <div class="library-info">
-
-                <span><i class="fa-regular fa-clock"></i> 125 h</span>
-
-                <span><i class="fa-brands fa-windows"></i> PC</span>
-
-                <span><i class="fa-solid fa-trophy"></i> 48 logros</span>
-
-            </div>
-
-        </div>
-
-        <div class="library-action">
-
-            <a href="#" class="continue-btn">
-
-                <i class="fa-solid fa-play"></i>
-
-                Continuar
-
-            </a>
-
-        </div>
-
-    </div>
+    {% endfor %}
 
 </section>

@@ -40,7 +40,11 @@
 
             <div class="page-content">
 
-                {% include "components/hero_carousel.html" %}
+                {% if not has_filters %}
+
+                    {% include "components/hero_carousel.html" %}
+
+                {% endif %}
 
                 {% include "components/category_cards.html" %}
 

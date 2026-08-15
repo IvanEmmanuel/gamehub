@@ -30,6 +30,18 @@ def games_list(request):
             .filter(user=request.user)
             .values_list("game_id", flat=True)
         )
+        
+    library_entries = []
+
+    if request.user.is_authenticated:
+
+        library_entries = (
+            UserGameLibrary.objects
+            .filter(user=request.user)
+            .select_related("game")
+            .prefetch_related("game__genres")
+            .order_by("-added_at")[:3]
+        )
     
     genres = Genre.objects.all()
     
@@ -42,6 +54,16 @@ def games_list(request):
     multiplayer = request.GET.get("multiplayer")
     new_releases = request.GET.get("new_releases")
     popular = request.GET.get("popular")
+    
+    has_filters = bool(
+        query
+        or selected_genres
+        or selected_platforms
+        or selected_statuses
+        or multiplayer
+        or new_releases
+        or popular
+    )
     
     
     if query:
@@ -155,6 +177,8 @@ def games_list(request):
         "selected_statuses": selected_statuses,
         "selected_order": selected_order,
         "library_game_ids": library_game_ids,
+        "library_entries": library_entries,
+        "has_filters": has_filters,
     })
 
 
