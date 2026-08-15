@@ -236,7 +236,7 @@ def my_library(request):
 
     return render(
         request,
-        "games/my_library.html",
+        "dashboard/dashboard_library.html",
         {
             "library_entries": library_entries,
         },

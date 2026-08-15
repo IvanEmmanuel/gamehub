@@ -1,8 +1,140 @@
 {% extends "dashboard/dashboard_base.html" %}
 {% load static %}
+{% load game_extras %}
 
 {% block dashboard_content %}
 
+<section class="dashboard-library">
 
+    <div class="dashboard-section-header">
+
+        <div>
+            <h2>Mi <span>Biblioteca</span></h2>
+
+            <p>
+                Los juegos que has agregado a tu colección.
+            </p>
+        </div>
+
+        <a
+            href="{% url 'public:games_list' %}"
+            class="dashboard-library-explore"
+        >
+            <i class="fa-solid fa-compass"></i>
+            Explorar juegos
+        </a>
+
+    </div>
+
+
+    <div class="dashboard-library-grid">
+
+        {% for entry in library_entries %}
+
+            <a
+                href="{% url 'public:games_detail' slug=entry.game.slug %}"
+                class="dashboard-library-card"
+            >
+
+                <!-- Portada -->
+
+                <div class="dashboard-library-image">
+
+                    {% if entry.game.cover %}
+
+                        <img
+                            src="{{ entry.game.cover.url }}"
+                            alt="{{ entry.game.name }}"
+                        >
+
+                    {% else %}
+
+                        <img
+                            src="{% static 'assets/images/default-game-cover.png' %}"
+                            alt="Sin portada"
+                        >
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- Información -->
+
+                <div class="dashboard-library-info">
+
+                    <h4>
+                        {{ entry.game.name }}
+                    </h4>
+
+
+                    {% if entry.game.developer %}
+
+                        <p class="developer">
+                            {{ entry.game.developer }}
+                        </p>
+
+                    {% endif %}
+
+
+                    <div class="genres">
+
+                        {% for genre in entry.game.genres.all %}
+
+                            <span>
+                                {{ genre.name }}
+                            </span>
+
+                        {% endfor %}
+
+                    </div>
+
+
+                    <div class="dashboard-library-meta">
+
+                        <span>
+                            <i class="fa-solid fa-heart"></i>
+                            En mi biblioteca
+                        </span>
+
+                        <span>
+                            <i class="fa-solid fa-calendar-plus"></i>
+                            {{ entry.added_at|date:"d/m/Y" }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        {% empty %}
+
+            <div class="dashboard-library-empty">
+
+                <i class="fa-solid fa-gamepad"></i>
+
+                <h3>
+                    Tu biblioteca está vacía
+                </h3>
+
+                <p>
+                    Explora GameHub y agrega juegos a tu colección.
+                </p>
+
+                <a
+                    href="{% url 'public:games_list' %}"
+                    class="dashboard-library-explore"
+                >
+                    Explorar juegos
+                </a>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
 
 {% endblock dashboard_content %}
