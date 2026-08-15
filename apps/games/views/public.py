@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from ..models.game import Game
+from ..models.genre import Genre
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -17,7 +18,16 @@ def games_list(request):
         .filter(is_active=True)
         .prefetch_related("genres")
     )
+    
+    genres = Genre.objects.all()
+    
     query = request.GET.get("q", "").strip()
+    
+    selected_genres = request.GET.getlist("genre")
+    selected_platforms = request.GET.getlist("platform")
+    selected_statuses = request.GET.getlist("status")
+    selected_order = request.GET.get("order", "recent")
+    
     
     if query:
         games = games.filter(
@@ -25,6 +35,53 @@ def games_list(request):
             Q(developer__icontains=query) |
             Q(genres__name__icontains=query)
         ).distinct()
+        
+        
+    if selected_genres:
+
+        games = games.filter(
+            genres__id__in=selected_genres
+        ).distinct()
+        
+        
+    if selected_platforms:
+
+        platform_query = Q()
+
+        for platform in selected_platforms:
+
+            platform_query |= Q(
+                platforms__icontains=platform
+            )
+
+        games = games.filter(platform_query)
+        
+    
+    if selected_statuses:
+
+        games = games.filter(
+            status__in=selected_statuses
+        )
+        
+    if selected_order == "recent":
+
+        games = games.order_by("-created_at")
+
+
+    elif selected_order == "oldest":
+
+        games = games.order_by("created_at")
+
+
+    elif selected_order == "name_asc":
+
+        games = games.order_by("name")
+
+
+    elif selected_order == "name_desc":
+
+        games = games.order_by("-name")
+        
         
     paginator = Paginator(games, 12)
     page_number = request.GET.get("page")
@@ -40,8 +97,14 @@ def games_list(request):
     return render(request, "games/games.html", {
         'games_obj': games_obj,
         'query': query,
-        'query_string': query_string
+        'query_string': query_string,
+        'genres': genres,
+        "selected_genres": selected_genres,
+        "selected_platforms": selected_platforms,
+        "selected_statuses": selected_statuses,
+        "selected_order": selected_order,
     })
+
 
 def games_detail(request, slug):
     game = get_object_or_404(Game, slug=slug)

@@ -542,136 +542,533 @@
 
 .filter-sidebar{
 
-    position:sticky;
+    border: 1px solid rgba(255, 255, 255, .05);
+    border-radius: 18px;
+    padding: 20px;
 
-    top:110px;
+    background-color: #24263b;
+
+    /* position:sticky; */
+
+    margin-top:150px;
 
     width:100%;
 
 }
 
-.filter-sidebar h4{
 
-    color:white;
+/*==================================================
+=              FILTER ACCORDION
+==================================================*/
 
-    margin-bottom:20px;
+.filter-accordion {
 
-}
-
-.filter-sidebar h5{
-
-    color:white;
-
-    margin-bottom:15px;
-
-    font-size:17px;
+    width: 100%;
 
 }
 
-.filter-section{
 
-    margin-bottom:25px;
+/*==================================================
+=              FILTER SECTION
+==================================================*/
 
-}
+.filter-section {
 
-.filter-section input[type="checkbox"]{
+    width: 100%;
 
-    appearance: none;
-    -webkit-appearance: none;
-
-    width: 18px;
-    height: 18px;
-
-    border: 2px solid #6b7280;
-    border-radius: 5px;
-
-    background: transparent;
-
-    cursor: pointer;
-
-    transition: .25s;
-    accent-color:#7C3AED;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
 
 }
 
-.filter-section input[type="checkbox"]:checked{
+/*==================================================
+=                 GAME SEARCH
+==================================================*/
 
-    background: #7C3AED;
+.filter-search {
 
-    border-color: #7C3AED;
+    margin-top: 20px;
+
+    width: 100%;
+
+    margin-bottom: 15px;
 
 }
 
-.filter-section label{
+
+/*==================================================
+=                 SEARCH FORM
+==================================================*/
+
+.filter-search form {
 
     display: flex;
 
     align-items: center;
 
-    gap: 12px;
+    width: 100%;
 
-    margin-bottom: 14px;
+    height: 42px;
 
-    color: #d1d5db;
+    margin: 0;
+
+    padding: 0;
+
+    background: #111522;
+
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    border-radius: 8px;
+
+    overflow: hidden;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease;
+
+}
+
+
+/*==================================================
+=                 SEARCH INPUT
+==================================================*/
+
+.filter-search input {
+
+    flex: 1;
+
+    width: 100%;
+
+    height: 100%;
+
+    min-width: 0;
+
+    padding: 0 12px;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    color: #FFFFFF;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+}
+
+
+/* Placeholder */
+
+.filter-search input::placeholder {
+
+    color: #6F7695;
+
+}
+
+
+/* Focus */
+
+.filter-search form:focus-within {
+
+    border-color: #7C4DFF;
+
+    box-shadow: 0 0 0 3px rgba(124, 77, 255, .10);
+
+}
+
+
+/*==================================================
+=                 SEARCH BUTTON
+==================================================*/
+
+.filter-search button {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    padding: 0;
+
+    border: none;
+
+    background: #7C4DFF;
+
+    color: #FFFFFF;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease;
+
+}
+
+
+.filter-search button:hover {
+
+    background: #6B3FEF;
+
+}
+
+
+.filter-search button i {
+
+    font-size: 13px;
+
+}
+
+
+/*==================================================
+=                 RESPONSIVE
+==================================================*/
+
+@media (max-width: 576px) {
+
+    .filter-search form {
+
+        height: 40px;
+
+    }
+
+    .filter-search button {
+
+        width: 40px;
+
+        height: 40px;
+
+    }
+
+}
+
+
+/*==================================================
+=              ACCORDION HEADER
+==================================================*/
+
+.filter-section-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding: 16px 4px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #FFFFFF;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition: color .2s ease;
+
+}
+
+.filter-section-header span {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+.filter-section-header span > i {
+
+    width: 18px;
+
+    color: #7C4DFF;
+
+    text-align: center;
+
+}
+
+
+/*==================================================
+=              CHEVRON
+==================================================*/
+
+.filter-chevron {
+
+    color: #8E95B2;
+
+    font-size: 11px;
+
+    transition:
+        transform .25s ease,
+        color .2s ease;
+
+}
+
+.filter-section-header:hover {
+
+    color: #7C4DFF;
+
+}
+
+.filter-section-header:hover .filter-chevron {
+
+    color: #7C4DFF;
+
+}
+
+
+/*==================================================
+=              CONTENT
+==================================================*/
+
+/*
+    Todas las secciones comienzan cerradas.
+*/
+
+.filter-section-content {
+
+    display: none;
+
+    padding: 0 4px 15px;
+
+}
+
+
+/*
+    Cuando JavaScript agregue .active
+    mostramos el contenido.
+*/
+
+.filter-section.active .filter-section-content {
+
+    display: block;
+
+}
+
+
+/*==================================================
+=              ACTIVE STATE
+==================================================*/
+
+.filter-section.active .filter-section-header {
+
+    color: #7C4DFF;
+
+}
+
+.filter-section.active .filter-chevron {
+
+    transform: rotate(180deg);
+
+    color: #7C4DFF;
+
+}
+
+
+/*==================================================
+=              FILTER OPTIONS
+==================================================*/
+
+.filter-section-content label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    width: 100%;
+
+    padding: 8px 4px;
+
+    margin: 0;
+
+    color: #9AA3C5;
+
+    font-size: 13px;
+
+    font-weight: 400;
+
+    cursor: pointer;
+
+    transition:
+        color .2s ease,
+        background .2s ease;
+
+    border-radius: 6px;
+
+}
+
+.filter-section-content label:hover {
+
+    color: #FFFFFF;
+
+    background: rgba(124, 77, 255, .06);
+
+}
+
+
+/*==================================================
+=              CHECKBOX / RADIO
+==================================================*/
+
+.filter-section-content input[type="checkbox"],
+.filter-section-content input[type="radio"] {
+
+    width: 15px;
+
+    height: 15px;
+
+    margin: 0;
+
+    accent-color: #7C4DFF;
 
     cursor: pointer;
 
 }
 
 
-.filter-section select{
+/*==================================================
+=              PLATFORM ICONS
+==================================================*/
 
-    width:100%;
+.filter-section-content .platform-icon,
+.filter-section-content .genre-icon {
 
-    background:#262b40;
+    width: 18px;
 
-    color:white;
+    margin: 0;
 
-    border:none;
-
-    padding:12px;
-
-    border-radius:10px;
-
-}
-
-.apply-filter{
-
-    width:100%;
-
-    background:#7C3AED;
-
-    color:white;
-
-    border:none;
-
-    padding:14px;
-
-    border-radius:12px;
-
-    margin-top:20px;
-
-    transition:.3s;
+    text-align: center;
 
 }
 
-.apply-filter:hover{
 
-    background:#6D28D9;
+/*==================================================
+=              FILTER ACTIONS
+==================================================*/
+
+.filter-actions {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 20px;
 
 }
 
-.clear-filter{
 
-    width:100%;
+/* Aplicar */
 
-    margin-top:12px;
+.apply-filter {
 
-    background:none;
+    width: 100%;
 
-    border:none;
+    padding: 11px 15px;
 
-    color:#9CA3AF;
+    border: none;
+
+    border-radius: 8px;
+
+    background: #7C4DFF;
+
+    color: #FFFFFF;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background .2s ease,
+        transform .2s ease;
+
+}
+
+.apply-filter:hover {
+
+    background: #6B3FEF;
+
+    transform: translateY(-1px);
+
+}
+
+
+/* Limpiar */
+
+.clear-filter {
+
+    gap: 7px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 10px 15px;
+
+    border: 1px solid rgba(255, 255, 255, .10);
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #8E95B2;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        color .2s ease,
+        border-color .2s ease,
+        background .2s ease;
+
+}
+
+.clear-filter:hover {
+
+    color: #FFFFFF;
+
+    border-color: rgba(124, 77, 255, .40);
+
+    background: rgba(124, 77, 255, .06);
 
 }
 

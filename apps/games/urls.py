@@ -1,10 +1,10 @@
-# apps/games/urls.py
+# # apps/games/urls.py
 
-from django.urls import include, path
+# from django.urls import include, path
 
 
-urlpatterns = [
+# urlpatterns = [
 
-    path("", include("apps.games.urls.public")),
+#     path("", include("apps.games.urls.public")),
 
-]
+# ]

@@ -2,199 +2,321 @@
 
 <div class="filter-sidebar">
 
-    <h4>
-        <i class="fa-solid fa-filter"></i>
-        Filtrar Juegos
-    </h4>
+    <!--=========================================
+                    ENCABEZADO
+    ==========================================-->
 
-    <hr>
+    <div class="filter-sidebar-header">
 
-    <!-- ==========================================
-                    PLATAFORMAS
-    ========================================== -->
-
-    <div class="filter-section">
-
-        <h5>Plataforma</h5>
-
-        <label>
-
-            <input type="checkbox">
-
-            <i class="fa-brands fa-windows platform-icon windows"></i>
-
-            PC
-
-        </label>
-
-        <label>
-
-            <input type="checkbox">
-
-            <i class="fa-brands fa-playstation platform-icon playstation"></i>
-
-            PlayStation 5
-
-        </label>
-
-        <label>
-
-            <input type="checkbox">
-
-            <i class="fa-brands fa-xbox platform-icon xbox"></i>
-
-            Xbox Series X|S
-
-        </label>
-
-        <label>
-
-            <input type="checkbox">
-
-            <i class="fa-solid fa-gamepad platform-icon switch"></i>
-
-            Nintendo Switch
-
-        </label>
-
-        <label>
-
-            <input type="checkbox">
-
-            <i class="fa-brands fa-steam platform-icon steam"></i>
-
-            Steam Deck
-
-        </label>
+        <h5>
+            <i class="fa-solid fa-filter"></i>
+            Filtrar Juegos
+        </h5>
 
     </div>
 
-    <!-- ==========================================
-                    GÉNEROS
-    ========================================== -->
 
-    <div class="filter-section">
+    <!--=========================================
+                    BUSCADOR
+    ==========================================-->
 
-        <h5>Género</h5>
+    <div class="filter-search">
 
-        <label>
+        <form id="game-search" action="#" method="get">
 
-            <input type="checkbox">
+            <input type="text" placeholder="Buscar juegos..." id="searchText" name="q" value="{% if query %}{{ query }}{% endif %}">
 
-            <i class="fa-solid fa-hand-fist genre-icon action"></i>
+            <button type="submit">
 
-            Acción
+                <i class="fa-solid fa-magnifying-glass"></i>
 
-        </label>
+            </button>
 
-        <label>
-
-            <input type="checkbox">
-
-            <i class="fa-solid fa-hat-wizard genre-icon rpg"></i>
-
-            RPG
-
-        </label>
-
-        <label>
-
-            <input type="checkbox">
-
-            <i class="fa-solid fa-compass genre-icon adventure"></i>
-
-            Aventura
-
-        </label>
-
-        <label>
-
-            <input type="checkbox">
-
-            <i class="fa-solid fa-crosshairs genre-icon shooter"></i>
-
-            Shooter
-
-        </label>
-
-        <label>
-
-            <input type="checkbox">
-
-            <i class="fa-solid fa-chess-knight genre-icon strategy"></i>
-
-            Estrategia
-
-        </label>
+        </form>
 
     </div>
 
-    <hr>
 
-    <!-- Estado -->
+    <!--=========================================
+                    FILTROS
+    ==========================================-->
+    <form id="game-filters" action="#" method="get">
 
-    <div class="filter-section">
+        <div class="filter-accordion">
 
-        <h5>Estado</h5>
 
-        <label><input type="checkbox"> Lanzados</label>
+            <!--=====================================
+                        PLATAFORMA
+            ======================================-->
 
-        <label><input type="checkbox"> Próximamente</label>
+            <div class="filter-section">
 
-        <label><input type="checkbox"> Early Access</label>
+                <button type="button" class="filter-section-header">
 
-    </div>
+                    <span>
 
-    <hr>
+                        <i class="fa-solid fa-gamepad"></i>
 
-    <!-- Valoración -->
+                        Plataforma
 
-    <div class="filter-section">
+                    </span>
 
-        <h5>Valoración</h5>
+                    <i class="fa-solid fa-chevron-down filter-chevron"></i>
 
-        <label><input type="radio" name="rating"> ⭐⭐⭐⭐⭐</label>
+                </button>
 
-        <label><input type="radio" name="rating"> ⭐⭐⭐⭐</label>
 
-        <label><input type="radio" name="rating"> ⭐⭐⭐</label>
+                <div class="filter-section-content">
 
-        <label><input type="radio" name="rating"> ⭐⭐</label>
+                    <label>
 
-        <label><input type="radio" name="rating"> ⭐</label>
+                        <input type="checkbox" name="platform" value="PC" {% if "PC" in selected_platforms %}checked{% endif %}>
 
-    </div>
+                        <i class="fa-brands fa-windows platform-icon windows"></i>
 
-    <hr>
+                        PC
 
-    <!-- Orden -->
+                    </label>
 
-    <div class="filter-section">
 
-        <h5>Ordenar por</h5>
+                    <label>
 
-        <select>
+                        <input type="checkbox" name="platform" value="PlayStation 5" {% if "PlayStation 5" in selected_platforms %}checked{% endif %}>
 
-            <option>Más populares</option>
+                        <i class="fa-brands fa-playstation platform-icon playstation"></i>
 
-            <option>Mejor valorados</option>
+                        PlayStation 5
 
-            <option>Más recientes</option>
+                    </label>
 
-        </select>
 
-    </div>
+                    <label>
 
-    <button class="apply-filter">
+                        <input type="checkbox" name="platform" value="Xbox Series X|S" {% if "Xbox Series X|S" in selected_platforms %}checked{% endif %}>
 
-        Aplicar filtros
+                        <i class="fa-brands fa-xbox platform-icon xbox"></i>
 
-    </button>
+                        Xbox Series X|S
 
-    <button class="clear-filter">
+                    </label>
 
-        Limpiar filtros
 
-    </button>
+                    <label>
+
+                        <input type="checkbox" name="platform" value="Nintendo Switch" {% if "Nintendo Switch" in selected_platforms %}checked{% endif %}>
+
+                        <i class="fa-solid fa-gamepad platform-icon switch"></i>
+
+                        Nintendo Switch
+
+                    </label>
+
+
+                    <label>
+
+                        <input type="checkbox" name="platform" value="Steam Deck"  {% if "Steam Deck" in selected_platforms %}checked{% endif %}>
+
+                        <i class="fa-brands fa-steam platform-icon steam"></i>
+
+                        Steam Deck
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!--=====================================
+                        GÉNERO
+            ======================================-->
+
+            <div class="filter-section">
+
+                <button type="button" class="filter-section-header">
+
+                    <span>
+
+                        <i class="fa-solid fa-dice"></i>
+
+                        Género
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down filter-chevron"></i>
+
+                </button>
+
+
+                <div class="filter-section-content">
+
+                    {% for genre in genres %}
+
+                        <label>
+
+                            <input type="checkbox" name="genre" value="{{ genre.id }}" {% if genre.id|stringformat:"s" in selected_genres %}checked{% endif %}>                            
+
+                            {{ genre.name }}
+
+                        </label>
+
+                    {% empty %}
+
+                        <span class="filter-empty">
+                            No hay géneros disponibles.
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <!--=====================================
+                        ESTADO
+            ======================================-->
+
+            <div class="filter-section">
+
+                <button type="button" class="filter-section-header">
+
+                    <span>
+
+                        <i class="fa-solid fa-calendar-check"></i>
+
+                        Estado
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down filter-chevron"></i>
+
+                </button>
+
+
+                <div class="filter-section-content">
+
+                    <label>
+
+                        <input type="checkbox" name="status" value="Released" {% if "Released" in selected_statuses %}checked{% endif %}>
+
+                        Lanzados
+
+                    </label>
+
+
+                    <label>
+
+                        <input type="checkbox" name="status" value="Upcoming" {% if "Upcoming" in selected_statuses %}checked{% endif %}>
+
+                        Próximamente
+
+                    </label>
+
+
+                    <label>
+
+                        <input type="checkbox" name="status" value="Early Access" {% if "Early Access" in selected_statuses %}checked{% endif %}>
+
+                        Early Access
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!--=====================================
+                        ORDENAR
+            ======================================-->
+
+            <div class="filter-section">
+
+                <button type="button" class="filter-section-header">
+
+                    <span>
+
+                        <i class="fa-solid fa-arrow-down-wide-short"></i>
+
+                        Ordenar por
+
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down filter-chevron"></i>
+
+                </button>
+
+
+                <div class="filter-section-content">
+
+                    <label>
+
+                        <input type="radio" name="order" value="recent" {% if selected_order == "recent" %}checked{% endif %}>
+
+                        Más recientes
+
+                    </label>
+
+
+                    <label>
+
+                        <input type="radio" name="order" value="oldest" {% if selected_order == "oldest" %}checked{% endif %}>
+
+                        Más antiguos
+
+                    </label>
+
+
+                    <label>
+
+                        <input type="radio" name="order" value="name_asc" {% if selected_order == "name_asc" %}checked{% endif %}>
+
+                        Nombre A-Z
+
+                    </label>
+
+
+                    <label>
+
+                        <input type="radio" name="order" value="name_desc" {% if selected_order == "name_desc" %}checked{% endif %}>
+
+                        Nombre Z-A
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!--=========================================
+                        ACCIONES
+        ==========================================-->
+
+        <div class="filter-actions">
+
+            <button type="submit" class="apply-filter">
+
+                <i class="fa-solid fa-filter"></i>
+
+                Aplicar filtros
+
+            </button>
+
+
+            <a
+                href="{% url 'public:games_list' %}{% if query %}?q={{ query|urlencode }}{% endif %}"
+                class="clear-filter"
+            >
+                <i class="fa-solid fa-rotate-left"></i>
+                 Limpiar filtros
+            </a>
+
+        </div>
+
+    </form>
 
 </div>
