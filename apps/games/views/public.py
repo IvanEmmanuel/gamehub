@@ -1,11 +1,13 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from ..models.game import Game
 from ..models.genre import Genre
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from ..models.userGameLibrary import UserGameLibrary
 from django.views.decorators.http import require_POST
+from datetime import timedelta
+from django.utils import timezone
 
 
 # Create your views here.
@@ -19,6 +21,16 @@ def games_list(request):
         .prefetch_related("genres")
     )
     
+    library_game_ids = set()
+
+    if request.user.is_authenticated:
+
+        library_game_ids = set(
+            UserGameLibrary.objects
+            .filter(user=request.user)
+            .values_list("game_id", flat=True)
+        )
+    
     genres = Genre.objects.all()
     
     query = request.GET.get("q", "").strip()
@@ -27,6 +39,9 @@ def games_list(request):
     selected_platforms = request.GET.getlist("platform")
     selected_statuses = request.GET.getlist("status")
     selected_order = request.GET.get("order", "recent")
+    multiplayer = request.GET.get("multiplayer")
+    new_releases = request.GET.get("new_releases")
+    popular = request.GET.get("popular")
     
     
     if query:
@@ -63,20 +78,56 @@ def games_list(request):
             status__in=selected_statuses
         )
         
-    if selected_order == "recent":
+    if multiplayer == "true":
+
+        games = games.filter(
+            has_multiplayer=True
+        )
+        
+    if new_releases == "true":
+
+        today = timezone.localdate()
+
+        ninety_days_ago = today - timedelta(days=90)
+
+        games = games.filter(
+            release_date__gte=ninety_days_ago,
+            release_date__lte=today
+        )
+        
+    if popular == "true":
+
+        games = games.annotate(
+            library_count=Count("usergamelibrary")
+        ).order_by("-library_count", "name")
+        
+        
+        
+        
+    if popular == "true":
+
+        games = games.order_by(
+            "-library_count",
+            "name"
+        )
+
+    elif new_releases == "true":
+
+        games = games.order_by(
+            "-release_date"
+        )
+
+    elif selected_order == "recent":
 
         games = games.order_by("-created_at")
-
 
     elif selected_order == "oldest":
 
         games = games.order_by("created_at")
 
-
     elif selected_order == "name_asc":
 
         games = games.order_by("name")
-
 
     elif selected_order == "name_desc":
 
@@ -103,6 +154,7 @@ def games_list(request):
         "selected_platforms": selected_platforms,
         "selected_statuses": selected_statuses,
         "selected_order": selected_order,
+        "library_game_ids": library_game_ids,
     })
 
 

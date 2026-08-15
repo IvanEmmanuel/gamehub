@@ -121,7 +121,7 @@
 =========================================*/
 
 .explore-categories{
-    margin: 40px 0;
+    margin: 30px 0;
 }
 
 .category-card{
@@ -137,7 +137,7 @@
     padding: 22px;
 
     /* NUEVO */
-    min-height: 130px;
+    /* min-height: 130px; */
 
     transition: .3s;
     cursor: pointer;
@@ -190,7 +190,7 @@
 
 .popular-games{
 
-    margin-top:60px;
+    margin-top:30px;
 
 }
 
@@ -495,6 +495,8 @@
 
 .game-footer{
 
+    gap:20px;
+
     display:flex;
 
     justify-content:space-between;
@@ -541,6 +543,10 @@
 =============================*/
 
 .filter-sidebar{
+
+    position: sticky;
+    top: 20px;
+    z-index: 100;
 
     border: 1px solid rgba(255, 255, 255, .05);
     border-radius: 18px;

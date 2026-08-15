@@ -1,100 +1,169 @@
 {% load static %}
+
 <!-- ==========================================
-                         EXPLORE CATEGORIES
-          ========================================== -->
+                    EXPLORE GAMEHUB
+     ========================================== -->
 
-          <div class="explore-categories">
+<div class="explore-categories">
 
-              <div class="row">
+    <div class="row">
 
-                  <!-- Más populares -->
-                  <div class="col-lg-3 col-md-6 mb-4">
 
-                      <div class="category-card">
+        <!--======================================
+                    MÁS POPULARES
+        =======================================-->
 
-                          <div class="category-icon text-danger">
-                              <i class="fa-solid fa-fire"></i>
-                          </div>
+        <div class="col-lg-4 col-md-6 mb-4">
 
-                          <div class="category-info">
+            <a href="{% url 'public:games_list' %}?popular=true" class="category-card">
 
-                              <h5>Más Populares</h5>
+                <div class="category-icon text-danger">
 
-                              <p>Los más jugados</p>
+                    <i class="fa-solid fa-fire"></i>
 
-                          </div>
+                </div>
 
-                      </div>
+                <div class="category-info">
 
-                  </div>
+                    <h5>Más Populares</h5>
 
-                  <!-- Mejor calificados -->
-                  <div class="col-lg-3 col-md-6 mb-4">
+                </div>
 
-                      <div class="category-card">
+            </a>
 
-                          <div class="category-icon text-warning">
-                              <i class="fa-solid fa-star"></i>
-                          </div>
+        </div>
 
-                          <div class="category-info">
 
-                              <h5>Mejor Calificados</h5>
+        <!--======================================
+                    MEJOR CALIFICADOS
+        =======================================-->
 
-                              <p>Top por jugadores</p>
+        <div class="col-lg-4 col-md-6 mb-4">
 
-                          </div>
+            <a href="#" class="category-card">
 
-                      </div>
+                <div class="category-icon text-warning">
 
-                  </div>
+                    <i class="fa-solid fa-star"></i>
 
-                  <!-- Nuevos -->
-                  <div class="col-lg-3 col-md-6 mb-4">
+                </div>
 
-                      <div class="category-card">
+                <div class="category-info">
 
-                          <div class="category-icon text-primary">
-                              <i class="fa-solid fa-calendar"></i>
-                          </div>
+                    <h5>Mejor Calificados</h5>
 
-                          <div class="category-info">
+                </div>
 
-                              <h5>Nuevos Lanzamientos</h5>
+            </a>
 
-                              <p>Lo último en games</p>
+        </div>
 
-                          </div>
 
-                      </div>
+        <!--======================================
+                    NUEVOS LANZAMIENTOS
+        =======================================-->
 
-                  </div>
+        <div class="col-lg-4 col-md-6 mb-4">
 
-                  <!-- Próximamente -->
-                  <div class="col-lg-3 col-md-6 mb-4">
+            <a href="{% url 'public:games_list' %}?new_releases=true" class="category-card">
 
-                      <div class="category-card">
+                <div class="category-icon text-primary">
 
-                          <div class="category-icon text-secondary">
-                              <i class="fa-regular fa-clock"></i>
-                          </div>
+                    <i class="fa-solid fa-calendar-plus"></i>
 
-                          <div class="category-info">
+                </div>
 
-                              <h5>Próximamente</h5>
+                <div class="category-info">
 
-                              <p>Juegos en camino</p>
+                    <h5>Nuevos Lanzamientos</h5>
 
-                          </div>
+                </div>
 
-                      </div>
+            </a>
 
-                  </div>
+        </div>
 
-              </div>
 
-          </div>
+        <!--======================================
+                    PRÓXIMAMENTE
+        =======================================-->
 
-          <!-- ==========================================
-                        FINAL EXPLORE CATEGORIES
-          ========================================== -->
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <a href="{% url 'public:games_list' %}?status=Upcoming" class="category-card">
+
+                <div class="category-icon text-secondary">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                </div>
+
+                <div class="category-info">
+
+                    <h5>Próximamente</h5>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <!--======================================
+                    RECOMENDADOS
+        =======================================-->
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <a href="#" class="category-card">
+
+                <div class="category-icon text-success">
+
+                    <i class="fa-solid fa-bullseye"></i>
+
+                </div>
+
+                <div class="category-info">
+
+                    <h5>Recomendados para ti</h5>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+        <!--======================================
+                    MULTIJUGADOR
+        =======================================-->
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <a href="{% url 'public:games_list' %}?multiplayer=true" class="category-card">
+
+                <div class="category-icon text-info">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+                <div class="category-info">
+
+                    <h5>Multijugador</h5>
+
+                </div>
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+                FINAL EXPLORE GAMEHUB
+     ========================================== -->
