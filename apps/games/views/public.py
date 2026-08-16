@@ -1,14 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from ..models.game import Game
 from ..models.genre import Genre
-from django.db.models import Q, Count
+from ..models.review import Review
+from ..forms import ReviewForm
+from django.db.models import Q, Count, Avg
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from ..models.userGameLibrary import UserGameLibrary
 from django.views.decorators.http import require_POST
 from datetime import timedelta
 from django.utils import timezone
-
+from django.contrib import messages
 
 # Create your views here.
 
@@ -181,8 +183,8 @@ def games_list(request):
         "has_filters": has_filters,
     })
 
-
 def games_detail(request, slug):
+
     game = get_object_or_404(Game, slug=slug)
 
     is_in_library = (
@@ -193,10 +195,88 @@ def games_detail(request, slug):
         ).exists()
     )
 
-    return render(request, "games/games_detail.html", {
-        "game": game,
-        "is_in_library": is_in_library,
-    })
+    reviews = (
+        Review.objects
+        .filter(game=game)
+        .select_related("user", "user__userprofile")
+        .order_by("-created_at")
+    )
+    
+    review_stats = Review.objects.filter(
+        game=game
+    ).aggregate(
+        average=Avg("rating"),
+        total=Count("id"),
+    )
+    
+    average_rating = review_stats["average"] or 0
+
+    full_stars = int(average_rating)
+    has_half_star = (average_rating - full_stars) >= 0.5
+    empty_stars = 5 - full_stars - int(has_half_star)
+    
+    
+
+    rating_counts = (
+        Review.objects
+        .filter(game=game)
+        .values("rating")
+        .annotate(total=Count("id"))
+    )
+
+    rating_counts = {
+        item["rating"]: item["total"]
+        for item in rating_counts
+    }
+
+    rating_distribution = []
+
+    for rating in range(5, 0, -1):
+
+        total = rating_counts.get(rating, 0)
+
+        percentage = (
+            round((total / review_stats["total"]) * 100)
+            if review_stats["total"]
+            else 0
+        )
+
+        rating_distribution.append({
+            "rating": rating,
+            "total": total,
+            "percentage": percentage,
+        })
+
+    user_review = None
+
+    if request.user.is_authenticated:
+
+        user_review = Review.objects.filter(
+            user=request.user,
+            game=game,
+        ).first()
+
+    review_form = ReviewForm(
+        instance=user_review
+    )
+
+    return render(
+        request,
+        "games/games_detail.html",
+        {
+            "game": game,
+            "is_in_library": is_in_library,
+            "reviews": reviews,
+            "review_form": review_form,
+            "review_average": review_stats["average"],
+            "review_total": review_stats["total"],
+            "rating_distribution": rating_distribution,
+            "user_review": user_review,
+            "full_stars": full_stars,
+            "has_half_star": has_half_star,
+            "empty_stars": empty_stars,
+        },
+    )
 
 def games_content(request, slug):
 
@@ -270,3 +350,61 @@ def remove_from_library(request, slug):
     library_entry.delete()
 
     return redirect("public:my_library")
+
+@login_required
+@require_POST
+def review_game(request, slug):
+
+    game = get_object_or_404(
+        Game,
+        slug=slug,
+        is_active=True,
+    )
+
+    try:
+        instance = Review.objects.get(
+            user=request.user,
+            game=game,
+        )
+        is_update = True
+
+    except Review.DoesNotExist:
+        instance = None
+        is_update = False
+
+    form = ReviewForm(
+        request.POST,
+        instance=instance,
+    )
+
+    if form.is_valid():
+
+        review = form.save(commit=False)
+
+        review.user = request.user
+        review.game = game
+
+        review.save()
+
+        message = (
+            "Reseña actualizada"
+            if is_update
+            else "Gracias por tu reseña"
+        )
+
+        messages.success(request, message)
+
+        return redirect(
+            "public:games_detail",
+            slug=game.slug,
+        )
+
+    messages.error(
+        request,
+        "No se pudo guardar la reseña. Revisa los datos.",
+    )
+
+    return redirect(
+        "public:games_detail",
+        slug=game.slug,
+    )

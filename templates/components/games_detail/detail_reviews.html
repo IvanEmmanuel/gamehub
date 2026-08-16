@@ -5,18 +5,27 @@
     <div class="reviews-header">
 
         <h3>
-
             <i class="fa-solid fa-star"></i>
-
             Reseñas de la comunidad
-
         </h3>
 
-        <button class="review-btn">
+        {% if user.is_authenticated %}
 
-            Escribir reseña
+            <button type="button" class="review-btn" onclick="document.getElementById('review-form').scrollIntoView({ behavior: 'smooth' });">
+                {% if user_review %}
+                    Editar mi reseña
+                {% else %}
+                    Escribir reseña
+                {% endif %}
+            </button>
 
-        </button>
+        {% else %}
+
+            <a href="{% url 'login' %}?next={{ request.path }}" class="review-btn">
+                Iniciar sesión para reseñar
+            </a>
+
+        {% endif %}
 
     </div>
 
@@ -26,101 +35,75 @@
 
     <div class="row review-summary align-items-center">
 
-    <!-- Calificación -->
+        <!-- Calificación -->
 
-    <div class="review-score">
+        <div class="review-score">
 
-        <h2>4.9</h2>
+            <h2>
+                {% if review_average %}
+                    {{ review_average|floatformat:1 }}
+                {% else %}
+                    0.0
+                {% endif %}
+            </h2>
 
-            <div class="stars">
+                <div class="stars">
 
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star-half-stroke"></i>
+                {% for i in "12345" %}
 
-            </div>
+                    {% if forloop.counter <= full_stars %}
 
-        <span>12,432 reseñas</span>
+                        <i class="fa-solid fa-star"></i>
 
-    </div>
+                    {% elif forloop.counter == full_stars|add:"1" and has_half_star %}
 
-    <!-- Distribución -->
+                        <i class="fa-solid fa-star-half-stroke"></i>
 
-    <div class="col-lg-9">
+                    {% else %}
 
-        <div class="rating-bars">
+                        <i class="fa-regular fa-star"></i>
 
-            <!-- repetir -->
+                    {% endif %}
 
-            <div class="rating-row">
-
-                <span>5 <i class="fa-solid fa-star"></i></span>
-
-                <div class="progress">
-
-                    <div class="progress-bar" style="width:82%"></div>
-
-                </div>
-
-                <strong>82%</strong>
+                {% endfor %}
 
             </div>
 
-            <div class="rating-row">
 
-                <span>4 <i class="fa-solid fa-star"></i></span>
+            <span>
+                {{ review_total }} reseña{{ review_total|pluralize }}
+            </span>
 
-                <div class="progress">
+        </div>
 
-                    <div class="progress-bar" style="width:82%"></div>
+        <!-- Distribución -->
 
-                </div>
+        <div class="col-lg-9">
 
-                <strong>82%</strong>
+            <div class="rating-bars">
 
-            </div>
+                {% for item in rating_distribution %}
 
-            <div class="rating-row">
+                    <div class="rating-row">
 
-                <span>3 <i class="fa-solid fa-star"></i></span>
+                        <span>
+                            {{ item.rating }}
+                            <i class="fa-solid fa-star"></i>
+                        </span>
 
-                <div class="progress">
+                        <div class="progress">
 
-                    <div class="progress-bar" style="width:82%"></div>
+                            <div class="progress-bar" style="width: {{ item.percentage }}%;"></div>
 
-                </div>
+                        </div>
 
-                <strong>82%</strong>
+                        <strong>
+                            {{ item.percentage }}%
+                        </strong>
 
-            </div>
+                    </div>
 
-            <div class="rating-row">
-
-                <span>2 <i class="fa-solid fa-star"></i></span>
-
-                <div class="progress">
-
-                    <div class="progress-bar" style="width:82%"></div>
-
-                </div>
-
-                <strong>82%</strong>
-
-            </div>
-
-            <div class="rating-row">
-
-                <span>1 <i class="fa-solid fa-star"></i></span>
-
-                <div class="progress">
-
-                    <div class="progress-bar" style="width:82%"></div>
-
-                </div>
-
-                <strong>82%</strong>
+                {% endfor %}
 
             </div>
 
@@ -128,71 +111,171 @@
 
     </div>
 
-</div>
+    {% if user.is_authenticated %}
+
+        <div id="review-form" class="review-form">
+
+            <h4>
+                {% if user_review %}
+                    Editar mi reseña
+                {% else %}
+                    Escribe tu reseña
+                {% endif %}
+            </h4>
+
+            <form method="post" action="{% url 'public:review_game' slug=game.slug %}">
+
+                {% csrf_token %}
+
+                <div class="review-form-rating">
+
+                    <label>
+                        {{ review_form.rating.label }}
+                    </label>
+
+                    <div class="star-rating">
+
+                        {% for radio in review_form.rating %}
+
+                            <label for="{{ radio.id_for_label }}" title="{{ radio.choice_label }} estrellas">
+                                {{ radio.tag }}
+
+                                <i class="fa-solid fa-star"></i>
+                            </label>
+
+                        {% endfor %}
+
+                    </div>
+
+                    {% if review_form.rating.errors %}
+                        {{ review_form.rating.errors }}
+                    {% endif %}
+
+                </div>
+
+
+                <div class="review-form-comment">
+
+                    <label for="{{ review_form.comment.id_for_label }}">
+                        {{ review_form.comment.label }}
+                    </label>
+
+                    {{ review_form.comment }}
+
+                    {% if review_form.comment.errors %}
+                        {{ review_form.comment.errors }}
+                    {% endif %}
+
+                </div>
+
+
+                <button type="submit" class="review-submit-btn">
+
+                    {% if user_review %}
+                        Actualizar reseña
+                    {% else %}
+                        Publicar reseña
+                    {% endif %}
+
+                </button>
+
+            </form>
+
+        </div>
+
+    {% endif %}
 
     <!-- =============================
             REVIEW
     ============================== -->
 
-    <div class="review-card">
+    {% for review in reviews %}
 
-        <div class="review-top">
+        <div class="review-card">
 
-            <div class="review-user">
+            <div class="review-top">
 
-                <img src="{% static 'assets/images/profile-header.jpg' %}">
+                <div class="review-user">
 
-                <div>
+                    {% if review.user.userprofile.avatar %}
 
-                    <h5>Carlos Gómez</h5>
+                        <img src="{{ review.user.userprofile.avatar.url }}" alt="{{ review.user.userprofile.gamer_tag }}">
 
-                    <small>215 horas jugadas</small>
+                    {% else %}
+
+                        <img  src="{% static 'assets/images/default-game-cover.png' %}"  alt="{{ review.user.userprofile.gamer_tag }}">
+
+                    {% endif %}
+
+                    <div>
+
+                        <h5>
+                            {{ review.user.username }}
+                        </h5>
+
+                        <small>
+                            {{ review.user.userprofile.gamer_tag }}
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <div class="review-stars">
+
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= review.rating %}
+                            ★
+                        {% else %}
+                            ☆
+                        {% endif %}
+                    {% endfor %}
 
                 </div>
 
             </div>
 
-            <div class="review-stars">
+            {% if review.comment %}
 
-                ★★★★★
+                <p>
+                    {{ review.comment }}
+                </p>
+
+            {% endif %}
+
+            <div class="review-actions">
+
+                <span>
+                    <i class="fa-regular fa-thumbs-up"></i>
+                    0
+                </span>
+
+                <span>
+                    <i class="fa-regular fa-thumbs-down"></i>
+                    0
+                </span>
+
+                <p>
+                    <- Proximamente
+                </p>
+
+                <span>
+                    Fecha de publicación - {{ review.created_at|date:"d/m/Y" }}
+                </span>
 
             </div>
 
-        </div>
-
-        <p>
-
-            Una de las mejores experiencias RPG que he jugado.
-            La historia y los personajes son increíbles.
-
-        </p>
-
-        <div class="review-actions">
-
-            <span>
-
-                <i class="fa-regular fa-thumbs-up"></i>
-
-                245
-
-            </span>
-
-            <span>
-
-                <i class="fa-regular fa-thumbs-down"></i>
-
-                12
-
-            </span>
-
-            <span>
-
-                Hace 2 días
-
-            </span>
 
         </div>
 
-    </div>
+    {% empty %}
+
+        <div class="no-reviews">
+            <p>
+                Este juego todavía no tiene reseñas.
+            </p>
+        </div>
+
+    {% endfor %}
 
 </section>
