@@ -30,7 +30,7 @@
 
                 <span>Lanzamiento</span>
 
-                <strong>10 diciembre 2020</strong>
+                <strong>{{ game.release_date }}</strong>
 
             </div>
 
@@ -48,7 +48,9 @@
 
                 <span>Desarrollador</span>
 
-                <strong>CD Projekt RED</strong>
+                <strong>
+                    {{ game.developer|default:"No disponible" }}
+                </strong>
 
             </div>
 
@@ -66,29 +68,15 @@
 
                 <span>Editor</span>
 
-                <strong>CD Projekt RED</strong>
+                <strong>
+                    {{ game.publisher|default:"No disponible" }}
+                </strong>
 
             </div>
 
         </div>
 
-        <div class="info-item">
-
-            <div class="info-icon">
-
-                <i class="fa-solid fa-microchip"></i>
-
-            </div>
-
-            <div class="info-content">
-
-                <span>Motor gráfico</span>
-
-                <strong>RED Engine 4</strong>
-
-            </div>
-
-        </div>
+        
 
         <div class="info-item">
 
@@ -100,9 +88,15 @@
 
             <div class="info-content">
 
-                <span>Modo de juego</span>
+                <span>Multijugador</span>
 
-                <strong>Un jugador</strong>
+                <strong>
+                    {% if game.has_multiplayer %}
+                        Sí
+                    {% else %}
+                        No
+                    {% endif %}
+                </strong>
 
             </div>
 
@@ -122,11 +116,9 @@
 
                 <div class="platform-icons">
 
-                    <i class="fa-brands fa-windows"></i>
-
-                    <i class="fa-brands fa-playstation"></i>
-
-                    <i class="fa-brands fa-xbox"></i>
+                    <strong>
+                        {{ game.platforms|default:"No disponible" }}
+                    </strong>
 
                 </div>
 
@@ -134,41 +126,9 @@
 
         </div>
 
-        <div class="info-item">
+        
 
-            <div class="info-icon">
-
-                <i class="fa-solid fa-hard-drive"></i>
-
-            </div>
-
-            <div class="info-content">
-
-                <span>Tamaño</span>
-
-                <strong>72 GB</strong>
-
-            </div>
-
-        </div>
-
-        <div class="info-item">
-
-            <div class="info-icon">
-
-                <i class="fa-solid fa-language"></i>
-
-            </div>
-
-            <div class="info-content">
-
-                <span>Idiomas</span>
-
-                <strong>Español • Inglés</strong>
-
-            </div>
-
-        </div>
+        
 
         <div class="info-item">
 
@@ -182,57 +142,17 @@
 
                 <span>Logros</span>
 
-                <strong>57</strong>
+                <strong>
+                    {{ game.achievements.count }}
+                </strong>
 
             </div>
 
         </div>
 
-        <div class="info-item">
+        
 
-            <div class="info-icon">
-
-                <i class="fa-regular fa-clock"></i>
-
-            </div>
-
-            <div class="info-content">
-
-                <span>Historia principal</span>
-
-                <strong>28 horas</strong>
-
-            </div>
-
-        </div>
-
-        <div class="info-item">
-
-            <div class="info-icon">
-
-                <i class="fa-solid fa-signal"></i>
-
-            </div>
-
-            <div class="info-content">
-
-                <span>Dificultad</span>
-
-                <div class="difficulty">
-
-                    <strong>Media</strong>
-
-                    <div class="difficulty-bar">
-
-                        <div class="difficulty-fill"></div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
+        
 
         <div class="info-item">
 
@@ -247,9 +167,7 @@
                 <span>Clasificación</span>
 
                 <span class="age-rating">
-
-                    M (+17)
-
+                    +{{ game.pegi|default:"No disponible" }}
                 </span>
 
             </div>

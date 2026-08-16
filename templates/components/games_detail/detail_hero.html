@@ -46,11 +46,11 @@
                             class="game-cover">
                     {% endif %}
 
-                    <button class="favorite-btn">
-
-                        <i class="fa-regular fa-heart"></i>
-
-                    </button>
+                    {% if is_in_library %}
+                        <div class="favorite-btn">
+                            <i class="fa-solid fa-heart favorite-active"></i>
+                        </div>
+                    {% endif %}
 
                 </div>
 
@@ -71,18 +71,23 @@
                         <span>
 
                             <i class="fa-solid fa-star"></i>
-                            N/A
 
-                            <!-- {{ games.rating }} -->
+                            {% if review_average %}
+                                {{ review_average|floatformat:1 }}
+                            {% else %}
+                                N/A
+                            {% endif %}
 
                         </span>
+
+                        {{ review_total }} reseña{{ review_total|pluralize }}
 
                         <span>{{ game.developer }}</span>
 
                         <span>{{ game.release_date }}</span>
-                        N/A
+                        
 
-                        <!-- <span>{{ game.reviews }} Reviews</span> -->
+                        
 
                     </div>
 

@@ -449,13 +449,25 @@
 
 }
 
-.screenshots{
+.screenshots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
 
-    display:grid;
+@media (max-width: 900px) {
 
-    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    .screenshots {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
-    gap:18px;
+}
+
+@media (max-width: 600px) {
+
+    .screenshots {
+        grid-template-columns: 1fr;
+    }
 
 }
 

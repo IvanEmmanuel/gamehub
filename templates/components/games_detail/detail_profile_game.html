@@ -28,139 +28,23 @@
 
         <div class="tags-container">
 
-            <span class="tag">RPG</span>
+            {% for genre in game.genres.all %}
 
-            <span class="tag">Acción</span>
+                <span class="tag">
+                    {{ genre.name }}
+                </span>
 
-            <span class="tag">Mundo Abierto</span>
+            {% empty %}
 
-        </div>
+                <span class="tag">
+                    Sin géneros registrados
+                </span>
 
-    </div>
-
-    <!--=========================
-            Temática
-    ==========================-->
-
-    <div class="profile-block">
-
-        <h5>
-
-            <i class="fa-solid fa-city"></i>
-
-            Temática
-
-        </h5>
-
-        <div class="tags-container">
-
-            <span class="tag">Cyberpunk</span>
-
-            <span class="tag">Futurista</span>
-
-            <span class="tag">Ciencia Ficción</span>
+            {% endfor %}
 
         </div>
 
     </div>
-
-    <!--=========================
-            Ideal para
-    ==========================-->
-
-    <div class="profile-block">
-
-        <h5>
-
-            <i class="fa-solid fa-heart"></i>
-
-            Ideal para jugadores que disfrutan...
-
-        </h5>
-
-        <ul class="profile-list">
-
-            <li>
-
-                <i class="fa-solid fa-check"></i>
-
-                Historias profundas
-
-            </li>
-
-            <li>
-
-                <i class="fa-solid fa-check"></i>
-
-                Exploración
-
-            </li>
-
-            <li>
-
-                <i class="fa-solid fa-check"></i>
-
-                Personalización
-
-            </li>
-
-            <li>
-
-                <i class="fa-solid fa-check"></i>
-
-                Decisiones importantes
-
-            </li>
-
-        </ul>
-
-    </div>
-
-    <!--=========================
-            No recomendado
-    ==========================-->
-
-    <div class="profile-block">
-
-        <h5>
-
-            <i class="fa-solid fa-circle-xmark"></i>
-
-            No recomendado si buscas...
-
-        </h5>
-
-        <ul class="profile-list danger">
-
-            <li>
-
-                <i class="fa-solid fa-xmark"></i>
-
-                Partidas rápidas
-
-            </li>
-
-            <li>
-
-                <i class="fa-solid fa-xmark"></i>
-
-                Multijugador competitivo
-
-            </li>
-
-            <li>
-
-                <i class="fa-solid fa-xmark"></i>
-
-                Acción arcade
-
-            </li>
-
-        </ul>
-
-    </div>
-
-    <hr>
 
     <!--=========================
             Estadísticas
@@ -168,67 +52,8 @@
 
     <div class="profile-stats">
 
-        <div class="profile-stat">
 
-            <i class="fa-solid fa-star"></i>
-
-            <div>
-
-                <strong>Recomendación</strong>
-
-                <span>98% de jugadores recomiendan este juego.</span>
-
-            </div>
-
-        </div>
-
-        <div class="profile-stat">
-
-            <i class="fa-solid fa-clock"></i>
-
-            <div>
-
-                <strong>Duración</strong>
-
-                <span>Historia: 28 h • Completo: 105 h</span>
-
-            </div>
-
-        </div>
-
-        <div class="profile-stat">
-
-            <i class="fa-solid fa-users"></i>
-
-            <div>
-
-                <strong>Comunidad</strong>
-
-                <span>2.4 millones de jugadores activos.</span>
-
-            </div>
-
-        </div>
-
-        <div class="profile-stat">
-
-            <i class="fa-solid fa-signal"></i>
-
-            <div>
-
-                <strong>Dificultad</strong>
-
-                <span>Media</span>
-
-                <div class="difficulty-bar">
-
-                    <div class="difficulty-fill"></div>
-
-                </div>
-
-            </div>
-
-        </div>
+        
 
     </div>
 

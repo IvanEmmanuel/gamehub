@@ -42,9 +42,9 @@
                     {% include "components/games_detail/detail_similar_games.html" %}
                 </div>
 
-                <div class="mt-4">
-                    {% include "components/games_detail/detail_system_requirements.html" %}
-                </div>
+                {% comment %} <div class="mt-4">
+                    {% include "components/games_detail/detail_reviews.html" %}
+                </div> {% endcomment %}
 
             </div>
 
@@ -93,6 +93,7 @@
   <script src="{% static 'assets/js/tabs.js'%}"></script>
   <script src="{% static 'assets/js/popup.js'%}"></script>
   <script src="{% static 'assets/js/custom.js'%}"></script>
+  <script src="{% static 'assets/js/detail_screenshots.js' %}"></script>
   
 {% endblock scripts %}
   

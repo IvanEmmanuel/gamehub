@@ -185,7 +185,32 @@ def games_list(request):
 
 def games_detail(request, slug):
 
-    game = get_object_or_404(Game, slug=slug)
+    game = get_object_or_404(
+        Game.objects.prefetch_related(
+            "screenshots",
+        ),
+        slug=slug,
+        is_active=True,
+    )
+    
+    game_genres = game.genres.all()
+
+    similar_games = (
+        Game.objects
+        .filter(
+            genres__in=game_genres,
+            is_active=True,
+        )
+        .exclude(id=game.id)
+        .annotate(
+            matching_genres=Count(
+                "genres",
+                filter=Q(genres__in=game_genres),
+                distinct=True,
+            )
+        )
+        .order_by("-matching_genres", "name")[:4]
+    )
 
     is_in_library = (
         request.user.is_authenticated
@@ -275,6 +300,7 @@ def games_detail(request, slug):
             "full_stars": full_stars,
             "has_half_star": has_half_star,
             "empty_stars": empty_stars,
+            "similar_games": similar_games,
         },
     )
 
