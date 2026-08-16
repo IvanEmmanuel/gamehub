@@ -1,51 +1,73 @@
 {% load static %}
 
-<div class="game-card">
+<article class="dashboard-continue-card">
 
-    <div class="game-card-image">
+    <div class="dashboard-continue-card__image">
 
-        <img src="{% static 'assets/images/game-01.jpg' %}" alt="Juego">
+        {% if entry.game.cover %}
 
-        <span class="game-card-rating">
+            <img
+                src="{{ entry.game.cover.url }}"
+                alt="{{ entry.game.name }}"
+            >
 
-            <i class="fa-solid fa-star"></i>
+        {% else %}
 
-            4.8
+            <img
+                src="{% static 'assets/images/default-game-cover.png' %}"
+                alt="Sin portada"
+            >
 
-        </span>
+        {% endif %}
+
+        <div class="dashboard-continue-card__overlay">
+
+            <span class="dashboard-continue-card__status">
+                <i class="fa-solid fa-heart"></i>
+                En mi biblioteca
+            </span>
+
+        </div>
 
     </div>
 
-    <div class="game-card-body">
+    <div class="dashboard-continue-card__content">
 
-        <span class="game-card-category">
+        <div class="dashboard-continue-card__genres">
 
-            RPG • Acción
+            {% for genre in entry.game.genres.all|slice:":2" %}
 
-        </span>
+                <span>
+                    {{ genre.name }}
+                </span>
 
-        <h4>
+            {% endfor %}
 
-            Echoes of Orion
+        </div>
 
+        <h4 class="dashboard-continue-card__title">
+            {{ entry.game.name }}
         </h4>
 
-        <p>
+        <div class="dashboard-continue-card__date">
 
-            Explora una galaxia donde cada decisión cambia el destino de la humanidad.
+            <i class="fa-regular fa-calendar-plus"></i>
 
-        </p>
+            <span>
+                Agregado el {{ entry.added_at|date:"d/m/Y" }}
+            </span>
 
-        <div class="game-card-footer">
+        </div>
 
-            <a href="#" class="nexus-btn-secondary">
+        <div class="dashboard-continue-card__action">
 
+            <a href="{% url 'public:games_detail' slug=entry.game.slug %}">
                 Ver detalles
-
+                <i class="fa-solid fa-arrow-right"></i>
             </a>
 
         </div>
 
     </div>
 
-</div>
+</article>

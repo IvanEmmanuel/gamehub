@@ -1,3 +1,5 @@
+
+
 <section class="dashboard-section">
 
     <div class="section-header">
@@ -14,7 +16,7 @@
 
         </div>
 
-        <a href="#" class="section-link">
+        <a href="{% url 'dashboard_library' %}" class="section-link">
 
             Ver todos
 
@@ -24,14 +26,6 @@
 
     </div>
 
-    <div class="games-grid">
-
-        {% include "components/common/cards/game_card.html" %}
-
-        {% include "components/common/cards/game_card.html" %}
-
-        {% include "components/common/cards/game_card.html" %}
-
-    </div>
+    <div class="games-grid dashboard-continue-grid">
 
 </section>

@@ -1,0 +1,84 @@
+{% load static %}
+
+<article class="dashboard-recommendation-card">
+
+    <!-- Portada -->
+    <div class="dashboard-recommendation-card__image">
+
+        {% if game.cover %}
+
+            <img
+                src="{{ game.cover.url }}"
+                alt="{{ game.name }}"
+            >
+
+        {% else %}
+
+            <img
+                src="{% static 'assets/images/default-game-cover.png' %}"
+                alt="Sin portada"
+            >
+
+        {% endif %}
+
+        <div class="dashboard-recommendation-card__badge">
+
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            Para ti
+
+        </div>
+
+    </div>
+
+
+    <!-- Contenido -->
+    <div class="dashboard-recommendation-card__content">
+
+        <!-- Géneros -->
+        <div class="dashboard-recommendation-card__genres">
+
+            {% for genre in game.genres.all|slice:":2" %}
+
+                <span>
+                    {{ genre.name }}
+                </span>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- Nombre -->
+        <h4 class="dashboard-recommendation-card__title">
+            {{ game.name }}
+        </h4>
+
+
+        <!-- Developer -->
+        {% if game.developer %}
+
+            <p class="dashboard-recommendation-card__developer">
+                {{ game.developer }}
+            </p>
+
+        {% endif %}
+
+
+        <!-- Acción -->
+        <div class="dashboard-recommendation-card__action">
+
+            <a
+                href="{% url 'public:games_detail' slug=game.slug %}"
+            >
+                Ver juego
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</article>

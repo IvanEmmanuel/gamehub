@@ -18,7 +18,7 @@
 
         </div>
 
-        <a href="#" class="section-link">
+        <a href="{% url 'public:games_list' %}" class="section-link">
 
             Explorar catálogo
 
@@ -28,19 +28,25 @@
 
     </div>
 
-    <div class="games-grid">
+    <div class="games-grid dashboard-recommendations-grid">
 
-        {% include "components/common/cards/game_card.html" %}
+        {% for game in recommendations %}
 
-        {% include "components/common/cards/game_card.html" %}
+            {% include "components/common/cards/recommendation_card.html" with game=game %}
 
-        {% include "components/common/cards/game_card.html" %}
+        {% empty %}
 
-        {% include "components/common/cards/game_card.html" %}
+            <div class="dashboard-recommendations-empty">
 
-        {% include "components/common/cards/game_card.html" %}
+                <i class="fa-solid fa-gamepad"></i>
 
-        {% include "components/common/cards/game_card.html" %}
+                <p>
+                    Aún no tenemos suficientes datos para recomendarte juegos.
+                </p>
+
+            </div>
+
+        {% endfor %}
 
     </div>
 
