@@ -2,10 +2,28 @@
 
 <section class="dashboard-card dashboard-hero">
 
-    <img
-        src="{% static 'assets/images/featured-game-4.jpg' %}"
-        alt="Cyberpunk 2077"
-    >
+    {% if latest_library_game and latest_library_game.game.banner %}
+
+        <img
+            src="{{ latest_library_game.game.banner.url }}"
+            alt="{{ latest_library_game.game.name }}"
+        >
+
+    {% elif latest_library_game and latest_library_game.game.cover %}
+
+        <img
+            src="{{ latest_library_game.game.cover.url }}"
+            alt="{{ latest_library_game.game.name }}"
+        >
+
+    {% else %}
+
+        <img
+            src="{% static 'assets/images/featured-game-4.jpg' %}"
+            alt="GameHub"
+        >
+
+    {% endif %}
 
     <div class="hero-overlay">
 
@@ -29,16 +47,23 @@
 
         </p>
 
-        <h1 class="hero-title">
+        <h3 class="hero-title">
 
-            Cyberpunk 2077
+            {% if latest_library_game %}
+                {{ latest_library_game.game.name }}
+            {% else %}
+                Descubre nuevos juegos
+            {% endif %}
 
-        </h1>
+        </h3>
 
-        <a href="#" class="nexus-btn-primary">
+        <a
+            href="{% if latest_library_game %}{% url 'public:games_detail' slug=latest_library_game.game.slug %}{% else %}{% url 'public:games_list' %}{% endif %}"
+            class="nexus-btn-primary"
+        >
 
             <i class="fa-solid fa-compass"></i>
-            
+
             Continua explorando
 
         </a>

@@ -1,20 +1,23 @@
 <section class="dashboard-card dashboard-summary">
 
     <h3>
-
-        Resumen de actividad
-
+        Nuevos lanzamientos
     </h3>
+    
 
     <div class="summary-list">
 
-        {% include "components/common/cards/activity_summary_card.html" %}
+        {% for game in new_releases %}
 
-        {% include "components/common/cards/activity_summary_card.html" %}
+            {% include "components/common/cards/release_card.html" with game=game %}
 
-        {% include "components/common/cards/activity_summary_card.html" %}
+        {% empty %}
 
-        {% include "components/common/cards/activity_summary_card.html" %}
+            <p>
+                No hay nuevos lanzamientos recientes.
+            </p>
+
+        {% endfor %}
 
     </div>
 

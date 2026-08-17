@@ -2,21 +2,35 @@
 
 <div class="release-item">
 
-    <img src="{% static 'assets/images/game-01.jpg' %}" alt="Juego">
+    {% if game.cover %}
+
+        <img
+            src="{{ game.cover.url }}"
+            alt="{{ game.name }}"
+        >
+
+    {% else %}
+
+        <img
+            src="{% static 'assets/images/default-game-cover.png' %}"
+            alt="{{ game.name }}"
+        >
+
+    {% endif %}
 
     <div class="release-info">
 
         <h5>
-
-            Echoes of Orion
-
+            {{ game.name }}
         </h5>
 
-        <span>
+        {% if game.release_date %}
 
-            15 Julio 2026
+            <span>
+                {{ game.release_date|date:"d F Y" }}
+            </span>
 
-        </span>
+        {% endif %}
 
     </div>
 

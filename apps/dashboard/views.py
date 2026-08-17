@@ -5,6 +5,9 @@ from django.db.models import Count, Q
 
 from apps.games.models.game import Game
 from apps.games.models.genre import Genre
+from apps.games.models.review import Review
+
+from django.utils import timezone
 
 # Create your views here.
 
@@ -19,6 +22,26 @@ def dashboard_home(request):
         UserGameLibrary.objects
         .filter(user=request.user)
         .values_list("game_id", flat=True)
+    )
+    
+    new_releases = (
+        Game.objects
+        .filter(
+            release_date__lte=timezone.localdate(),
+            is_active=True,
+        )
+        .exclude(release_date__isnull=True)
+        .order_by("-release_date")[:3]
+    )
+    
+    upcoming_releases = (
+        Game.objects
+        .filter(
+            release_date__gt=timezone.localdate(),
+            is_active=True,
+        )
+        .exclude(release_date__isnull=True)
+        .order_by("release_date")[:3]
     )
 
 
@@ -64,6 +87,14 @@ def dashboard_home(request):
             "-created_at",
         )[:6]
     )
+    
+    latest_library_game = (
+        UserGameLibrary.objects
+        .filter(user=request.user)
+        .select_related("game")
+        .order_by("-added_at")
+        .first()
+    )
 
 
     # ==========================================
@@ -77,6 +108,41 @@ def dashboard_home(request):
         .prefetch_related("game__genres")
         .order_by("?")[:3]
     )
+    
+    recent_activities = []
+
+    for entry in (
+        UserGameLibrary.objects
+        .filter(user=request.user)
+        .select_related("game")
+    ):
+
+        recent_activities.append({
+            "type": "library",
+            "game": entry.game,
+            "date": entry.added_at,
+        })
+
+
+    for review in (
+        Review.objects
+        .filter(user=request.user)
+        .select_related("game")
+    ):
+
+        recent_activities.append({
+            "type": "review",
+            "game": review.game,
+            "date": review.created_at,
+        })
+
+
+    recent_activities.sort(
+        key=lambda activity: activity["date"],
+        reverse=True,
+    )
+
+    recent_activities = recent_activities[:4]
 
 
     return render(
@@ -85,6 +151,10 @@ def dashboard_home(request):
         {
             "keep_exploring": keep_exploring,
             "recommendations": recommendations,
+            "latest_library_game": latest_library_game,
+            "new_releases": new_releases,
+            "upcoming_releases": upcoming_releases,
+            "recent_activities": recent_activities,
         }
     )
 

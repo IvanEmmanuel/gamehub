@@ -28,4 +28,18 @@
 
     <div class="games-grid dashboard-continue-grid">
 
+        {% for entry in keep_exploring %}
+
+            {% include "components/common/cards/game_card.html" with entry=entry %}
+
+        {% empty %}
+
+            <p class="dashboard-continue-empty">
+                Aún no tienes juegos en tu biblioteca.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
 </section>

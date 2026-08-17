@@ -8,23 +8,27 @@
 
         </h3>
 
-        <a href="#">
+        {% comment %} <a href="#">
 
             Ver todo
 
-        </a>
+        </a> {% endcomment %}
 
     </div>
 
     <div class="activity-list">
 
-        {% include "components/common/cards/activity_card.html" %}
+        {% for activity in recent_activities %}
 
-        {% include "components/common/cards/activity_card.html" %}
+            {% include "components/common/cards/activity_card.html" with activity=activity %}
 
-        {% include "components/common/cards/activity_card.html" %}
+        {% empty %}
 
-        {% include "components/common/cards/activity_card.html" %}
+            <p>
+                Aún no tienes actividad reciente.
+            </p>
+
+        {% endfor %}
 
     </div>
 

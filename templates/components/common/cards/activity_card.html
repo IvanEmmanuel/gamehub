@@ -2,7 +2,15 @@
 
     <div class="activity-icon">
 
-        <i class="fa-solid fa-heart"></i>
+        {% if activity.type == "library" %}
+
+            <i class="fa-solid fa-gamepad"></i>
+
+        {% elif activity.type == "review" %}
+
+            <i class="fa-solid fa-star"></i>
+
+        {% endif %}
 
     </div>
 
@@ -10,13 +18,21 @@
 
         <h5>
 
-            Añadiste "Echoes of Orion"
+            {% if activity.type == "library" %}
+
+                Añadiste "{{ activity.game.name }}"
+
+            {% elif activity.type == "review" %}
+
+                Publicaste una reseña de "{{ activity.game.name }}"
+
+            {% endif %}
 
         </h5>
 
         <span>
 
-            Hace 2 horas
+            {{ activity.date }}
 
         </span>
 

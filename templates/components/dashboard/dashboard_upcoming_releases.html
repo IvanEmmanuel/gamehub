@@ -3,26 +3,28 @@
     <div class="upcoming-header">
 
         <h3>
-
             Próximos lanzamientos
-
         </h3>
 
-        <a href="#">
-
-            Ver calendario
-
+        <a href="{% url 'public:games_list' %}">
+            Ver 
         </a>
 
     </div>
 
     <div class="upcoming-list">
 
-        {% include "components/common/cards/release_card.html" %}
+        {% for game in upcoming_releases %}
 
-        {% include "components/common/cards/release_card.html" %}
+            {% include "components/common/cards/release_card.html" with game=game %}
 
-        {% include "components/common/cards/release_card.html" %}
+        {% empty %}
+
+            <p>
+                No hay próximos lanzamientos.
+            </p>
+
+        {% endfor %}
 
     </div>
 
