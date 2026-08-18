@@ -54,19 +54,39 @@
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
                         {% if request.user.is_authenticated %}
-                            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                            <li>
+                                <a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+                                    Dashboard
+                                </a>
+                            </li>
                         {% endif %}
-                        <li><a href="{% url 'public:games_list' %}" class="active">Juegos</a></li>
-                        <li><a href="{% url 'dashboard_library' %}">Biblioteca</a></li>
+                        <li>
+                            <a href="{% url 'public:games_list' %}" class="{% if request.resolver_match.namespace == 'public' %}active{% endif %}">
+                                Juegos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'dashboard_library' %}" class="{% if request.resolver_match.url_name == 'dashboard_library' %}active{% endif %}">
+                                Biblioteca
+                            </a>
+                        </li>
                         <!-- <li><a href="streams.html">Comunidad</a></li> -->
-                        <li><a href="{% url 'news:news_list' %}">Noticias</a></li>
+                        <li>
+                            <a href="{% url 'news:news_list' %}" class="{% if request.resolver_match.namespace == 'news' %}active{% endif %}">
+                                Noticias
+                            </a>
+                        </li>
 
                         <!-- Notificaciones -->
                         {% if request.user.is_authenticated %}
                             <!-- <li><a href="#" title="Notificaciones"><i class="fa fa-bell"></i></a></li> -->
 
                             <!-- Support -->
-                            <li><a href="{% url 'support' %}" title="Soporte"><i class="fa-solid fa-headset"></i></a></li>
+                            <li>
+                                <a href="{% url 'support' %}" title="Soporte" class="{% if request.resolver_match.url_name == 'support' %}active{% endif %}">
+                                    <i class="fa-solid fa-headset"></i>
+                                </a>
+                            </li>
 
                             <!-- Profile Image -->
                             <li><a href="{% url 'dashboard_profile' %}">Perfil <img src="{{ profile_picture }}" alt="Avatar"></a></li>
@@ -199,16 +219,20 @@
                 </p>
 
                 <div class="footer-social">
+                    <!--    
+                        
+                        <a href="#"><i class="fab fa-discord"></i></a>
+    
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+    
+                        <a href="#"><i class="fab fa-x"></i></a>
+    
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    
+                    -->
 
-                    <a href="#"><i class="fab fa-discord"></i></a>
 
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-
-                    <a href="#"><i class="fab fa-x-twitter"></i></a>
-
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-
-                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/IvanEmmanuel/gamehub"><i class="fab fa-github"></i></a>
 
                 </div>
 
@@ -222,15 +246,39 @@
 
                 <ul>
 
-                    <li><a href="#">Inicio</a></li>
+                    {% if request.user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'dashboard' %}">
+                                Inicio
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'public:games_list' %}">
+                                Inicio
+                            </a>
+                        </li>
+                    {% endif %}
 
-                    <li><a href="#">Juegos</a></li>
+                    <li>
+                        <a href="{% url 'public:games_list' %}">
+                            Juegos
+                        </a>
+                    </li>
 
-                    <li><a href="#">Biblioteca</a></li>
+                    {% if request.user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'dashboard_library' %}">
+                                Biblioteca
+                            </a>
+                        </li>
+                    {% endif %}
 
-                    <li><a href="#">Noticias</a></li>
-
-                    <li><a href="#">Comunidad</a></li>
+                    <li>
+                        <a href="{% url 'news:news_list' %}">
+                            Noticias
+                        </a>
+                    </li>
 
                 </ul>
 
@@ -244,13 +292,41 @@
 
                 <ul>
 
-                    <li><a href="#">Perfil</a></li>
+                    {% if request.user.is_authenticated %}
 
-                    <li><a href="#">Favoritos</a></li>
+                        <li>
+                            <a href="{% url 'dashboard_profile' %}">
+                                Perfil
+                            </a>
+                        </li>
 
-                    <li><a href="#">Historial</a></li>
+                        <li>
+                            <a href="{% url 'dashboard_library' %}">
+                                Biblioteca
+                            </a>
+                        </li>
 
-                    <li><a href="#">Configuración</a></li>
+                        <li>
+                            <a href="{% url 'change_password' %}">
+                                Configuración
+                            </a>
+                        </li>
+
+                    {% else %}
+
+                        <li>
+                            <a href="{% url 'login' %}">
+                                Iniciar sesión
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'register' %}">
+                                Crear cuenta
+                            </a>
+                        </li>
+
+                    {% endif %}
 
                 </ul>
 
@@ -264,33 +340,11 @@
 
                 <ul>
 
-                    <li><a href="#">Centro de ayuda</a></li>
-
-                    <li><a href="#">Reportar error</a></li>
-
-                    <li><a href="#">Sugerencias</a></li>
-
-                    <li><a href="#">Estado del servicio</a></li>
-
-                </ul>
-
-            </div>
-
-            <!-- Estadísticas -->
-
-            <div class="col-lg-2">
-
-                <h5>NexusPlay</h5>
-
-                <ul class="footer-stats">
-
-                    <li>🎮 14,256 Juegos</li>
-
-                    <li>👥 58,000 Usuarios</li>
-
-                    <li>📰 4,300 Noticias</li>
-
-                    <li>🏆 210 Desarrolladores</li>
+                    <li>
+                        <a href="{% url 'support' %}">
+                            Centro de ayuda
+                        </a>
+                    </li>
 
                 </ul>
 
@@ -305,18 +359,6 @@
             <div>
 
                 © 2026 <strong>NexusPlay</strong> · Todos los derechos reservados.
-
-            </div>
-
-            <div>
-
-                <a href="#">Privacidad</a>
-
-                <a href="#">Cookies</a>
-
-                <a href="#">Términos</a>
-
-                <a href="#">API</a>
 
             </div>
 

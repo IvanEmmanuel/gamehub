@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from ..models.game import Game
 from ..models.genre import Genre
 from ..models.review import Review
+from ..models.news import News
 from ..forms import ReviewForm
 from django.db.models import Q, Count, Avg
 from django.core.paginator import Paginator
@@ -56,6 +57,8 @@ def games_list(request):
     multiplayer = request.GET.get("multiplayer")
     new_releases = request.GET.get("new_releases")
     popular = request.GET.get("popular")
+    top_rated = request.GET.get("top_rated")
+    recommended = request.GET.get("recommended")
     
     has_filters = bool(
         query
@@ -65,6 +68,55 @@ def games_list(request):
         or multiplayer
         or new_releases
         or popular
+        or top_rated
+        or recommended
+    )
+    
+    if recommended == "true" and request.user.is_authenticated:
+
+        user_genres = (
+            Game.objects
+            .filter(
+                usergamelibrary__user=request.user
+            )
+            .values_list(
+                "genres",
+                flat=True
+            )
+        )
+
+        games = (
+            games
+            .filter(
+                genres__in=user_genres
+            )
+            .exclude(
+                id__in=library_game_ids
+            )
+            .distinct()
+            .order_by("-created_at")
+        )
+    
+    if top_rated == "true":
+
+        games = (
+            games
+            .annotate(
+            average_rating=Avg("reviews__rating"),
+            review_count=Count("reviews")
+        )
+        .filter(review_count__gt=0)
+        .order_by("-average_rating", "-review_count", "name")
+        )
+    
+    hero_games = (
+        Game.objects
+        .filter(
+            is_active=True,
+            banner__isnull=False,
+        )
+        .prefetch_related("genres")
+        .order_by("-created_at")[:12]
     )
     
     
@@ -181,6 +233,7 @@ def games_list(request):
         "library_game_ids": library_game_ids,
         "library_entries": library_entries,
         "has_filters": has_filters,
+        "hero_games": hero_games,
     })
 
 def games_detail(request, slug):
@@ -284,6 +337,15 @@ def games_detail(request, slug):
     review_form = ReviewForm(
         instance=user_review
     )
+    
+    game_news = (
+        News.objects
+        .filter(
+            game=game,
+            is_published=True,
+        )
+        .order_by("-published_at")[:3]
+    )
 
     return render(
         request,
@@ -301,6 +363,7 @@ def games_detail(request, slug):
             "has_half_star": has_half_star,
             "empty_stars": empty_stars,
             "similar_games": similar_games,
+            "game_news": game_news,
         },
     )
 

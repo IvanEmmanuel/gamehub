@@ -123,7 +123,8 @@ class ProfileForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         super(ProfileForm, self).__init__(*args, **kwargs)
         
-        self.fields['gamer_tag'].disabled = True
+        if self.instance.gamer_tag:
+            self.fields['gamer_tag'].disabled = True
         
         if user:
             self.fields['email'].initial = user.email

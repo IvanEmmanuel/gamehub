@@ -3,108 +3,108 @@
                     HERO CAROUSEL
           ================================ -->
 
-          <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
+        <div id="heroCarousel" class="carousel slide hero-carousel" data-bs-ride="carousel">
 
               <!-- Indicadores -->
-              <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
-                  <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
-                  <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
-              </div>
+            <div class="carousel-indicators">
 
-              <div class="carousel-inner">
+                {% for game in hero_games %}
 
-                  <!-- ================= Slide 1 ================= -->
+                    <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-label="Ir al juego {{ forloop.counter }}"></button>
 
-                  <div class="carousel-item active">
+                {% endfor %}
 
-                      <img src="{% static 'assets/images/banner-1.jpg' %}" class="d-block w-100 hero-image" alt="">
+            </div>
 
-                      <div class="carousel-caption">
+            <div class="carousel-inner">
 
-                          <span class="badge bg-primary mb-3">
-                              Acción • RPG
-                          </span>
+                {% for game in hero_games %}
 
-                          <h1>Cyberpunk 2077</h1>
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
 
-                          <p>
-                              Explora Night City y conviértete en una leyenda.
-                          </p>
+                        {% if game.banner %}
 
-                          <div class="hero-buttons">
+                            <img
+                                src="{{ game.banner.url }}"
+                                class="d-block w-100 hero-image"
+                                alt="{{ game.name }}"
+                            >
 
-                              <a href="#" class="hero-btn-primary">
-                                  <i class="fa fa-gamepad"></i> Ver detalles
-                              </a>
+                        {% endif %}
 
-                          </div>
 
-                      </div>
+                        <div class="carousel-caption">
 
-                  </div>
+                            {% with first_genre=game.genres.all|first %}
 
-                  <!-- ================= Slide 2 ================= -->
+                                {% if first_genre %}
 
-                  <div class="carousel-item">
+                                    <span class="badge bg-primary mb-3">
+                                        {{ first_genre.name }}
+                                    </span>
 
-                      <img src="{% static 'assets/images/banner-2.jpg' %}" class="d-block w-100 hero-image" alt="">
+                                {% endif %}
 
-                      <div class="carousel-caption">
+                            {% endwith %}
 
-                          <span class="badge bg-success mb-3">
-                              Shooter
-                          </span>
 
-                          <h1>Halo Infinite</h1>
+                            <h1>
+                                {{ game.name }}
+                            </h1>
 
-                          <p>
-                              Enfréntate a los Desterrados como el Jefe Maestro.
-                          </p>
 
-                          <div class="hero-buttons">
+                            {% if game.overview %}
 
-                              <a href="#" class="hero-btn-primary">
-                                  <i class="fa fa-gamepad"></i> Ver detalles
-                              </a>
+                                <p>
+                                    {{ game.overview|truncatewords:18 }}
+                                </p>
 
-                          </div>
+                            {% else %}
 
-                      </div>
+                                <p>
+                                    Descubre todo lo que {{ game.name }} tiene para ofrecer.
+                                </p>
 
-                  </div>
+                            {% endif %}
 
-                  <!-- ================= Slide 3 ================= -->
 
-                  <div class="carousel-item">
+                            <div class="hero-buttons">
 
-                      <img src="{% static 'assets/images/banner-3.jpg' %}" class="d-block w-100 hero-image" alt="">
+                                <a
+                                    href="{% url 'public:games_detail' game.slug %}"
+                                    class="hero-btn-primary"
+                                >
+                                    <i class="fa fa-gamepad"></i>
+                                    Ver detalles
+                                </a>
 
-                      <div class="carousel-caption">
+                            </div>
 
-                          <span class="badge bg-warning text-dark mb-3">
-                              Mundo Abierto
-                          </span>
+                        </div>
 
-                          <h1>Red Dead Redemption II</h1>
+                    </div>
 
-                          <p>
-                              Vive el salvaje oeste como nunca antes.
-                          </p>
+                {% empty %}
 
-                          <div class="hero-buttons">
+                    <div class="carousel-item active">
 
-                              <a href="#" class="hero-btn-primary">
-                                  <i class="fa fa-gamepad"></i> Ver detalles
-                              </a>
+                        <div class="carousel-caption">
 
-                          </div>
+                            <h1>
+                                No hay juegos disponibles
+                            </h1>
 
-                      </div>
+                            <p>
+                                Próximamente encontrarás nuevos juegos aquí.
+                            </p>
 
-                  </div>
+                        </div>
 
-              </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
 
               <!-- Flechas -->
 
@@ -120,7 +120,7 @@
 
               </button>
 
-          </div>
+        </div>
 
           <!-- ==============================
                     FINAL HERO CAROUSEL

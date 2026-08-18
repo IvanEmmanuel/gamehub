@@ -125,104 +125,73 @@
 
             <div class="news-list">
 
-                <!--=========================
-                        Noticia 1
-                =========================-->
+                {% for news in game_news %}
 
-                <article class="news-item">
+                    <article class="news-item">
 
-                    <img src="{% static 'assets/images/details-01.jpg' %}" alt="">
+                        {% if news.image %}
 
-                    <div class="news-content">
+                            <img
+                                src="{{ news.image.url }}"
+                                alt="{{ news.title }}"
+                            >
 
-                        <span class="news-category">
+                        {% endif %}
 
-                            Actualización
 
-                        </span>
+                        <div class="news-content">
 
-                        <h4>
+                            {% if news.game %}
 
-                            Cyberpunk 2077 recibe el parche 2.3 con nuevas mejoras.
+                                <span class="news-category">
+                                    {{ news.game.name }}
+                                </span>
 
-                        </h4>
+                            {% endif %}
 
-                        <small>
 
-                            <i class="fa-regular fa-calendar"></i>
+                            <h4>
+                                {{ news.title }}
+                            </h4>
 
-                            18 Julio 2026
 
-                        </small>
+                            <small>
 
-                        <p>
+                                <i class="fa-regular fa-calendar"></i>
 
-                            El nuevo parche incorpora mejoras de rendimiento,
-                            nuevas opciones de personalización y correcciones
-                            para diversas misiones.
+                                {{ news.published_at|date:"d F Y" }}
 
-                        </p>
+                            </small>
 
-                        <a href="#">
 
-                            Leer más
+                            {% if news.summary %}
 
-                            <i class="fa-solid fa-arrow-right"></i>
+                                <p>
+                                    {{ news.summary }}
+                                </p>
 
-                        </a>
+                            {% endif %}
 
-                    </div>
 
-                </article>
+                            <a href="{% url 'news:news_detail' news.slug %}">
 
-                <!--=========================
-                        Noticia 2
-                =========================-->
+                                Leer más
 
-                <article class="news-item">
+                                <i class="fa-solid fa-arrow-right"></i>
 
-                    <img src="{% static 'assets/images/details-02.jpg' %}" alt="">
+                            </a>
 
-                    <div class="news-content">
+                        </div>
 
-                        <span class="news-category purple">
+                    </article>
 
-                            Expansión
+                {% empty %}
 
-                        </span>
+                    <p class="news-empty">
+                        No hay noticias disponibles para este juego.
+                    </p>
 
-                        <h4>
-
-                            Phantom Liberty alcanza un nuevo récord de jugadores.
-
-                        </h4>
-
-                        <small>
-
-                            <i class="fa-regular fa-calendar"></i>
-
-                            12 Julio 2026
-
-                        </small>
-
-                        <p>
-
-                            La expansión continúa creciendo y supera los
-                            cinco millones de jugadores activos.
-
-                        </p>
-
-                        <a href="#">
-
-                            Leer más
-
-                            <i class="fa-solid fa-arrow-right"></i>
-
-                        </a>
-
-                    </div>
-
-                </article>
+                {% endfor %}
 
             </div>
 

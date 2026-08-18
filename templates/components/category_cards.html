@@ -40,7 +40,7 @@
 
         <div class="col-lg-4 col-md-6 mb-4">
 
-            <a href="#" class="category-card">
+            <a href="{% url 'public:games_list' %}?top_rated=true" class="category-card">
 
                 <div class="category-icon text-warning">
 
@@ -115,7 +115,7 @@
 
         <div class="col-lg-4 col-md-6 mb-4">
 
-            <a href="#" class="category-card">
+            <a href="{% url 'public:games_list' %}?recommended=true" class="category-card">
 
                 <div class="category-icon text-success">
 

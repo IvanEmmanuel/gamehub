@@ -61,20 +61,47 @@
 
             <i class="fa-solid fa-trophy"></i>
 
-            <span>Mis Logros</span>
+            <span>Mis Logros (Próximamente)</span>
 
         </a>
 
-        <!-- Estadísticas -->
+        <!-- Panel de moderador -->
 
-        <a href="{% url 'moderation:game_list' %}"
-           class="dashboard-link {% if request.resolver_match.url_name == 'dashboard_statistics' %}active{% endif %}">
+        {% if request.user.is_superuser %}
 
-            <i class="fas fa-user-shield"></i>
+            <a
+                href="{% url 'moderation:game_list' %}"
+                class="dashboard-link {% if request.resolver_match.namespace == 'moderation' %}active{% endif %}"
+            >
 
-            <span>Panel de moderador</span>
+                <i class="fas fa-user-shield"></i>
 
-        </a>
+                <span>Panel de moderador</span>
+
+            </a>
+
+        {% else %}
+
+            {% for group in request.user.groups.all %}
+
+                {% if group.name == "Moderador" %}
+
+                    <a
+                        href="{% url 'moderation:game_list' %}"
+                        class="dashboard-link {% if request.resolver_match.namespace == 'moderation' %}active{% endif %}"
+                    >
+
+                        <i class="fas fa-user-shield"></i>
+
+                        <span>Panel de moderador</span>
+
+                    </a>
+
+                {% endif %}
+
+            {% endfor %}
+
+        {% endif %}
 
         <!-- Perfil -->
 
