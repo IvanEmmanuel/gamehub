@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/news.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
@@ -20,6 +21,106 @@
 
 {% block content %}
 
+<article class="news-detail">
+
+  <a href="{% url 'news:news_list' %}" class="news-detail-back">
+        <i class="fa-solid fa-arrow-left"></i>
+        Volver a noticias
+    </a>
+    <br>
+
+
+    {% if news.game %}
+
+        <a href="{% url 'public:games_detail' news.game.slug %}" class="news-detail-game">
+            <i class="fa-solid fa-gamepad"></i>
+
+            {{ news.game.name }}
+        </a>
+
+    {% endif %}
+
+
+    <h1 class="news-detail-title">
+        {{ news.title }}
+    </h1>
+
+
+    <p class="news-detail-summary">
+        {{ news.summary }}
+    </p>
+
+
+    <div class="news-detail-meta">
+
+        {% if news.source_name %}
+
+            <span>
+                {{ news.source_name }}
+            </span>
+
+        {% endif %}
+
+
+        {% if news.author %}
+
+            <span>
+                {{ news.author }}
+            </span>
+
+        {% endif %}
+
+
+        <span>
+            {{ news.published_at|date:"d F Y" }}
+        </span>
+
+    </div>
+
+    {% if news.image %}
+
+      <div class="news-detail-image">
+
+          <img src="{{ news.image.url }}" alt="{{ news.title }}">
+
+      </div>
+
+    {% endif %}
+
+    <div class="news-detail-content">
+
+        {{ news.content|linebreaks }}
+
+    </div>
+
+        {% if news.source_url %}
+
+        <div class="news-detail-source">
+
+            <span class="news-detail-source-label">
+                Fuente original
+            </span>
+
+            {% if news.source_name %}
+
+                <span class="news-detail-source-name">
+                    {{ news.source_name }}
+                </span>
+
+            {% endif %}
+
+            <a href="{{ news.source_url }}" target="_blank" rel="noopener noreferrer" class="news-detail-source-link">
+                Consultar noticia original
+
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</article>
 
 {% endblock %}
 
