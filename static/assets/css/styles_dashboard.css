@@ -670,3 +670,200 @@
     color:#FFF;
 
 }
+
+
+/* =========================================================
+   DASHBOARD - ÚLTIMAS NOTICIAS
+========================================================= */
+
+.dashboard-news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+
+/* =========================================================
+   TARJETA
+========================================================= */
+
+.dashboard-news-list .news-card {
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    background: #181b2a;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+
+    box-shadow: none;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+
+.dashboard-news-list .news-card:hover {
+    transform: translateY(-2px);
+
+    background: #1b1e2d;
+
+    border-color: rgba(124, 58, 237, 0.45);
+
+    box-shadow: none;
+}
+
+
+/* =========================================================
+   IMAGEN
+========================================================= */
+
+.dashboard-news-list .news-card-image {
+    flex: 0 0 95px;
+
+    width: 95px;
+    height: 95px;
+
+    aspect-ratio: auto;
+
+    object-fit: cover;
+
+    align-self: flex-start;
+
+    transition: transform 0.3s ease;
+}
+
+
+.dashboard-news-list .news-card:hover .news-card-image {
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
+
+.dashboard-news-list .news-card-body {
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+    min-width: 0;
+
+    padding: 10px 12px;
+}
+
+
+/* =========================================================
+   JUEGO RELACIONADO
+========================================================= */
+
+.dashboard-news-list .news-card-game {
+    display: block;
+
+    margin: 0 0 3px;
+
+    color: #a78bfa;
+
+    font-size: 10px;
+    line-height: 1.2;
+    font-weight: 600;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.dashboard-news-list .news-card-title {
+    display: -webkit-box;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    line-height: 1.25;
+    font-weight: 700;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+
+/* =========================================================
+   RESUMEN
+========================================================= */
+
+/*
+   En el Dashboard no mostramos el resumen.
+   La tarjeta debe funcionar como acceso rápido.
+*/
+
+.dashboard-news-list .news-card-summary {
+    display: none;
+}
+
+
+/* =========================================================
+   META
+========================================================= */
+
+.dashboard-news-list .news-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin: 5px 0 0;
+
+    color: #777c94;
+
+    font-size: 9px;
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   ENLACE
+========================================================= */
+
+.dashboard-news-list .news-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    margin-top: 5px;
+
+    color: #a78bfa;
+
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        color 0.25s ease,
+        gap 0.25s ease;
+}
+
+
+.dashboard-news-list .news-card-link:hover {
+    color: #c4b5fd;
+    gap: 8px;
+}

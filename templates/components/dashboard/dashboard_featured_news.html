@@ -8,7 +8,7 @@
 
         </h3>
 
-        <a href="#">
+        <a href="{% url 'news:news_list' %}">
 
             Ver noticias
 
@@ -16,8 +16,20 @@
 
     </div>
 
-    {% include "components/common/cards/news_card.html" %}
-    {% include "components/common/cards/news_card.html" %}
-    {% include "components/common/cards/news_card.html" %}
+    <div class="dashboard-news-list">
+
+        {% for item in latest_news %}
+
+            {% include "components/common/cards/news_card.html" with news=item %}
+
+        {% empty %}
+
+            <p>
+                No hay noticias disponibles.
+            </p>
+
+        {% endfor %}
+
+    </div>
 
 </section>

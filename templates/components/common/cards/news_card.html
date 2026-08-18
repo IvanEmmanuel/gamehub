@@ -4,19 +4,11 @@
 
     {% if news.image %}
 
-        <img
-            src="{{ news.image.url }}"
-            alt="{{ news.title }}"
-            class="news-card-image"
-        >
+        <img src="{{ news.image.url }}" alt="{{ news.title }}" class="news-card-image">
 
     {% else %}
 
-        <img
-            src="{% static 'assets/images/default-game-cover.png' %}"
-            alt="{{ news.title }}"
-            class="news-card-image"
-        >
+        <img src="{% static 'assets/images/default-game-cover.png' %}" alt="{{ news.title }}" class="news-card-image">
 
     {% endif %}
 
@@ -59,10 +51,7 @@
         </div>
 
 
-        <a
-            href="{% url 'news:news_detail' news.slug %}"
-            class="news-card-link"
-        >
+        <a href="{% url 'news:news_detail' news.slug %}" class="news-card-link">
             Leer noticia
 
             <i class="fa-solid fa-arrow-right"></i>

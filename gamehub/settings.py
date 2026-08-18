@@ -73,6 +73,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "apps.profiles.context_processors.user_profile",
                 "apps.dashboard.context_processors.dashboard_sidebar",
+                "apps.games.context_processors.news.latest_news",
             ],
         },
     },

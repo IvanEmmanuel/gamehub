@@ -6,6 +6,7 @@ from django.db.models import Count, Q
 from apps.games.models.game import Game
 from apps.games.models.genre import Genre
 from apps.games.models.review import Review
+from apps.games.models.news import News
 
 from django.utils import timezone
 
