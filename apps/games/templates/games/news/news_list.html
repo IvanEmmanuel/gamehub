@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Noticias{% endblock title %}
+
+{% block custom_styles %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/template_NexusPlay.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles_games.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/news.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+{% endblock custom_styles %}
+  <!-- ***** Header Area End ***** -->
+
+
+{% block content %}
+
+<section class="news-page">
+
+    <div class="container">
+
+        <div class="news-page-header">
+
+            <h1>
+                Noticias
+            </h1>
+
+            <p>
+                Las últimas noticias del mundo de los videojuegos.
+            </p>
+
+        </div>
+
+
+        {% if featured_news %}
+
+            <article class="news-featured">
+
+                {% if featured_news.image %}
+
+                    <img src="{{ featured_news.image.url }}" alt="{{ featured_news.title }}">
+
+                {% else %}
+
+                    <img src="{% static 'assets/images/default-game-cover.png' %}" alt="{{ featured_news.title }}">
+
+                {% endif %}
+
+
+                <div class="news-featured-content">
+
+                    {% if featured_news.game %}
+
+                        <span class="news-featured-game">
+                            {{ featured_news.game.name }}
+                        </span>
+
+                    {% endif %}
+
+                    <h2 class="news-featured-title">
+                        {{ featured_news.title }}
+                    </h2>
+
+                    <p class="news-featured-summary">
+                        {{ featured_news.summary }}
+                    </p>
+
+                    <div class="news-featured-meta">
+
+                        {% if featured_news.source_name %}
+
+                            <span>
+                                {{ featured_news.source_name }}
+                            </span>
+
+                        {% endif %}
+
+                        <span>
+                            {{ featured_news.published_at|date:"d F Y" }}
+                        </span>
+
+                    </div>
+
+                    <a
+                        href="{% url 'news:news_detail' featured_news.slug %}"
+                        class="news-featured-link"
+                    >
+                        Leer noticia
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                </div>
+
+            </article>
+
+        {% endif %}
+
+
+    </div>
+
+</section>
+
+
+
+<section class="news-latest">
+
+    <div class="news-latest-header">
+
+        <h2>
+            Últimas noticias
+        </h2>
+
+    </div>
+
+    <div class="news-list">
+
+        <div class="news-grid">
+
+            {% for item in news %}
+
+                {% include "components/common/cards/news_card.html" with news=item %}
+
+            {% empty %}
+
+                <p>
+                    No hay noticias disponibles.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+        {% if news.has_other_pages %}
+
+            <nav class="news-pagination" aria-label="Paginación de noticias">
+
+                {% if news.has_previous %}
+
+                    <a
+                        href="?page={{ news.previous_page_number }}"
+                        class="news-pagination-link"
+                    >
+                        <i class="fa-solid fa-chevron-left"></i>
+                        Anterior
+                    </a>
+
+                {% endif %}
+
+
+                <div class="news-pagination-pages">
+
+                    {% for page_number in news.paginator.page_range %}
+
+                        {% if page_number == news.number %}
+
+                            <span class="news-pagination-page active">
+                                {{ page_number }}
+                            </span>
+
+                        {% else %}
+
+                            <a
+                                href="?page={{ page_number }}"
+                                class="news-pagination-page"
+                            >
+                                {{ page_number }}
+                            </a>
+
+                        {% endif %}
+
+                    {% endfor %}
+
+                </div>
+
+
+                {% if news.has_next %}
+
+                    <a
+                        href="?page={{ news.next_page_number }}"
+                        class="news-pagination-link"
+                    >
+                        Siguiente
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </a>
+
+                {% endif %}
+
+            </nav>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+{% endblock %}
+
+
+  {% block scripts %}
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+
+  <script src="{% static 'assets/js/isotope.min.js'%}"></script>
+  <script src="{% static 'assets/js/owl-carousel.js'%}"></script>
+  <script src="{% static 'assets/js/tabs.js'%}"></script>
+  <script src="{% static 'assets/js/popup.js'%}"></script>
+  <script src="{% static 'assets/js/custom.js'%}"></script>
+
+  <script src="{% static 'assets/js/navigation_bar.js'%}"></script>
+  <script src="{% static 'assets/js/video-modal.js'%}"></script>
+  <script src="{% static 'assets/js/image-modal.js'%}"></script>
+  
+{% endblock scripts %}

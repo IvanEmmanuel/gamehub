@@ -58,12 +58,12 @@
                         {% endif %}
                         <li><a href="{% url 'public:games_list' %}" class="active">Juegos</a></li>
                         <li><a href="{% url 'dashboard_library' %}">Biblioteca</a></li>
-                        <li><a href="streams.html">Comunidad</a></li>
-                        <li><a href="streams.html">Noticias</a></li>
+                        <!-- <li><a href="streams.html">Comunidad</a></li> -->
+                        <li><a href="{% url 'news:news_list' %}">Noticias</a></li>
 
                         <!-- Notificaciones -->
                         {% if request.user.is_authenticated %}
-                            <li><a href="#" title="Notificaciones"><i class="fa fa-bell"></i></a></li>
+                            <!-- <li><a href="#" title="Notificaciones"><i class="fa fa-bell"></i></a></li> -->
 
                             <!-- Support -->
                             <li><a href="{% url 'support' %}" title="Soporte"><i class="fa-solid fa-headset"></i></a></li>

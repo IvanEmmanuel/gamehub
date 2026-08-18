@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Game, Genre, Achievement, Trailer, Screenshot, DLC, Guide, Soundtrack, PatchNote, UserGameLibrary)
+from .models import (Game, Genre, Achievement, Trailer, Screenshot, DLC, Guide, Soundtrack, PatchNote, UserGameLibrary, Review, News)
 from django.utils.html import format_html
 
 @admin.register(Genre)
@@ -26,8 +26,6 @@ class GameAdmin(admin.ModelAdmin):
     search_fields = ['name', 'overview']
     prepopulated_fields = {'slug': ('name',)}
     list_per_page = 20
-
-
 
 @admin.register(Achievement)
 class AchievementAdmin(admin.ModelAdmin):
@@ -101,7 +99,6 @@ class AchievementAdmin(admin.ModelAdmin):
 
         return "-"
 
-
 @admin.register(Trailer)
 class TrailerAdmin(admin.ModelAdmin):
 
@@ -149,7 +146,6 @@ class ScreenshotAdmin(admin.ModelAdmin):
         "game",
         "display_order",
     )
-
 
 @admin.register(DLC)
 class DLCAdmin(admin.ModelAdmin):
@@ -430,11 +426,43 @@ class PatchNoteAdmin(admin.ModelAdmin):
     @admin.display(description="Version")
     def version_display(self, obj):
         return f"v{obj.version}"
-    
-    
+
 @admin.register(UserGameLibrary)
 class UserGameLibraryAdmin(admin.ModelAdmin):
     list_display = ("user", "game", "added_at")
     list_filter = ("game", "added_at")
     search_fields = ("user__username", "game__name")
     list_select_related = ("user", "game")
+    
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+
+    list_display = (
+        "title",
+        "game",
+        "published_at",
+        "is_published",
+        "is_featured",
+    )
+
+    list_filter = (
+        "is_published",
+        "is_featured",
+        "game",
+    )
+
+    search_fields = (
+        "title",
+        "summary",
+        "content",
+        "source_name",
+        "author",
+    )
+
+    prepopulated_fields = {
+        "slug": ("title",)
+    }
+
+    ordering = (
+        "-published_at",
+    )

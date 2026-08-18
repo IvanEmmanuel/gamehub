@@ -1,25 +1,68 @@
 {% load static %}
 
-<div class="news-card">
+<article class="news-card">
 
-    <img src="{% static 'assets/images/news-1.jpg' %}" alt="Noticia">
+    {% if news.image %}
+
+        <img
+            src="{{ news.image.url }}"
+            alt="{{ news.title }}"
+            class="news-card-image"
+        >
+
+    {% else %}
+
+        <img
+            src="{% static 'assets/images/default-game-cover.png' %}"
+            alt="{{ news.title }}"
+            class="news-card-image"
+        >
+
+    {% endif %}
+
 
     <div class="news-card-body">
 
-        <span class="news-date">
+        {% if news.game %}
 
-            Hace 3 horas
+            <span class="news-card-game">
+                {{ news.game.name }}
+            </span>
 
-        </span>
+        {% endif %}
 
-        <h4>
 
-            Xbox anuncia una nueva consola portátil para competir en el mercado.
+        <h3 class="news-card-title">
+            {{ news.title }}
+        </h3>
 
-        </h4>
 
-        <a href="#" class="news-link">
+        <p class="news-card-summary">
+            {{ news.summary }}
+        </p>
 
+
+        <div class="news-card-meta">
+
+            {% if news.source_name %}
+
+                <span>
+                    {{ news.source_name }}
+                </span>
+
+            {% endif %}
+
+            <span>
+                {{ news.published_at|date:"d M Y" }}
+            </span>
+
+        </div>
+
+
+        <a
+            href="{% url 'news:news_detail' news.slug %}"
+            class="news-card-link"
+        >
             Leer noticia
 
             <i class="fa-solid fa-arrow-right"></i>
@@ -28,4 +71,4 @@
 
     </div>
 
-</div>
+</article>

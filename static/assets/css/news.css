@@ -1,0 +1,529 @@
+/* =========================================
+   NEWS CARD
+========================================= */
+
+.news-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #1e2235;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.news-card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease;
+}
+
+
+/* =========================================
+   BODY
+========================================= */
+
+.news-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px;
+}
+
+
+/* =========================================
+   RELATED GAME
+========================================= */
+
+.news-card-game {
+    display: inline-block;
+    width: fit-content;
+    margin-bottom: 10px;
+    color: #a78bfa;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.news-card-title {
+    margin: 0 0 12px;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+.news-card-summary {
+    margin: 0 0 18px;
+    color: #a7abc0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   META
+========================================= */
+
+.news-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    margin-bottom: 18px;
+    color: #777c94;
+    font-size: 12px;
+}
+
+
+/* =========================================
+   LINK
+========================================= */
+
+.news-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease, gap 0.3s ease;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.news-card:hover {
+    transform: translateY(-5px);
+    border-color: #7c3aed;
+    box-shadow: 0 12px 28px rgba(124, 58, 237, 0.22);
+}
+
+.news-card:hover .news-card-image {
+    transform: scale(1.05);
+}
+
+.news-card:hover .news-card-link {
+    color: #a78bfa;
+    gap: 12px;
+}
+
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+@media (max-width: 992px) {
+
+    .news-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* =========================================
+   NEWS PAGE
+========================================= */
+
+.news-page {
+    width: 100%;
+    padding: 40px 50px 60px;
+    box-sizing: border-box;
+}
+
+.news-page .container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+@media (max-width: 992px) {
+
+    .news-page {
+        padding: 35px 30px 50px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .news-page {
+        padding: 25px 18px 40px;
+    }
+
+}
+
+/* =========================================
+   LATEST NEWS SECTION
+========================================= */
+
+.news-latest {
+    width: 100%;
+    max-width: 1400px;
+    margin: 40px auto 0;
+    padding: 0 50px 60px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 992px) {
+
+    .news-latest {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .news-latest {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+}
+
+.news-page-header{
+    margin-top: -30px;
+}
+
+.news-featured {
+
+    margin-top: 30px;
+    position: relative;
+    height: 520px;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.news-featured img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.news-featured::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(15, 17, 28, 0.95),
+        rgba(15, 17, 28, 0.25),
+        transparent
+    );
+}
+
+/* =========================================
+   FEATURED NEWS CONTENT
+========================================= */
+
+
+.news-latest-header{
+    margin-top: -30px;
+    margin-bottom: 50px;
+}
+
+.news-featured-content {
+    position: absolute;
+    left: 40px;
+    right: 40px;
+    bottom: 35px;
+    z-index: 2;
+    max-width: 850px;
+}
+
+
+/* =========================================
+   RELATED GAME
+========================================= */
+
+.news-featured-game {
+    display: inline-block;
+    margin-bottom: 10px;
+
+    color: #a78bfa;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.news-featured-title {
+    margin: 0 0 12px;
+
+    color: #ffffff;
+
+    font-size: 38px;
+    line-height: 1.15;
+    font-weight: 700;
+}
+
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+.news-featured-summary {
+    max-width: 780px;
+
+    margin: 0 0 18px;
+
+    color: rgba(255, 255, 255, 0.82);
+
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+
+/* =========================================
+   META
+========================================= */
+
+.news-featured-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 18px;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 13px;
+}
+
+
+/* Separador entre fuente y fecha */
+
+.news-featured-meta span + span::before {
+    content: "•";
+    margin-right: 12px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+
+/* =========================================
+   LINK
+========================================= */
+
+.news-featured-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: color 0.3s ease, gap 0.3s ease;
+}
+
+
+.news-featured-link:hover {
+    color: #a78bfa;
+    gap: 12px;
+}
+
+@media (max-width: 992px) {
+
+    .news-featured-content {
+        left: 30px;
+        right: 30px;
+        bottom: 30px;
+    }
+
+    .news-featured-title {
+        font-size: 32px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .news-featured {
+        height: 450px;
+    }
+
+    .news-featured-content {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+    }
+
+    .news-featured-title {
+        font-size: 26px;
+    }
+
+    .news-featured-summary {
+        font-size: 14px;
+    }
+
+    .news-featured-meta {
+        font-size: 12px;
+    }
+
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+.news-card {
+    min-width: 0;
+    height: 100%;
+}
+
+.news-card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.news-card-meta {
+    margin-top: auto;
+}
+
+.news-card-summary {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+
+.news-card-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+
+/* =========================================
+   NEWS PAGINATION
+========================================= */
+
+.news-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 45px;
+}
+
+
+.news-pagination-pages {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.news-pagination-link,
+.news-pagination-page {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+
+    color: #a7abc0;
+    background: rgba(255, 255, 255, 0.03);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition:
+        color 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+.news-pagination-link {
+    gap: 8px;
+}
+
+
+.news-pagination-link:hover,
+.news-pagination-page:hover {
+    color: #ffffff;
+    background: rgba(124, 58, 237, 0.15);
+    border-color: rgba(124, 58, 237, 0.5);
+}
+
+
+.news-pagination-page.active {
+    color: #ffffff;
+    background: #7c3aed;
+    border-color: #7c3aed;
+}
+
+@media (max-width: 576px) {
+
+    .news-pagination {
+        gap: 12px;
+    }
+
+    .news-pagination-link {
+        min-width: 40px;
+        padding: 0 10px;
+    }
+
+    .news-pagination-link:not(:has(i)) {
+        font-size: 0;
+    }
+
+}
